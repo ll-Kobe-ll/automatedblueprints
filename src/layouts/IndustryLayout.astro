@@ -1,0 +1,151 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { site } from '../data/site';
+import type { IndustryData } from '../data/types';
+
+interface Props {
+  industry: IndustryData;
+}
+
+const { industry } = Astro.props;
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `${site.offer} for ${industry.name}`,
+  description: industry.schema.serviceDescription,
+  serviceType: industry.schema.serviceType,
+  provider: {
+    '@type': 'LocalBusiness',
+    name: site.name,
+    url: site.domain,
+  },
+  areaServed: 'US',
+};
+---
+
+<BaseLayout
+  title={industry.meta.title}
+  description={industry.meta.description}
+  ogTitle={industry.meta.ogTitle}
+  ogDescription={industry.meta.ogDescription}
+  canonicalPath={`/industries/${industry.slug}`}
+  schema={serviceSchema}
+>
+  <!-- Hero -->
+  <section class="bg-ink text-white section-pad" aria-label="Page hero">
+    <div class="section-container">
+      {industry.hero.eyebrow && (
+        <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">
+          {industry.hero.eyebrow}
+        </p>
+      )}
+      <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-3xl mb-6">
+        {industry.hero.headline}
+      </h1>
+      <p class="text-white/75 text-xl leading-relaxed max-w-2xl mb-10">
+        {industry.hero.subheadline}
+      </p>
+      <a href={site.ctaHref} class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 focus-visible:outline-white">
+        {site.ctaText}
+      </a>
+    </div>
+  </section>
+
+  <!-- Pain Points -->
+  <section class="section-pad bg-white" aria-labelledby="problems-heading">
+    <div class="section-container">
+      <h2 id="problems-heading" class="section-heading mb-4">
+        Where the Jobs Are Slipping Through
+      </h2>
+      <p class="section-sub max-w-2xl mb-16">
+        These are the gaps that cost local businesses work every week. Most owners know something is off. They just have not had the time to fix it.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {industry.painPoints.map((point, i) => (
+          <div class="card">
+            <div class="flex items-start gap-4">
+              <span
+                class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-50 text-brand-600 font-bold text-sm flex items-center justify-center mt-0.5"
+                aria-hidden="true"
+              >
+                {i + 1}
+              </span>
+              <div>
+                <h3 class="text-xl font-semibold text-ink mb-3">{point.title}</h3>
+                <p class="text-ink-light leading-relaxed">{point.body}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution -->
+  <section class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="solution-heading">
+    <div class="section-container">
+      <h2 id="solution-heading" class="section-heading mb-5">
+        {industry.solutionHeading}
+      </h2>
+      <p class="text-lg md:text-xl text-ink-light leading-relaxed max-w-3xl mb-12">
+        {industry.solutionIntro}
+      </p>
+
+      <!-- 3 components -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white border border-warm-200 rounded-lg p-6">
+          <div class="w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center mb-4 text-sm" aria-hidden="true">1</div>
+          <h3 class="font-semibold text-ink mb-2">Missed Call Text-Back</h3>
+          <p class="text-ink-light text-sm leading-relaxed">Any call you cannot answer gets an automatic text back in under 60 seconds. The conversation starts before they find the next number to call.</p>
+        </div>
+        <div class="bg-white border border-warm-200 rounded-lg p-6">
+          <div class="w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center mb-4 text-sm" aria-hidden="true">2</div>
+          <h3 class="font-semibold text-ink mb-2">Lead &amp; Quote Follow-Up</h3>
+          <p class="text-ink-light text-sm leading-relaxed">New leads and sent quotes trigger an automatic follow-up sequence over 10 to 14 days. You never manually chase a lead again.</p>
+        </div>
+        <div class="bg-white border border-warm-200 rounded-lg p-6">
+          <div class="w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center mb-4 text-sm" aria-hidden="true">3</div>
+          <h3 class="font-semibold text-ink mb-2">Review Generation</h3>
+          <p class="text-ink-light text-sm leading-relaxed">After a job is complete, an automatic review request goes out by text. More 5-star reviews without asking your staff to remember to do it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- System note (reassurance) -->
+  <section class="py-16 bg-white border-b border-warm-200" aria-label="System compatibility note">
+    <div class="section-container">
+      <div class="max-w-3xl bg-brand-50 border border-brand-100 rounded-lg p-8">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 flex items-center justify-center mt-0.5" aria-hidden="true">
+            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-ink mb-2 text-lg">Nothing in Your Current Setup Changes</h3>
+            <p class="text-ink-light leading-relaxed">{industry.systemNote}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-pad bg-white" aria-labelledby="industry-cta-heading">
+    <div class="section-container text-center">
+      <h2 id="industry-cta-heading" class="section-heading mb-4">
+        {industry.ctaHeading}
+      </h2>
+      <p class="section-sub max-w-xl mx-auto mb-8">
+        {industry.ctaBody}
+      </p>
+      <a href={site.ctaHref} class="btn-primary-lg">
+        {site.ctaText}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

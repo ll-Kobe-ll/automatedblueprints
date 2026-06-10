@@ -1,0 +1,53 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  heading?: string;
+  body?: string;
+  variant?: 'brand' | 'light';
+}
+
+const {
+  heading = 'Ready to Stop Losing Jobs to Whoever Answers First?',
+  body = 'Book a free 15-minute call. No pitch deck, no pressure. I look at your current setup and tell you exactly where leads are falling through.',
+  variant = 'brand',
+} = Astro.props;
+
+const isBrand = variant === 'brand';
+---
+
+<section
+  class:list={[
+    'section-pad',
+    isBrand ? 'bg-brand-600' : 'bg-warm-100 border-t border-warm-200',
+  ]}
+  aria-label="Call to action"
+>
+  <div class="section-container text-center">
+    <h2
+      class:list={[
+        'text-3xl md:text-4xl font-bold tracking-tight mb-5',
+        isBrand ? 'text-white' : 'text-ink',
+      ]}
+    >
+      {heading}
+    </h2>
+    <p
+      class:list={[
+        'text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed',
+        isBrand ? 'text-white/80' : 'text-ink-light',
+      ]}
+    >
+      {body}
+    </p>
+    <a
+      href={site.ctaHref}
+      class:list={[
+        'btn-primary-lg',
+        isBrand ? 'bg-white text-brand-700 hover:bg-brand-50 focus-visible:outline-white' : '',
+      ]}
+    >
+      {site.ctaText}
+    </a>
+  </div>
+</section>

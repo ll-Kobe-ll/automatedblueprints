@@ -1,0 +1,237 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { site } from '../data/site';
+
+const title       = 'Automated Blueprints | Lead Capture & Follow-Up Systems for Local Businesses';
+const description = 'Missed calls, slow follow-up, and ignored quotes cost local businesses jobs every week. Automated Blueprints builds the system that responds in under 60 seconds, follows up automatically, and keeps leads from going cold.';
+---
+
+<BaseLayout {title} {description} canonicalPath="/">
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="bg-ink text-white" aria-label="Hero">
+    <div class="section-container py-24 md:py-36">
+      <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-5">
+        For Local Businesses Everywhere
+      </p>
+      <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight max-w-3xl mb-6">
+        The First Business to Answer Gets the Job.
+      </h1>
+      <p class="text-white/75 text-xl md:text-2xl leading-relaxed max-w-2xl mb-10">
+        Your missed calls, unanswered texts, and ignored follow-ups are sending customers to whoever shows up next. The Client Capture Engine fixes all three, in about a week.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href={site.ctaHref} class="btn-primary-lg bg-white text-brand-700 hover:bg-brand-50 text-center">
+          {site.ctaText}
+        </a>
+        <a href="/how-it-works" class="btn-ghost-lg border-white/30 text-white hover:bg-white/10 hover:border-white/50 text-center">
+          See How It Works
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       THE PROBLEM — 3 cards
+  ============================================================ -->
+  <section class="section-pad bg-white" aria-labelledby="problem-heading">
+    <div class="section-container">
+      <h2 id="problem-heading" class="section-heading mb-4">
+        Where Local Businesses Lose Work Every Week
+      </h2>
+      <p class="section-sub max-w-2xl mb-16">
+        None of these problems show up on a report. They are just jobs you never knew you missed.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card">
+          <h3 class="text-xl font-semibold text-ink mb-3">Missed Calls, No Follow-Up</h3>
+          <p class="text-ink-light leading-relaxed">
+            Every call you cannot answer while you are busy is a lead that moves on. The average business takes over 47 hours to follow up on a new inquiry. By then, the customer has already booked.
+          </p>
+        </div>
+        <div class="card">
+          <h3 class="text-xl font-semibold text-ink mb-3">Quotes That Go Cold</h3>
+          <p class="text-ink-light leading-relaxed">
+            You sent the estimate. They said they would think about it. Most businesses follow up once, maybe twice, then write the lead off. But 80% of sales take five or more follow-ups to close.
+          </p>
+        </div>
+        <div class="card">
+          <h3 class="text-xl font-semibold text-ink mb-3">No System for Reviews</h3>
+          <p class="text-ink-light leading-relaxed">
+            You do good work. Your customers know it. But you never ask at the right time, so reviews do not stack up, and businesses with more stars on Google keep winning the search.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SOLUTION — 3 steps
+  ============================================================ -->
+  <section class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="solution-heading">
+    <div class="section-container">
+      <p class="text-brand-600 text-sm font-semibold uppercase tracking-wider mb-4">The Client Capture Engine</p>
+      <h2 id="solution-heading" class="section-heading mb-4">
+        Three Things Running Automatically in the Background
+      </h2>
+      <p class="section-sub max-w-2xl mb-16">
+        One system, built for you, that handles missed calls, lead follow-up, and review generation without adding anything to your plate.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <!-- Step 1 -->
+        <div>
+          <div class="w-12 h-12 rounded-full bg-brand-600 text-white font-bold text-lg flex items-center justify-center mb-6" aria-hidden="true">
+            1
+          </div>
+          <h3 class="text-xl font-semibold text-ink mb-3">Missed Call Text-Back</h3>
+          <p class="text-ink-light leading-relaxed">
+            Any call you cannot answer gets an automatic text back in under 60 seconds, on a local number with your area code. The customer knows someone is there before they even find the next shop to call.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div>
+          <div class="w-12 h-12 rounded-full bg-brand-600 text-white font-bold text-lg flex items-center justify-center mb-6" aria-hidden="true">
+            2
+          </div>
+          <h3 class="text-xl font-semibold text-ink mb-3">Instant Lead Response + Follow-Up</h3>
+          <p class="text-ink-light leading-relaxed">
+            New leads and quote requests get an immediate response. Then a follow-up sequence runs automatically over the next 10 to 14 days. Text, email, at timed intervals. No lead goes cold because no one remembered to follow up.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div>
+          <div class="w-12 h-12 rounded-full bg-brand-600 text-white font-bold text-lg flex items-center justify-center mb-6" aria-hidden="true">
+            3
+          </div>
+          <h3 class="text-xl font-semibold text-ink mb-3">Automatic Review Requests</h3>
+          <p class="text-ink-light leading-relaxed">
+            After a job is done, a short review request goes out by text. Easy to tap, takes 30 seconds. Most businesses go from a handful of reviews to dozens within the first few months.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-14 text-center">
+        <a href="/how-it-works" class="btn-primary">
+          See the Full System
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHO IT'S FOR — industry cards
+  ============================================================ -->
+  <section class="section-pad bg-white" aria-labelledby="industries-heading">
+    <div class="section-container">
+      <h2 id="industries-heading" class="section-heading mb-4">
+        Built for Businesses That Work With Their Hands
+      </h2>
+      <p class="section-sub max-w-2xl mb-16">
+        The problem is the same across industries. The first business to respond wins most of the work.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <!-- Machine Shops -->
+        <a
+          href="/industries/precision-manufacturing"
+          class="block border border-warm-200 rounded-lg p-8 hover:border-brand-600 hover:shadow-sm transition-all group"
+          aria-label="See our solution for Machine Shops and Fabricators"
+        >
+          <h3 class="text-lg font-semibold text-ink mb-3 group-hover:text-brand-600 transition-colors">
+            Machine Shops &amp; Fabricators
+          </h3>
+          <p class="text-ink-light text-sm leading-relaxed mb-5">
+            Everyone on the floor means calls go to voicemail and RFQs sit in an unchecked inbox. Buyers choose the shop that responds first.
+          </p>
+          <span class="text-brand-600 text-sm font-semibold">
+            See how it works &rarr;
+          </span>
+        </a>
+
+        <!-- Med Spas -->
+        <a
+          href="/industries/med-spas"
+          class="block border border-warm-200 rounded-lg p-8 hover:border-brand-600 hover:shadow-sm transition-all group"
+          aria-label="See our solution for Med Spas and Aesthetic Practices"
+        >
+          <h3 class="text-lg font-semibold text-ink mb-3 group-hover:text-brand-600 transition-colors">
+            Med Spas &amp; Aesthetics
+          </h3>
+          <p class="text-ink-light text-sm leading-relaxed mb-5">
+            Consult requests that go unanswered for hours, no-shows that could have been prevented, and clients who book once and never come back.
+          </p>
+          <span class="text-brand-600 text-sm font-semibold">
+            See how it works &rarr;
+          </span>
+        </a>
+
+        <!-- Home Services -->
+        <a
+          href="/industries/home-services"
+          class="block border border-warm-200 rounded-lg p-8 hover:border-brand-600 hover:shadow-sm transition-all group"
+          aria-label="See our solution for Contractors and Home Services"
+        >
+          <h3 class="text-lg font-semibold text-ink mb-3 group-hover:text-brand-600 transition-colors">
+            Contractors &amp; Home Services
+          </h3>
+          <p class="text-ink-light text-sm leading-relaxed mb-5">
+            Missed calls while you are on jobs, leads that go cold in hours, and no engine for stacking up Google reviews.
+          </p>
+          <span class="text-brand-600 text-sm font-semibold">
+            See how it works &rarr;
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STATS — dark section
+  ============================================================ -->
+  <section class="bg-ink text-white section-pad" aria-label="Industry research">
+    <div class="section-container">
+      <h2 class="text-white text-3xl md:text-4xl font-bold tracking-tight mb-16 text-center">
+        The Numbers Behind the Problem
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 text-center">
+        <div>
+          <p class="text-5xl md:text-6xl font-bold text-brand-300 mb-3">21x</p>
+          <p class="text-white/80 leading-relaxed">
+            Businesses that respond within 5 minutes are 21x more likely to qualify a lead than those who wait 30 minutes.
+          </p>
+          <p class="text-white/35 text-xs mt-3">Harvard Business Review, 2011 (study of 2,241 companies)</p>
+        </div>
+
+        <div>
+          <p class="text-5xl md:text-6xl font-bold text-brand-300 mb-3">80%</p>
+          <p class="text-white/80 leading-relaxed">
+            80% of sales require five or more follow-up attempts to close. 44% of businesses give up after the first try.
+          </p>
+          <p class="text-white/35 text-xs mt-3">Invesp, customer follow-up research</p>
+        </div>
+
+        <div>
+          <p class="text-5xl md:text-6xl font-bold text-brand-300 mb-3">93%</p>
+          <p class="text-white/80 leading-relaxed">
+            93% of consumers say online reviews influence their purchasing decisions. Reviews are part of the sales process now.
+          </p>
+          <p class="text-white/35 text-xs mt-3">BrightLocal Consumer Review Survey, 2023</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA
+  ============================================================ -->
+  <CtaSection variant="light" />
+
+</BaseLayout>

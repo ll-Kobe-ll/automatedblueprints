@@ -1,0 +1,191 @@
+---
+import { site } from '../data/site';
+---
+
+<form
+  id="contact-form"
+  class="space-y-6"
+  novalidate
+  aria-label="Contact form"
+>
+  <!-- Honeypot -->
+  <input
+    type="text"
+    name="botcheck"
+    class="sr-only"
+    tabindex="-1"
+    autocomplete="off"
+    aria-hidden="true"
+  />
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div>
+      <label for="cf-name" class="block text-sm font-semibold text-ink mb-1.5">
+        Your Name <span class="text-brand-600" aria-hidden="true">*</span><span class="sr-only">(required)</span>
+      </label>
+      <input
+        type="text"
+        id="cf-name"
+        name="name"
+        autocomplete="name"
+        placeholder="Jane Smith"
+        required
+        class="w-full border border-warm-200 rounded px-4 py-3 text-ink placeholder-ink-muted bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent transition"
+      />
+    </div>
+
+    <div>
+      <label for="cf-business" class="block text-sm font-semibold text-ink mb-1.5">
+        Business Name <span class="text-brand-600" aria-hidden="true">*</span><span class="sr-only">(required)</span>
+      </label>
+      <input
+        type="text"
+        id="cf-business"
+        name="business"
+        autocomplete="organization"
+        placeholder="Smith HVAC"
+        required
+        class="w-full border border-warm-200 rounded px-4 py-3 text-ink placeholder-ink-muted bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent transition"
+      />
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div>
+      <label for="cf-phone" class="block text-sm font-semibold text-ink mb-1.5">
+        Phone <span class="text-brand-600" aria-hidden="true">*</span><span class="sr-only">(required)</span>
+      </label>
+      <input
+        type="tel"
+        id="cf-phone"
+        name="phone"
+        autocomplete="tel"
+        placeholder="(714) 555-0100"
+        required
+        class="w-full border border-warm-200 rounded px-4 py-3 text-ink placeholder-ink-muted bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent transition"
+      />
+    </div>
+
+    <div>
+      <label for="cf-email" class="block text-sm font-semibold text-ink mb-1.5">
+        Email <span class="text-brand-600" aria-hidden="true">*</span><span class="sr-only">(required)</span>
+      </label>
+      <input
+        type="email"
+        id="cf-email"
+        name="email"
+        autocomplete="email"
+        placeholder="jane@smithhvac.com"
+        required
+        class="w-full border border-warm-200 rounded px-4 py-3 text-ink placeholder-ink-muted bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent transition"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="cf-message" class="block text-sm font-semibold text-ink mb-1.5">
+      What's going on? <span class="text-ink-muted font-normal">(optional)</span>
+    </label>
+    <textarea
+      id="cf-message"
+      name="message"
+      rows="4"
+      placeholder="Brief description of your business and what you're trying to fix..."
+      class="w-full border border-warm-200 rounded px-4 py-3 text-ink placeholder-ink-muted bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent transition resize-y"
+    ></textarea>
+  </div>
+
+  <div>
+    <button
+      type="submit"
+      id="cf-submit"
+      class="btn-primary-lg w-full sm:w-auto"
+    >
+      {site.ctaText}
+    </button>
+  </div>
+
+  <div
+    id="cf-status"
+    role="status"
+    aria-live="polite"
+    class="text-sm font-medium min-h-[1.5rem]"
+  ></div>
+</form>
+
+<script define:vars={{ web3key: site.web3formsKey }}>
+  const form     = document.getElementById('contact-form');
+  const statusEl = document.getElementById('cf-status');
+  const submitBtn = document.getElementById('cf-submit');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Honeypot check
+    const honeypot = form.querySelector('[name="botcheck"]');
+    if (honeypot?.value) return;
+
+    // Basic validation
+    const required = ['cf-name', 'cf-business', 'cf-phone', 'cf-email'];
+    let valid = true;
+    for (const id of required) {
+      const el = document.getElementById(id);
+      if (!el?.value.trim()) {
+        el?.focus();
+        setStatus('Please fill in all required fields.', 'error');
+        valid = false;
+        break;
+      }
+    }
+    if (!valid) return;
+
+    const emailEl = document.getElementById('cf-email');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl?.value ?? '')) {
+      emailEl?.focus();
+      setStatus('Please enter a valid email address.', 'error');
+      return;
+    }
+
+    setStatus('', '');
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
+
+    const payload = {
+      access_key: web3key,
+      subject: 'New Contact Form Submission — Automated Blueprints',
+      from_name: document.getElementById('cf-name')?.value ?? '',
+      email:     document.getElementById('cf-email')?.value ?? '',
+      phone:     document.getElementById('cf-phone')?.value ?? '',
+      business:  document.getElementById('cf-business')?.value ?? '',
+      message:   document.getElementById('cf-message')?.value ?? '',
+      redirect:  'false',
+      botcheck:  '',
+    };
+
+    try {
+      const res  = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        form.reset();
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Book a Free 15-Minute Call'; }
+        setStatus('Done. Expect a response within minutes.', 'ok');
+      } else {
+        throw new Error(data.message ?? 'Submission failed');
+      }
+    } catch {
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Book a Free 15-Minute Call'; }
+      setStatus('Something went wrong. Email us directly at ' + (document.querySelector('[href^="mailto:"]')?.textContent ?? ''), 'error');
+    }
+  });
+
+  function setStatus(msg, type) {
+    if (!statusEl) return;
+    statusEl.textContent = msg;
+    statusEl.className = 'text-sm font-medium min-h-[1.5rem] ' +
+      (type === 'ok' ? 'text-green-700' : type === 'error' ? 'text-red-600' : '');
+  }
+</script>

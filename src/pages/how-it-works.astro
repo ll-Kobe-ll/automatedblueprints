@@ -1,0 +1,298 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { site } from '../data/site';
+
+const title       = 'How the Client Capture Engine Works | Automated Blueprints';
+const description = 'Three components. One system. Missed call text-back in under 60 seconds, automatic follow-up sequences, and review generation. Here is exactly how the Client Capture Engine works and what the first 30 days look like.';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Will this break my current system or workflow?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. The Client Capture Engine sits in front of your existing setup. Nothing in your workflow changes. Your office manager still uses the same tools. Your estimating or job management software is untouched. We handle only the initial inquiry and follow-up stage.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I have to learn new software?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. You get one simple inbox app on your phone to see conversations. I build everything else and run it.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Am I locked into a contract?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Every agreement includes a 90-day out clause. If it is not working, you can leave.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does setup take?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'About a week from kickoff to going live.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What if I already have something like this?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Then let us look at whether it is actually working. Most setups I see have gaps that are costing jobs every week.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I keep my phone number?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. You keep your number. Calls forward instantly. Automated texts go out on a dedicated local number with your area code.',
+      },
+    },
+  ],
+};
+---
+
+<BaseLayout {title} {description} canonicalPath="/how-it-works" schema={faqSchema}>
+
+  <!-- Page hero -->
+  <section class="bg-ink text-white section-pad" aria-label="Page hero">
+    <div class="section-container">
+      <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">The System</p>
+      <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-3xl mb-6">
+        How the Client Capture Engine Works
+      </h1>
+      <p class="text-white/75 text-xl leading-relaxed max-w-2xl">
+        Three components. Installed in about a week. Running in the background while you do the work.
+      </p>
+    </div>
+  </section>
+
+  <!-- The 3 components -->
+  <section class="section-pad bg-white" aria-labelledby="components-heading">
+    <div class="section-container">
+      <h2 id="components-heading" class="section-heading mb-16">Three Components, One System</h2>
+
+      <!-- Component 1 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start mb-20 pb-20 border-b border-warm-200">
+        <div>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-600 text-white font-bold text-xl flex items-center justify-center" aria-hidden="true">1</span>
+            <h3 class="text-2xl font-bold text-ink">Missed Call Text-Back</h3>
+          </div>
+          <p class="text-ink-light leading-relaxed mb-4">
+            Any call you cannot answer gets a text response in under 60 seconds. It goes out on a local number that matches your area code, so it looks like a real person from your business.
+          </p>
+          <p class="text-ink-light leading-relaxed mb-4">
+            The message is short and direct: lets the caller know you received their call and asks what they need. Most people reply. The conversation is already started before they pick up the phone to try a competitor.
+          </p>
+          <p class="text-ink-light leading-relaxed">
+            You see the conversation in a single inbox on your phone. When you are ready to call back, the context is right there.
+          </p>
+        </div>
+        <div class="bg-warm-100 border border-warm-200 rounded-lg p-8">
+          <p class="text-xs font-semibold uppercase tracking-wider text-ink-muted mb-4">What the customer sees</p>
+          <div class="space-y-3">
+            <div class="flex justify-end">
+              <div class="bg-ink-muted/10 text-ink-light text-sm rounded-2xl rounded-tr-sm px-4 py-2.5 max-w-[75%]">
+                Missed call (no voicemail left)
+              </div>
+            </div>
+            <div class="flex justify-start">
+              <div class="bg-brand-600 text-white text-sm rounded-2xl rounded-tl-sm px-4 py-2.5 max-w-[80%]">
+                Hi, this is [Business Name]. Sorry we missed you. What can we help you with?
+              </div>
+            </div>
+            <p class="text-xs text-ink-muted text-center pt-1">Sent automatically within 60 seconds</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Component 2 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start mb-20 pb-20 border-b border-warm-200">
+        <div>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-600 text-white font-bold text-xl flex items-center justify-center" aria-hidden="true">2</span>
+            <h3 class="text-2xl font-bold text-ink">Lead &amp; Quote Follow-Up</h3>
+          </div>
+          <p class="text-ink-light leading-relaxed mb-4">
+            When a new lead comes in through your website, a form, or an inbound text, they get an immediate response. Then a follow-up sequence runs automatically over the next 10 to 14 days.
+          </p>
+          <p class="text-ink-light leading-relaxed mb-4">
+            The same applies to quotes. Once you send a quote, a follow-up sequence starts: a few short messages over one to two weeks, spaced to feel natural, not spammy. Most businesses never follow up more than once. This sequence does it for you.
+          </p>
+          <p class="text-ink-light leading-relaxed">
+            You approve all the messages before anything goes live. If a customer responds at any point, the sequence pauses and the conversation routes to you.
+          </p>
+        </div>
+        <div class="bg-warm-100 border border-warm-200 rounded-lg p-8">
+          <p class="text-xs font-semibold uppercase tracking-wider text-ink-muted mb-4">Example follow-up timeline</p>
+          <div class="space-y-3">
+            {[
+              { day: 'Day 1', msg: 'Immediate response to new inquiry' },
+              { day: 'Day 2', msg: 'Short follow-up, any questions?' },
+              { day: 'Day 5', msg: 'Check-in, quote still open?' },
+              { day: 'Day 10', msg: 'Final follow-up, still looking?' },
+            ].map(item => (
+              <div class="flex items-center gap-4">
+                <span class="flex-shrink-0 text-xs font-semibold text-brand-600 w-12">{item.day}</span>
+                <div class="flex-1 bg-white border border-warm-200 rounded px-3 py-2 text-sm text-ink-light">{item.msg}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Component 3 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
+        <div>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-600 text-white font-bold text-xl flex items-center justify-center" aria-hidden="true">3</span>
+            <h3 class="text-2xl font-bold text-ink">Review Generation</h3>
+          </div>
+          <p class="text-ink-light leading-relaxed mb-4">
+            After a job is complete, an automatic review request goes out to the customer by text. Short message, direct link to your Google profile. Takes them 30 seconds to tap and leave a review.
+          </p>
+          <p class="text-ink-light leading-relaxed mb-4">
+            Most businesses do good work and have almost no reviews on Google because nobody ever asked at the right time. This fixes that.
+          </p>
+          <p class="text-ink-light leading-relaxed">
+            More reviews means better placement in local search, which means more calls, which feeds back into the system.
+          </p>
+        </div>
+        <div class="bg-warm-100 border border-warm-200 rounded-lg p-8">
+          <p class="text-xs font-semibold uppercase tracking-wider text-ink-muted mb-4">What goes out after a job</p>
+          <div class="space-y-3">
+            <div class="flex justify-start">
+              <div class="bg-brand-600 text-white text-sm rounded-2xl rounded-tl-sm px-4 py-2.5 max-w-[85%]">
+                Hi [Name], thanks for choosing [Business]. We would really appreciate a quick Google review if you have 30 seconds: [link]
+              </div>
+            </div>
+            <p class="text-xs text-ink-muted text-center pt-1">Sent automatically after job completion</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- First 30 days -->
+  <section class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="timeline-heading">
+    <div class="section-container">
+      <h2 id="timeline-heading" class="section-heading mb-4">What the First 30 Days Look Like</h2>
+      <p class="section-sub max-w-2xl mb-16">
+        From kickoff call to fully live, the whole process takes about a week. Here is the full timeline.
+      </p>
+
+      <div class="max-w-2xl space-y-0">
+        {[
+          {
+            range: 'Days 1 to 3',
+            title: 'Kickoff and Audit',
+            body: 'We do a kickoff call, I test your current setup the way a real customer would, and I map every place where leads fall through. You see the same gaps your customers see.',
+          },
+          {
+            range: 'Days 4 to 10',
+            title: 'The Build',
+            body: 'Phone number provisioned, messages drafted with you, sequences built and tested. You approve every message before it goes live.',
+          },
+          {
+            range: 'Days 11 to 14',
+            title: 'Full Test Round',
+            body: 'I run the full system as a test customer. We catch anything unexpected, make adjustments, and confirm every component is working correctly.',
+          },
+          {
+            range: 'Day 15',
+            title: 'Live',
+            body: 'System goes live. I monitor the first two weeks closely and make adjustments as needed.',
+          },
+          {
+            range: 'Days 15 to 30',
+            title: 'Check-In Schedule',
+            body: 'Weekly check-in calls for the first month. We look at what is coming in, refine messages where needed, and confirm everything is running as expected.',
+          },
+        ].map((step, i) => (
+          <div class="flex gap-6 pb-10 relative">
+            <div class="flex flex-col items-center">
+              <div class="w-8 h-8 rounded-full bg-brand-600 text-white font-bold text-sm flex items-center justify-center flex-shrink-0 z-10" aria-hidden="true">
+                {i + 1}
+              </div>
+              {i < 4 && <div class="w-0.5 flex-1 bg-warm-border mt-2" aria-hidden="true"></div>}
+            </div>
+            <div class="pb-2">
+              <p class="text-xs font-semibold text-brand-600 uppercase tracking-wider mb-1">{step.range}</p>
+              <h3 class="font-semibold text-ink mb-2">{step.title}</h3>
+              <p class="text-ink-light leading-relaxed text-sm">{step.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-pad bg-white" aria-labelledby="faq-heading">
+    <div class="section-container">
+      <h2 id="faq-heading" class="section-heading mb-4">Common Questions</h2>
+      <p class="section-sub max-w-xl mb-16">Straight answers to what most owners ask before they decide.</p>
+
+      <div class="max-w-3xl divide-y divide-warm-200 border-t border-warm-200">
+        {[
+          {
+            q: 'Will this break my current system or workflow?',
+            a: 'No. The Client Capture Engine sits in front of your existing setup. Nothing in your workflow changes. Your office manager still uses the same tools. Your estimating or job management software is untouched. We handle only the initial inquiry and follow-up stage.',
+          },
+          {
+            q: 'Do I have to learn new software?',
+            a: 'No. You get one simple inbox app on your phone to see conversations. I build everything else and run it.',
+          },
+          {
+            q: 'Am I locked into a contract?',
+            a: 'No. Every agreement includes a 90-day out clause. If it is not working, you can leave.',
+          },
+          {
+            q: 'How long does setup take?',
+            a: 'About a week from kickoff to going live.',
+          },
+          {
+            q: 'What if I already have something like this?',
+            a: 'Then let us look at whether it is actually working. Most setups I see have gaps costing jobs every week. A 15-minute call is enough to tell.',
+          },
+          {
+            q: 'Do I keep my phone number?',
+            a: 'Yes. You keep your number. Calls forward instantly. Automated texts go out on a dedicated local number with your area code.',
+          },
+          {
+            q: 'What happens after the first 30 days?',
+            a: 'Monthly retainer covers ongoing monitoring, message tuning, and any adjustments. If something is not converting, we fix it. Most clients see the system pay for itself within the first month.',
+          },
+        ].map(item => (
+          <details class="group py-1">
+            <summary class="flex items-center justify-between py-5 cursor-pointer list-none text-ink font-semibold text-lg hover:text-brand-600 transition-colors [&::-webkit-details-marker]:hidden gap-4">
+              {item.q}
+              <span class="flex-shrink-0 w-6 h-6 rounded-full border border-warm-200 flex items-center justify-center text-ink-muted group-open:text-brand-600 group-open:border-brand-200 group-open:bg-brand-50 transition-colors">
+                <svg class="w-3.5 h-3.5 transition-transform group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12M6 12h12" />
+                </svg>
+              </span>
+            </summary>
+            <div class="pb-5 text-ink-light leading-relaxed max-w-2xl">
+              {item.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+
+</BaseLayout>
