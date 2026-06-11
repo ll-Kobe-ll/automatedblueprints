@@ -7,10 +7,10 @@ export const data: IndustryData = {
   meta: {
     title: 'Missed Call Text-Back for HVAC, Plumbing & Contractors | Automated Blueprints',
     description:
-      'When you are on a job, you cannot answer the phone. Automated Blueprints builds systems that text back missed calls instantly, follow up on every estimate, and generate reviews automatically. .',
+      'When you are on a job, you cannot answer the phone. Automated Blueprints builds systems that text back missed calls instantly, follow up on every estimate, and generate reviews automatically.',
     ogTitle: 'Stop Losing Jobs to Whoever Answers First | Automated Blueprints',
     ogDescription:
-      'Home service leads move fast. Automated Blueprints builds response and follow-up systems for contractors, HVAC, and plumbing companies in .',
+      'Home service leads move fast. Automated Blueprints builds response and follow-up systems for contractors, HVAC, and plumbing companies.',
   },
   hero: {
     eyebrow: 'For Contractors, HVAC, Plumbing & Home Services',
@@ -51,6 +51,6 @@ export const data: IndustryData = {
   schema: {
     serviceType: 'Lead Response System for Home Services',
     serviceDescription:
-      'Missed call text-back, lead follow-up sequences, estimate follow-up, and review generation for contractors, HVAC, plumbing, and home service companies in .',
+      'Missed call text-back, lead follow-up sequences, estimate follow-up, and review generation for contractors, HVAC, plumbing, and home service companies.',
   },
 };
