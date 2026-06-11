@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+import { lessons } from '../../data/lessons';
+
+const title       = 'The Client Capture Crash Course | Free Lessons | Automated Blueprints';
+const description = 'Six free lessons on how lead capture and follow-up systems actually work: missed call text-back, speed to lead, follow-up sequences, reviews, reactivation, and no-show recovery. No email required.';
+
+const courseSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: 'The Client Capture Crash Course',
+  description,
+  url: `${site.domain}/learn`,
+  provider: {
+    '@type': 'Organization',
+    name: site.name,
+    url: site.domain,
+  },
+  isAccessibleForFree: true,
+};
+---
+
+<BaseLayout {title} {description} canonicalPath="/learn" schema={courseSchema}>
+
+  <!-- Hero -->
+  <section class="bg-ink text-white section-pad" aria-label="Course hero">
+    <div class="section-container">
+      <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">Free Course</p>
+      <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-3xl mb-6">
+        The Client Capture Crash Course
+      </h1>
+      <p class="text-white/75 text-xl leading-relaxed max-w-2xl mb-4">
+        Six short lessons on exactly how the systems work that keep businesses from losing leads. The same workflows we build for clients, explained in plain language with diagrams.
+      </p>
+      <p class="text-white/60 text-base">
+        Completely free. No email required. No signup wall.
+      </p>
+    </div>
+  </section>
+
+  <!-- Lesson grid -->
+  <section class="section-pad bg-white" aria-labelledby="lessons-heading">
+    <div class="section-container">
+      <h2 id="lessons-heading" class="section-heading mb-4">The Lessons</h2>
+      <p class="section-sub max-w-2xl mb-16">
+        Read them in order or jump to the one costing you the most money right now.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {lessons.map((lesson, i) => (
+          <a
+            href={`/learn/${lesson.slug}`}
+            class="block border border-warm-200 rounded-lg p-8 hover:border-brand-600 hover:shadow-sm transition-all group"
+            aria-label={`Lesson ${i + 1}: ${lesson.title}`}
+          >
+            <span class="inline-flex w-8 h-8 rounded-full bg-brand-50 text-brand-600 font-bold text-sm items-center justify-center mb-4" aria-hidden="true">
+              {i + 1}
+            </span>
+            <h3 class="text-lg font-semibold text-ink mb-3 group-hover:text-brand-600 transition-colors leading-snug">
+              {lesson.title}
+            </h3>
+            <p class="text-ink-light text-sm leading-relaxed mb-5">
+              {lesson.cardBlurb}
+            </p>
+            <span class="text-brand-600 text-sm font-semibold">
+              Start lesson &rarr;
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-pad bg-warm-100 border-t border-warm-200" aria-label="Call to action">
+    <div class="section-container text-center">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-ink mb-5">
+        Rather Have It Built for You?
+      </h2>
+      <p class="text-lg md:text-xl text-ink-light mb-8 max-w-2xl mx-auto leading-relaxed">
+        Everything in this course is what the Client Capture Engine does automatically. Get a free custom video breakdown of where it would catch leads in your business.
+      </p>
+      <a href={site.ctaHref} class="btn-primary-lg">
+        {site.ctaText}
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

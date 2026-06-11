@@ -1,0 +1,144 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { site } from '../data/site';
+import type { LessonData } from '../data/lessons/types';
+
+interface Props {
+  lesson: LessonData;
+}
+
+const { lesson } = Astro.props;
+
+const diagrams = import.meta.glob('../components/diagrams/*.svg', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+const diagramSvg = diagrams[`../components/diagrams/${lesson.slug}.svg`];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: lesson.title,
+  description: lesson.meta.description,
+  url: `${site.domain}/learn/${lesson.slug}`,
+  author: {
+    '@type': 'Organization',
+    name: site.name,
+    url: site.domain,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: site.name,
+    url: site.domain,
+  },
+  isPartOf: {
+    '@type': 'Course',
+    name: 'The Client Capture Crash Course',
+    url: `${site.domain}/learn`,
+  },
+};
+---
+
+<BaseLayout
+  title={lesson.meta.title}
+  description={lesson.meta.description}
+  canonicalPath={`/learn/${lesson.slug}`}
+  schema={articleSchema}
+>
+  <!-- Hero -->
+  <section class="bg-ink text-white section-pad" aria-label="Lesson hero">
+    <div class="section-container">
+      <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">
+        <a href="/learn" class="hover:text-white transition-colors">The Client Capture Crash Course</a>
+      </p>
+      <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-3xl mb-6">
+        {lesson.title}
+      </h1>
+      <p class="text-white/75 text-xl leading-relaxed max-w-2xl">
+        {lesson.promise}
+      </p>
+    </div>
+  </section>
+
+  <!-- The problem -->
+  <section class="section-pad bg-white" aria-labelledby="problem-heading">
+    <div class="section-container">
+      <h2 id="problem-heading" class="section-heading mb-8">The Problem</h2>
+      <div class="max-w-2xl space-y-6 text-ink-light text-lg leading-relaxed">
+        {lesson.problem.map(p => <p>{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagram -->
+  <section class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="diagram-heading">
+    <div class="section-container">
+      <h2 id="diagram-heading" class="section-heading mb-8">The Workflow</h2>
+      <div class="max-w-md mx-auto" role="img" aria-label={lesson.diagramAlt}>
+        <Fragment set:html={diagramSvg} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Step-by-step -->
+  <section class="section-pad bg-white" aria-labelledby="steps-heading">
+    <div class="section-container">
+      <h2 id="steps-heading" class="section-heading mb-12">How It Works, Step by Step</h2>
+      <ol class="max-w-2xl space-y-10 list-none">
+        {lesson.steps.map((step, i) => (
+          <li class="flex items-start gap-5">
+            <span class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center text-sm mt-0.5" aria-hidden="true">
+              {i + 1}
+            </span>
+            <div>
+              <h3 class="text-xl font-semibold text-ink mb-2">{step.title}</h3>
+              <p class="text-ink-light leading-relaxed">{step.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Real life -->
+  <section class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="real-life-heading">
+    <div class="section-container">
+      <h2 id="real-life-heading" class="section-heading mb-8">What This Looks Like in Real Life</h2>
+      <div class="max-w-2xl bg-white border border-warm-200 rounded-lg p-8">
+        <p class="text-ink-light text-lg leading-relaxed">{lesson.realLife}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video placeholder -->
+  <section class="section-pad bg-white" aria-labelledby="video-heading">
+    <div class="section-container">
+      <h2 id="video-heading" class="section-heading mb-8">Video Walkthrough</h2>
+      <!-- VIDEO_EMBED -->
+      <div class="max-w-2xl aspect-video bg-ink rounded-lg border border-warm-200 flex flex-col items-center justify-center text-center px-8">
+        <svg class="w-14 h-14 text-white/30 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 9.5l5 2.5-5 2.5v-5z" />
+        </svg>
+        <p class="text-white font-semibold text-lg mb-1">Video walkthrough coming this week</p>
+        <p class="text-white/60 text-sm">A short screen recording of this exact workflow running on a real setup.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-pad bg-brand-600" aria-label="Call to action">
+    <div class="section-container text-center">
+      <h2 class="text-white text-3xl md:text-4xl font-bold tracking-tight mb-5">
+        Want This Running in Your Business?
+      </h2>
+      <p class="text-white/80 text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+        You just saw how it works. Get a free custom video breakdown of where this would catch leads in your current setup.
+      </p>
+      <a href={site.ctaHref} class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 focus-visible:outline-white">
+        {site.ctaText}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

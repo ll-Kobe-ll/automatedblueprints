@@ -1,0 +1,15 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import { lessons } from '../../data/lessons';
+
+export function getStaticPaths() {
+  return lessons.map(lesson => ({
+    params: { slug: lesson.slug },
+    props: { lesson },
+  }));
+}
+
+const { lesson } = Astro.props;
+---
+
+<LessonLayout {lesson} />
