@@ -47,7 +47,7 @@ export const data: IndustryData = {
     'We do not touch your booking system, your patient records, or your EMR. Whatever practice management software you use stays exactly as it is. We sit in front of those systems and handle only first contact, follow-up, and review generation.',
   ctaHeading: 'Want to See What a Faster Response Looks Like for Your Practice?',
   ctaBody:
-    'Book a free 15-minute call. I will walk through your current setup and show you where consult requests are falling through.',
+    'Get a free custom video breakdown. I will walk through your current setup and show you where consult requests are falling through.',
   schema: {
     serviceType: 'Lead Response System for Med Spas',
     serviceDescription:

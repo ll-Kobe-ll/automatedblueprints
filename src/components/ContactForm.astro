@@ -52,21 +52,6 @@ import { site } from '../data/site';
 
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
     <div>
-      <label for="cf-phone" class="block text-sm font-semibold text-ink mb-1.5">
-        Phone <span class="text-brand-600" aria-hidden="true">*</span><span class="sr-only">(required)</span>
-      </label>
-      <input
-        type="tel"
-        id="cf-phone"
-        name="phone"
-        autocomplete="tel"
-        placeholder="(714) 555-0100"
-        required
-        class="w-full border border-warm-200 rounded px-4 py-3 text-ink placeholder-ink-muted bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent transition"
-      />
-    </div>
-
-    <div>
       <label for="cf-email" class="block text-sm font-semibold text-ink mb-1.5">
         Email <span class="text-brand-600" aria-hidden="true">*</span><span class="sr-only">(required)</span>
       </label>
@@ -80,11 +65,26 @@ import { site } from '../data/site';
         class="w-full border border-warm-200 rounded px-4 py-3 text-ink placeholder-ink-muted bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent transition"
       />
     </div>
+
+    <div>
+      <label for="cf-website" class="block text-sm font-semibold text-ink mb-1.5">
+        Website URL <span class="text-brand-600" aria-hidden="true">*</span><span class="sr-only">(required)</span>
+      </label>
+      <input
+        type="url"
+        id="cf-website"
+        name="website"
+        autocomplete="url"
+        placeholder="https://smithhvac.com"
+        required
+        class="w-full border border-warm-200 rounded px-4 py-3 text-ink placeholder-ink-muted bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent transition"
+      />
+    </div>
   </div>
 
   <div>
     <label for="cf-message" class="block text-sm font-semibold text-ink mb-1.5">
-      What's going on? <span class="text-ink-muted font-normal">(optional)</span>
+      Anything specific you want me to look at? <span class="text-ink-muted font-normal">(optional)</span>
     </label>
     <textarea
       id="cf-message"
@@ -113,7 +113,7 @@ import { site } from '../data/site';
   ></div>
 </form>
 
-<script define:vars={{ web3key: site.web3formsKey }}>
+<script define:vars={{ web3key: site.web3formsKey, ctaText: site.ctaText }}>
   const form     = document.getElementById('contact-form');
   const statusEl = document.getElementById('cf-status');
   const submitBtn = document.getElementById('cf-submit');
@@ -126,7 +126,7 @@ import { site } from '../data/site';
     if (honeypot?.value) return;
 
     // Basic validation
-    const required = ['cf-name', 'cf-business', 'cf-phone', 'cf-email'];
+    const required = ['cf-name', 'cf-business', 'cf-email', 'cf-website'];
     let valid = true;
     for (const id of required) {
       const el = document.getElementById(id);
@@ -154,7 +154,7 @@ import { site } from '../data/site';
       subject: 'New Contact Form Submission — Automated Blueprints',
       from_name: document.getElementById('cf-name')?.value ?? '',
       email:     document.getElementById('cf-email')?.value ?? '',
-      phone:     document.getElementById('cf-phone')?.value ?? '',
+      website:   document.getElementById('cf-website')?.value ?? '',
       business:  document.getElementById('cf-business')?.value ?? '',
       message:   document.getElementById('cf-message')?.value ?? '',
       redirect:  'false',
@@ -171,13 +171,13 @@ import { site } from '../data/site';
 
       if (data.success) {
         form.reset();
-        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Book a Free 15-Minute Call'; }
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = ctaText; }
         setStatus('Done. Expect a response within minutes.', 'ok');
       } else {
         throw new Error(data.message ?? 'Submission failed');
       }
     } catch {
-      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Book a Free 15-Minute Call'; }
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = ctaText; }
       setStatus('Something went wrong. Email us directly at ' + (document.querySelector('[href^="mailto:"]')?.textContent ?? ''), 'error');
     }
   });

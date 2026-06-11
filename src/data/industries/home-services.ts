@@ -47,7 +47,7 @@ export const data: IndustryData = {
     'We do not touch your scheduling app, your invoicing system, or any tool you currently use. Whatever you are running stays exactly as it is. We sit in front of those systems and handle only the incoming lead stage and post-job follow-up.',
   ctaHeading: 'Want to See How Many Jobs You Are Losing to Slow Response?',
   ctaBody:
-    'Book a free 15-minute call. I will look at your current setup and show you exactly where leads are falling through before you ever get a chance to quote them.',
+    'Get a free custom video breakdown. I will look at your current setup and show you exactly where leads are falling through before you ever get a chance to quote them.',
   schema: {
     serviceType: 'Lead Response System for Home Services',
     serviceDescription:

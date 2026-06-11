@@ -47,7 +47,7 @@ export const data: IndustryData = {
     'We never integrate with, modify, or access your job management system. Whether you run JobBOSS, E2 Shop, ProShop, or a custom ERP, it stays exactly as it is. We sit in front of those systems and handle only the initial inquiry and follow-up stage. Your estimator still quotes the same way. Your office manager still uses the same tools. Nothing in your shop changes.',
   ctaHeading: 'Want to See Where You Are Losing Bids?',
   ctaBody:
-    'Book a free 15-minute call. I will look at your current setup and tell you exactly where inquiries are falling through before they ever reach your quoting stage.',
+    'Get a free custom video breakdown. I will look at your current setup and show you exactly where inquiries are falling through before they ever reach your quoting stage.',
   schema: {
     serviceType: 'Lead Response System for Precision Manufacturing',
     serviceDescription:
