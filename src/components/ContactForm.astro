@@ -68,7 +68,7 @@ import { site } from '../data/site';
 
     <div>
       <label for="cf-website" class="block text-sm font-semibold text-ink mb-1.5">
-        Website URL <span class="text-brand-600" aria-hidden="true">*</span><span class="sr-only">(required)</span>
+        Website URL <span class="text-ink-muted font-normal">(optional)</span>
       </label>
       <input
         type="url"
@@ -76,21 +76,69 @@ import { site } from '../data/site';
         name="website"
         autocomplete="url"
         placeholder="https://smithhvac.com"
-        required
         class="w-full border border-warm-200 rounded px-4 py-3 text-ink placeholder-ink-muted bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent transition"
       />
     </div>
   </div>
 
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div>
+      <label for="cf-has-website" class="block text-sm font-semibold text-ink mb-1.5">
+        Do you have a website? <span class="text-ink-muted font-normal">(optional)</span>
+      </label>
+      <select
+        id="cf-has-website"
+        name="has_website"
+        class="w-full border border-warm-200 rounded px-4 py-3 text-ink bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent transition"
+      >
+        <option value="">Select one</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="Just a Facebook or social page">Just a Facebook or social page</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="cf-budget" class="block text-sm font-semibold text-ink mb-1.5">
+        Monthly budget <span class="text-ink-muted font-normal">(optional)</span>
+      </label>
+      <select
+        id="cf-budget"
+        name="budget"
+        class="w-full border border-warm-200 rounded px-4 py-3 text-ink bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent transition"
+      >
+        <option value="">Select one</option>
+        <option value="Not sure yet">Not sure yet</option>
+        <option value="Under $500/mo">Under $500/mo</option>
+        <option value="$500 to $1,000/mo">$500 to $1,000/mo</option>
+        <option value="$1,000 to $2,500/mo">$1,000 to $2,500/mo</option>
+        <option value="$2,500+/mo">$2,500+/mo</option>
+      </select>
+    </div>
+  </div>
+
+  <div>
+    <label for="cf-crm" class="block text-sm font-semibold text-ink mb-1.5">
+      What do you use to manage leads now? <span class="text-ink-muted font-normal">(optional)</span>
+    </label>
+    <input
+      type="text"
+      id="cf-crm"
+      name="crm"
+      placeholder="Spreadsheet, Jobber, nothing yet..."
+      class="w-full border border-warm-200 rounded px-4 py-3 text-ink placeholder-ink-muted bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent transition"
+    />
+  </div>
+
   <div>
     <label for="cf-message" class="block text-sm font-semibold text-ink mb-1.5">
-      Anything specific you want me to look at? <span class="text-ink-muted font-normal">(optional)</span>
+      What's the main thing costing you jobs? <span class="text-ink-muted font-normal">(optional)</span>
     </label>
     <textarea
       id="cf-message"
       name="message"
       rows="4"
-      placeholder="Brief description of your business and what you're trying to fix..."
+      placeholder="Missed calls, slow follow-up, no website, whatever it is..."
       class="w-full border border-warm-200 rounded px-4 py-3 text-ink placeholder-ink-muted bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent transition resize-y"
     ></textarea>
   </div>
@@ -126,7 +174,7 @@ import { site } from '../data/site';
     if (honeypot?.value) return;
 
     // Basic validation
-    const required = ['cf-name', 'cf-business', 'cf-email', 'cf-website'];
+    const required = ['cf-name', 'cf-business', 'cf-email'];
     let valid = true;
     for (const id of required) {
       const el = document.getElementById(id);
@@ -152,13 +200,16 @@ import { site } from '../data/site';
     const payload = {
       access_key: web3key,
       subject: 'New Contact Form Submission — Automated Blueprints',
-      from_name: document.getElementById('cf-name')?.value ?? '',
-      email:     document.getElementById('cf-email')?.value ?? '',
-      website:   document.getElementById('cf-website')?.value ?? '',
-      business:  document.getElementById('cf-business')?.value ?? '',
-      message:   document.getElementById('cf-message')?.value ?? '',
-      redirect:  'false',
-      botcheck:  '',
+      from_name:    document.getElementById('cf-name')?.value ?? '',
+      email:        document.getElementById('cf-email')?.value ?? '',
+      business:     document.getElementById('cf-business')?.value ?? '',
+      website:      document.getElementById('cf-website')?.value ?? '',
+      has_website:  document.getElementById('cf-has-website')?.value ?? '',
+      budget:       document.getElementById('cf-budget')?.value ?? '',
+      manages_leads_with: document.getElementById('cf-crm')?.value ?? '',
+      message:      document.getElementById('cf-message')?.value ?? '',
+      redirect:     'false',
+      botcheck:     '',
     };
 
     try {

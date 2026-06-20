@@ -56,10 +56,10 @@
   }
 
   .nav-link {
-    @apply text-ink-light hover:text-ink font-medium transition-colors;
+    @apply text-ink-light hover:text-ink font-medium transition-colors whitespace-nowrap;
   }
 
   .nav-link-active {
-    @apply text-brand-600 font-medium;
+    @apply text-brand-600 font-medium whitespace-nowrap;
   }
 }
