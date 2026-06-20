@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { site } from '../data/site';
+import { projects } from '../data/projects';
+
+const title       = 'Websites That Get Local Businesses Found | Automated Blueprints';
+const description = 'A fast website built to show up when people search for what you do, then hand every lead to a follow-up system that never lets one go cold. Built for local businesses.';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Website Design for Local Businesses',
+  serviceType: 'Website design and development',
+  description:
+    'Fast websites built so local businesses show up when people search for what they do, paired with a lead capture and follow-up system.',
+  provider: {
+    '@type': 'LocalBusiness',
+    name: site.name,
+    url: site.domain,
+  },
+  areaServed: 'US',
+};
+---
+
+<BaseLayout {title} {description} canonicalPath="/websites" schema={serviceSchema}>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="bg-ink text-white" aria-label="Hero">
+    <div class="section-container py-24 md:py-32">
+      <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-5">
+        Websites for Local Businesses
+      </p>
+      <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight max-w-3xl mb-6">
+        Your Next Job Is Searching for You.
+      </h1>
+      <p class="text-white/75 text-xl md:text-2xl leading-relaxed max-w-2xl mb-10">
+        A lot of your customers Google you before they call. If nothing comes up, or it is a dead Facebook page, they figure you closed and book someone else. You lose jobs from people who already wanted to hire you.
+      </p>
+      <a href={site.ctaHref} class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 focus-visible:outline-white">
+        {site.ctaText}
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       THE LEAK — 3 cards
+  ============================================================ -->
+  <section class="section-pad bg-white" aria-labelledby="leak-heading">
+    <div class="section-container">
+      <h2 id="leak-heading" class="section-heading mb-4">
+        Where the Jobs Leak Out
+      </h2>
+      <p class="section-sub max-w-2xl mb-16">
+        Three gaps cost local businesses work before they ever get a chance to quote it.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card">
+          <h3 class="text-xl font-semibold text-ink mb-3">They Can't Find You</h3>
+          <p class="text-ink-light leading-relaxed">
+            If you are not on the first page when someone searches for what you do, the call goes to whoever is. People do not scroll to page two. They tap the first business that looks real.
+          </p>
+        </div>
+        <div class="card">
+          <h3 class="text-xl font-semibold text-ink mb-3">You Look Closed</h3>
+          <p class="text-ink-light leading-relaxed">
+            A missing site, or one that has not been touched in years, reads as out of business. People trust their gut in two seconds. A dead web presence tells them to keep looking.
+          </p>
+        </div>
+        <div class="card">
+          <h3 class="text-xl font-semibold text-ink mb-3">The Site Doesn't Catch the Lead</h3>
+          <p class="text-ink-light leading-relaxed">
+            Even when they find you and reach out, a site with no follow-up lets the lead sit. By the time you reply, they booked someone faster. The site has to hand the lead straight to a system that responds.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LIVE PROOF — data-driven from src/data/projects.ts
+  ============================================================ -->
+  <section class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="proof-heading">
+    <div class="section-container">
+      <p class="text-brand-600 text-sm font-semibold uppercase tracking-wider mb-4">Real Work</p>
+      <h2 id="proof-heading" class="section-heading mb-4">
+        {projects.length > 1 ? 'See What We Build, Live' : 'See One We Built, Live'}
+      </h2>
+      <p class="section-sub max-w-2xl mb-12">
+        {projects.length > 1
+          ? 'Not mockups. Real sites running right now. Click any of them and look around.'
+          : 'Not a mockup. A real site running for a real business right now. Click it and look around.'}
+      </p>
+
+      <div class:list={[
+        'grid gap-8',
+        projects.length > 1 ? 'md:grid-cols-2' : 'max-w-3xl mx-auto',
+      ]}>
+        {projects.map(project => <ProjectCard {project} />)}
+      </div>
+
+      <!-- ============================================================
+           TESTIMONIAL PLACEHOLDER
+           Drop a real client quote here the moment there is one.
+           Keep the same card styling. Do not fabricate a quote.
+           Example structure:
+           <blockquote class="max-w-2xl mx-auto mt-12 bg-white border border-warm-200 rounded-lg p-8">
+             <p class="text-ink text-lg leading-relaxed mb-4">"REAL QUOTE HERE."</p>
+             <footer class="text-ink-muted text-sm font-medium">Name, Buc Door Systems</footer>
+           </blockquote>
+      ============================================================ -->
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       THE BUNDLE — how it fits with the engine
+  ============================================================ -->
+  <section class="section-pad bg-white" aria-labelledby="bundle-heading">
+    <div class="section-container">
+      <h2 id="bundle-heading" class="section-heading mb-5">
+        The Site Gets You Found. The System Catches the Lead.
+      </h2>
+      <p class="text-lg md:text-xl text-ink-light leading-relaxed max-w-3xl mb-12">
+        A website with no follow-up is half the job. A follow-up system with no site to feed it is the other half. Together they are one thing: get found, then catch every lead that comes in.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-warm-100 border border-warm-200 rounded-lg p-8">
+          <div class="w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center mb-4 text-sm" aria-hidden="true">1</div>
+          <h3 class="font-semibold text-ink mb-2 text-lg">The Website</h3>
+          <p class="text-ink-light leading-relaxed">
+            The front door. Fast, clean, and built so you actually show up when people search for what you do. Most local competitors have nothing real online, so a proper site puts you ahead of them.
+          </p>
+        </div>
+        <div class="bg-warm-100 border border-warm-200 rounded-lg p-8">
+          <div class="w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center mb-4 text-sm" aria-hidden="true">2</div>
+          <h3 class="font-semibold text-ink mb-2 text-lg">The Client Capture Engine</h3>
+          <p class="text-ink-light leading-relaxed">
+            Every lead the site brings in gets an instant response and an automatic follow-up. Missed calls get a text back. Quotes get chased. Nothing the site earns you slips through.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-12">
+        <a href="/how-it-works" class="btn-ghost">
+          See How the System Works
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STATS — sourced third-party research only
+  ============================================================ -->
+  <section class="bg-ink text-white section-pad" aria-label="Search research">
+    <div class="section-container">
+      <h2 class="text-white text-3xl md:text-4xl font-bold tracking-tight mb-16 text-center">
+        Why Getting Found Matters
+      </h2>
+
+      <div class="max-w-xl mx-auto text-center">
+        <p class="text-6xl md:text-7xl font-bold text-brand-300 mb-4">98%</p>
+        <p class="text-white/80 text-lg leading-relaxed">
+          98% of people used the internet to find a local business in the past year. If nothing comes up when they search for you, you are not in the running.
+        </p>
+        <p class="text-white/55 text-xs mt-4">BrightLocal Local Consumer Review Survey, 2023</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CLOSING CTA
+  ============================================================ -->
+  <CtaSection
+    variant="light"
+    heading="Not Sure What Your Online Presence Looks Like Right Now?"
+    body="Get a free custom video breakdown. No pitch deck, no pressure. I look at how you show up when people search and where leads are slipping through."
+  />
+
+</BaseLayout>

@@ -30,16 +30,18 @@ const navLinkClass = (path: string) =>
         <!-- Industries dropdown -->
         <div class="relative group">
           <button
+            id="industries-toggle"
             class={`${isActive('/industries') ? 'nav-link-active' : 'nav-link'} flex items-center gap-1 py-2`}
             aria-haspopup="true"
             aria-expanded="false"
+            aria-controls="industries-menu"
           >
             Industries
             <svg class="w-4 h-4 mt-0.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <div class="absolute top-full left-0 mt-1 w-64 bg-white border border-warm-200 rounded-lg shadow-lg invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150 z-50">
+          <div id="industries-menu" class="absolute top-full left-0 mt-1 w-64 bg-white border border-warm-200 rounded-lg shadow-lg invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150 z-50">
             <a href="/industries/precision-manufacturing" class="flex items-start gap-3 px-4 py-3.5 hover:bg-warm rounded-t-lg transition-colors group/link">
               <span class="text-ink-muted group-hover/link:text-ink transition-colors">
                 <span class="block font-medium text-ink text-sm">Machine Shops &amp; Fabricators</span>
@@ -61,6 +63,7 @@ const navLinkClass = (path: string) =>
           </div>
         </div>
 
+        <a href="/websites"     class={navLinkClass('/websites')}>Websites</a>
         <a href="/how-it-works" class={navLinkClass('/how-it-works')}>How It Works</a>
         <a href="/learn"        class={navLinkClass('/learn')}>Crash Course</a>
         <a href="/about"        class={navLinkClass('/about')}>About</a>
@@ -96,6 +99,7 @@ const navLinkClass = (path: string) =>
       <a href="/industries/med-spas"                class="px-3 py-2.5 text-ink-light hover:text-ink hover:bg-warm rounded transition-colors">Med Spas &amp; Aesthetics</a>
       <a href="/industries/home-services"           class="px-3 py-2.5 text-ink-light hover:text-ink hover:bg-warm rounded transition-colors">Contractors &amp; Home Services</a>
       <div class="my-1 border-t border-warm-200"></div>
+      <a href="/websites"     class="px-3 py-2.5 text-ink-light hover:text-ink hover:bg-warm rounded transition-colors">Websites</a>
       <a href="/how-it-works" class="px-3 py-2.5 text-ink-light hover:text-ink hover:bg-warm rounded transition-colors">How It Works</a>
       <a href="/learn"        class="px-3 py-2.5 text-ink-light hover:text-ink hover:bg-warm rounded transition-colors">Crash Course</a>
       <a href="/about"        class="px-3 py-2.5 text-ink-light hover:text-ink hover:bg-warm rounded transition-colors">About</a>
@@ -128,5 +132,24 @@ const navLinkClass = (path: string) =>
       iconClose?.classList.add('hidden');
       toggle?.setAttribute('aria-expanded', 'false');
     }
+  });
+
+  // Industries dropdown: keyboard + click support (hover still works via CSS)
+  const indToggle = document.getElementById('industries-toggle');
+  const indMenu   = document.getElementById('industries-menu');
+
+  const indOpen  = () => { indMenu?.classList.remove('invisible', 'opacity-0'); indToggle?.setAttribute('aria-expanded', 'true'); };
+  const indClose = () => { indMenu?.classList.add('invisible', 'opacity-0'); indToggle?.setAttribute('aria-expanded', 'false'); };
+
+  indToggle?.addEventListener('click', () => {
+    indMenu?.classList.contains('invisible') ? indOpen() : indClose();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if ((e as KeyboardEvent).key === 'Escape') indClose();
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!indToggle?.contains(e.target as Node) && !indMenu?.contains(e.target as Node)) indClose();
   });
 </script>
