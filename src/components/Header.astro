@@ -70,12 +70,12 @@ const navLinkClass = (path: string) =>
         <a href="/how-it-works" class={navLinkClass('/how-it-works')}>How It Works</a>
         <a href="/learn"        class={navLinkClass('/learn')}>Crash Course</a>
         <a href="/about"        class={navLinkClass('/about')}>About</a>
-        <a href="/contact"      class="btn-primary text-sm py-2.5 px-5 whitespace-nowrap">{site.ctaShort}</a>
+        <a href={site.ctaHref}  class="btn-primary text-sm py-2.5 px-5 whitespace-nowrap">{site.ctaShort}</a>
       </nav>
 
       <!-- Mobile: CTA + hamburger -->
       <div class="flex items-center gap-3 lg:hidden">
-        <a href="/contact" class="btn-primary text-sm py-2 px-4 hidden sm:inline-flex whitespace-nowrap">{site.ctaShort}</a>
+        <a href={site.ctaHref} class="btn-primary text-sm py-2 px-4 hidden sm:inline-flex whitespace-nowrap">{site.ctaShort}</a>
         <button
           id="menu-toggle"
           class="p-2 text-ink hover:text-brand-600 transition-colors"
@@ -107,7 +107,7 @@ const navLinkClass = (path: string) =>
       <a href="/learn"        class="px-3 py-2.5 text-ink-light hover:text-ink hover:bg-warm rounded transition-colors">Crash Course</a>
       <a href="/about"        class="px-3 py-2.5 text-ink-light hover:text-ink hover:bg-warm rounded transition-colors">About</a>
       <div class="pt-2">
-        <a href="/contact" class="btn-primary w-full justify-center">{site.ctaText}</a>
+        <a href={site.ctaHref} class="btn-primary w-full justify-center">{site.ctaText}</a>
       </div>
     </nav>
   </div>
