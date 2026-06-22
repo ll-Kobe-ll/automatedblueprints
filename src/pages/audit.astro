@@ -1,0 +1,430 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const title       = 'Free Lead Audit | See What Slow Response Is Costing You | Automated Blueprints';
+const description = 'Answer a few quick questions and get a free, personalized video breakdown of how many jobs you are losing to slow response and a weak website, and what to do about it.';
+---
+
+<BaseLayout {title} {description} canonicalPath="/audit" bare={true}>
+
+  <section class="bg-warm-50 min-h-[calc(100vh-4rem)] py-12 md:py-16" aria-label="Lead audit quiz">
+    <div class="section-container max-w-2xl">
+
+      <!-- Intro -->
+      <div class="text-center mb-8">
+        <p class="text-brand-600 text-sm font-semibold uppercase tracking-wider mb-3">Free Lead Audit</p>
+        <h1 class="text-3xl md:text-4xl font-bold text-ink tracking-tight mb-4">
+          Find Out How Many Jobs You Are Losing.
+        </h1>
+        <p class="text-ink-light text-lg leading-relaxed">
+          Six quick questions. At the end I will show you a rough estimate, then send a personalized video breaking down your exact numbers and what I would change.
+        </p>
+        <p class="text-ink-muted text-sm mt-3">Takes about 60 seconds. No cost. No obligation.</p>
+      </div>
+
+      <!-- Quiz card -->
+      <div class="bg-white border border-warm-200 rounded-xl shadow-sm p-6 md:p-10">
+
+        <!-- Progress -->
+        <div id="quiz-progress-wrap" class="mb-8">
+          <div class="flex items-center justify-between mb-2">
+            <span id="quiz-counter" class="text-xs font-semibold text-ink-muted uppercase tracking-wider">Question 1 of 6</span>
+            <span id="quiz-pct" class="text-xs font-semibold text-brand-600">0%</span>
+          </div>
+          <div class="h-1.5 bg-warm-100 rounded-full overflow-hidden">
+            <div id="quiz-bar" class="h-full bg-brand-600 rounded-full transition-all duration-300" style="width:0%"></div>
+          </div>
+        </div>
+
+        <form id="audit-form" novalidate>
+          <!-- Honeypot -->
+          <input type="text" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+          <!-- Step 1: client value -->
+          <div class="quiz-step" data-key="client_value">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">What does one new customer pay you, over the life of the relationship?</h2>
+            <p class="text-ink-muted text-sm mb-6">Your best guess is fine.</p>
+            <div class="space-y-3">
+              <button type="button" class="quiz-option" data-label="Under $500" data-num="300">Under $500</button>
+              <button type="button" class="quiz-option" data-label="$500 to $2,000" data-num="1200">$500 to $2,000</button>
+              <button type="button" class="quiz-option" data-label="$2,000 to $5,000" data-num="3500">$2,000 to $5,000</button>
+              <button type="button" class="quiz-option" data-label="$5,000 to $15,000" data-num="9000">$5,000 to $15,000</button>
+              <button type="button" class="quiz-option" data-label="$15,000 or more" data-num="20000">$15,000 or more</button>
+              <button type="button" class="quiz-option" data-label="Not sure" data-num="" data-unsure="1">Honestly, not sure</button>
+            </div>
+          </div>
+
+          <!-- Step 2: missed leads -->
+          <div class="quiz-step hidden" data-key="missed">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">How many calls or leads slip through in a typical week?</h2>
+            <p class="text-ink-muted text-sm mb-6">Missed calls, voicemails you never returned, form fills that went cold.</p>
+            <div class="space-y-3">
+              <button type="button" class="quiz-option" data-label="0 to 2" data-num="1">0 to 2</button>
+              <button type="button" class="quiz-option" data-label="3 to 5" data-num="4">3 to 5</button>
+              <button type="button" class="quiz-option" data-label="6 to 10" data-num="8">6 to 10</button>
+              <button type="button" class="quiz-option" data-label="More than 10" data-num="14">More than 10</button>
+              <button type="button" class="quiz-option" data-label="No idea" data-num="" data-unsure="1">No idea, I do not track it</button>
+            </div>
+          </div>
+
+          <!-- Step 3: response time -->
+          <div class="quiz-step hidden" data-key="response">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">When a new lead comes in, how fast do you usually respond?</h2>
+            <p class="text-ink-muted text-sm mb-6">Be honest. This is the one that costs the most.</p>
+            <div class="space-y-3">
+              <button type="button" class="quiz-option" data-label="Within 5 minutes" data-low="0.03" data-high="0.08">Within 5 minutes</button>
+              <button type="button" class="quiz-option" data-label="Within an hour" data-low="0.06" data-high="0.12">Within an hour</button>
+              <button type="button" class="quiz-option" data-label="A few hours" data-low="0.10" data-high="0.20">A few hours</button>
+              <button type="button" class="quiz-option" data-label="Next day or whenever I can" data-low="0.15" data-high="0.30">Next day or whenever I can</button>
+              <button type="button" class="quiz-option" data-label="It varies a lot" data-low="0.10" data-high="0.20" data-unsure="1">It varies a lot</button>
+            </div>
+          </div>
+
+          <!-- Step 4: CRM -->
+          <div class="quiz-step hidden" data-key="crm">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">How do you track leads and follow-ups right now?</h2>
+            <p class="text-ink-muted text-sm mb-6">Where do new leads actually live?</p>
+            <div class="space-y-3">
+              <button type="button" class="quiz-option" data-label="A real CRM or system">A real CRM or system</button>
+              <button type="button" class="quiz-option" data-label="Spreadsheet, notes, or paper" data-unsure="1">Spreadsheet, notes, or paper</button>
+              <button type="button" class="quiz-option" data-label="In my head and my phone" data-unsure="1">Mostly in my head and my phone</button>
+              <button type="button" class="quiz-option" data-label="Nothing really" data-unsure="1">Nothing really</button>
+            </div>
+          </div>
+
+          <!-- Step 5: website -->
+          <div class="quiz-step hidden" data-key="website">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">What is your website situation?</h2>
+            <p class="text-ink-muted text-sm mb-6">What does a customer see when they Google you?</p>
+            <div class="space-y-3">
+              <button type="button" class="quiz-option" data-label="A site that works well">A real site that works well</button>
+              <button type="button" class="quiz-option" data-label="Old or weak site" data-weak="1">A site, but it is old or weak</button>
+              <button type="button" class="quiz-option" data-label="Just a Facebook or social page" data-weak="1">Just a Facebook or social page</button>
+              <button type="button" class="quiz-option" data-label="No website" data-weak="1">No website at all</button>
+            </div>
+          </div>
+
+          <!-- Step 6: source -->
+          <div class="quiz-step hidden" data-key="source">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">How do most new customers find you today?</h2>
+            <p class="text-ink-muted text-sm mb-6">Pick the biggest one.</p>
+            <div class="space-y-3">
+              <button type="button" class="quiz-option" data-label="Referrals and word of mouth">Referrals and word of mouth</button>
+              <button type="button" class="quiz-option" data-label="Google search">Google search</button>
+              <button type="button" class="quiz-option" data-label="Facebook or social">Facebook or social</button>
+              <button type="button" class="quiz-option" data-label="Paid ads">Paid ads</button>
+              <button type="button" class="quiz-option" data-label="Not sure" data-unsure="1">Not really sure</button>
+            </div>
+          </div>
+
+          <!-- Step 7: contact -->
+          <div class="quiz-step hidden" data-key="contact">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">Where should I send your breakdown?</h2>
+            <p class="text-ink-muted text-sm mb-6">I will record a short video on your numbers and send it here.</p>
+            <div class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="cf-name" class="block text-sm font-semibold text-ink mb-1.5">Your Name <span class="text-brand-600">*</span></label>
+                  <input type="text" id="cf-name" name="name" autocomplete="name" placeholder="Jane Smith" required class="quiz-input" />
+                </div>
+                <div>
+                  <label for="cf-business" class="block text-sm font-semibold text-ink mb-1.5">Business Name <span class="text-brand-600">*</span></label>
+                  <input type="text" id="cf-business" name="business" autocomplete="organization" placeholder="Smith HVAC" required class="quiz-input" />
+                </div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="cf-email" class="block text-sm font-semibold text-ink mb-1.5">Email <span class="text-brand-600">*</span></label>
+                  <input type="email" id="cf-email" name="email" autocomplete="email" placeholder="jane@smithhvac.com" required class="quiz-input" />
+                </div>
+                <div>
+                  <label for="cf-phone" class="block text-sm font-semibold text-ink mb-1.5">Phone <span class="text-ink-muted font-normal">(optional)</span></label>
+                  <input type="tel" id="cf-phone" name="phone" autocomplete="tel" placeholder="(714) 555-0100" class="quiz-input" />
+                </div>
+              </div>
+              <button type="submit" id="cf-submit" class="btn-primary-lg w-full">See My Results</button>
+              <p id="cf-status" role="status" aria-live="polite" class="text-sm font-medium text-center min-h-[1.25rem]"></p>
+            </div>
+          </div>
+
+          <!-- Back -->
+          <div class="mt-8 pt-6 border-t border-warm-100">
+            <button type="button" id="quiz-back" class="text-sm font-medium text-ink-muted hover:text-ink transition-colors hidden">
+              &larr; Back
+            </button>
+          </div>
+        </form>
+
+        <!-- Result screen -->
+        <div id="quiz-result" class="hidden text-center">
+          <div id="result-icon" class="w-16 h-16 rounded-full bg-brand-50 flex items-center justify-center mx-auto mb-5">
+            <svg id="result-icon-svg" class="w-8 h-8 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path id="result-icon-path" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <p id="result-badge" class="inline-block text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-5">&nbsp;</p>
+          <p id="result-lead" class="text-ink-light text-lg mb-2">Based on what you told me, you could be leaving roughly</p>
+          <p id="result-range" class="text-4xl md:text-5xl font-bold text-brand-600 tracking-tight mb-2">$0</p>
+          <p id="result-sub" class="text-ink-light text-lg mb-6">in new customer value on the table every month.</p>
+
+          <!-- Severity meter -->
+          <div class="max-w-xs mx-auto mb-8">
+            <div class="flex gap-1.5 mb-2" aria-hidden="true">
+              <span id="seg-1" class="h-2 flex-1 rounded-full bg-warm-200"></span>
+              <span id="seg-2" class="h-2 flex-1 rounded-full bg-warm-200"></span>
+              <span id="seg-3" class="h-2 flex-1 rounded-full bg-warm-200"></span>
+            </div>
+            <p id="meter-label" class="text-xs font-semibold text-ink-muted"></p>
+          </div>
+
+          <div id="result-notes" class="text-left max-w-md mx-auto space-y-3 mb-8"></div>
+          <div class="bg-warm-50 border border-warm-200 rounded-lg p-6 text-left">
+            <h3 class="font-semibold text-ink mb-2">What happens next</h3>
+            <p class="text-ink-light leading-relaxed text-sm">
+              Your full breakdown is on the way. I will record a short video walking through your exact numbers, where the leaks are, and what I would change to fix them. Check your email within 24 hours.
+            </p>
+          </div>
+          <p class="text-ink-muted text-xs mt-6">This is a rough estimate from the numbers you gave. Your video covers the real math.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .quiz-option {
+    @apply w-full text-left border border-warm-200 rounded-lg px-5 py-4 text-ink font-medium bg-white hover:border-brand-600 hover:bg-brand-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 transition-all;
+  }
+  .quiz-option.selected {
+    @apply border-brand-600 bg-brand-50;
+  }
+  .quiz-input {
+    @apply w-full border border-warm-200 rounded px-4 py-3 text-ink placeholder-ink-muted bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent transition;
+  }
+</style>
+
+<script define:vars={{ web3key: site.web3formsKey, contactEmail: site.email }}>
+  const form    = document.getElementById('audit-form');
+  const steps   = [...document.querySelectorAll('.quiz-step')];
+  const totalQ  = 6; // question steps (excludes contact step)
+  const bar     = document.getElementById('quiz-bar');
+  const counter = document.getElementById('quiz-counter');
+  const pct     = document.getElementById('quiz-pct');
+  const backBtn = document.getElementById('quiz-back');
+  const progressWrap = document.getElementById('quiz-progress-wrap');
+  const result  = document.getElementById('quiz-result');
+  const statusEl = document.getElementById('cf-status');
+  const submitBtn = document.getElementById('cf-submit');
+
+  const answers = {};
+  let current = 0;
+
+  function render() {
+    steps.forEach((s, i) => s.classList.toggle('hidden', i !== current));
+    const isContact = current === totalQ;
+    const shownStep = current + 1;
+    const total = steps.length;
+    const percent = Math.round((current / total) * 100);
+    bar.style.width = percent + '%';
+    pct.textContent = percent + '%';
+    counter.textContent = isContact ? 'Last step' : `Question ${shownStep} of ${totalQ}`;
+    backBtn.classList.toggle('hidden', current === 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Option clicks (single-select, auto-advance)
+  steps.forEach((step) => {
+    const key = step.dataset.key;
+    step.querySelectorAll('.quiz-option').forEach((opt) => {
+      opt.addEventListener('click', () => {
+        step.querySelectorAll('.quiz-option').forEach((o) => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        answers[key] = {
+          label:  opt.dataset.label || opt.textContent.trim(),
+          num:    opt.dataset.num,
+          low:    opt.dataset.low,
+          high:   opt.dataset.high,
+          weak:   opt.dataset.weak === '1',
+          unsure: opt.dataset.unsure === '1',
+        };
+        if (current < totalQ) { current++; render(); }
+      });
+    });
+  });
+
+  backBtn.addEventListener('click', () => { if (current > 0) { current--; render(); } });
+
+  function fmt(n) {
+    return '$' + (Math.round(n / 100) * 100).toLocaleString('en-US');
+  }
+
+  function computeEstimate() {
+    const valueNum = parseFloat(answers.client_value?.num) || 2000;
+    const missedNum = parseFloat(answers.missed?.num) || 5;
+    const low  = parseFloat(answers.response?.low)  || 0.10;
+    const high = parseFloat(answers.response?.high) || 0.20;
+    const monthlyMissed = missedNum * 4.3;
+    let lo = monthlyMissed * low  * valueNum;
+    let hi = monthlyMissed * high * valueNum;
+    // Cap at a believable ceiling so the number never reads like a gimmick
+    const CAP = 50000;
+    hi = Math.min(hi, CAP);
+    lo = Math.min(lo, hi * 0.6);
+    return { low: lo, high: hi };
+  }
+
+  function buildNotes() {
+    const notes = [];
+    const anyUnsure = ['client_value', 'missed', 'response', 'source'].some((k) => answers[k]?.unsure);
+    if (anyUnsure || answers.crm?.unsure) {
+      notes.push('You were not sure of some of these numbers. That is the real problem. When you cannot see your numbers, you cannot fix them. That is the first thing we set up.');
+    }
+    if (answers.website?.weak) {
+      notes.push('Your website is not set up to catch and convert the leads you do get. The video covers what to change there too.');
+    }
+    const r = answers.response?.label || '';
+    if (r.includes('Next day') || r.includes('few hours') || r.includes('varies')) {
+      notes.push('Most of this leak comes from response time. The businesses that answer first win the job, and right now you are not first.');
+    } else if (r.includes('Within 5 minutes')) {
+      notes.push('You respond fast, which is rare. That is a real edge. The bigger opportunity now is everything after that first reply: follow-up, no-shows, and the reviews you are not asking for.');
+    }
+    // Always leave them with at least one clear takeaway
+    if (notes.length === 0) {
+      notes.push('The number above is just the leads slipping past today. The real win is a system that catches and follows up on every one automatically, without you lifting a finger.');
+    }
+    return notes;
+  }
+
+  // Tier config: copy + red/amber/green visuals. Full literal class strings
+  // so Tailwind's scanner keeps them in the build.
+  const ICON_WARNING = 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z';
+  const ICON_ALERT   = 'M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z';
+  const ICON_CHECK   = 'M5 13l4 4L19 7';
+
+  const TIERS = {
+    high: {
+      iconBg: 'bg-red-50', iconColor: 'text-red-600', iconPath: ICON_WARNING,
+      badge: 'High Risk', badgeCls: 'bg-red-50 text-red-700',
+      numCls: 'text-4xl md:text-5xl font-bold tracking-tight mb-2 text-red-600',
+      seg: 3, segColor: 'bg-red-500', meter: 'Leak severity: high. This grows every month you wait.',
+      lead: 'Based on what you told me, you could be leaving roughly',
+      sub:  'in new customer value on the table every month. That is real money going to whoever answers first.',
+      range: (est) => fmt(est.low) + ' to ' + fmt(est.high),
+    },
+    moderate: {
+      iconBg: 'bg-amber-50', iconColor: 'text-amber-600', iconPath: ICON_ALERT,
+      badge: 'Worth Fixing', badgeCls: 'bg-amber-50 text-amber-700',
+      numCls: 'text-4xl md:text-5xl font-bold tracking-tight mb-2 text-amber-600',
+      seg: 2, segColor: 'bg-amber-500', meter: 'Leak severity: moderate. Cheaper to fix now than after it grows.',
+      lead: 'Based on what you told me, you are likely leaving around',
+      sub:  'a month in new customer value. It adds up faster than most owners expect.',
+      range: (est) => fmt(est.low) + ' to ' + fmt(est.high),
+    },
+    low: {
+      iconBg: 'bg-green-50', iconColor: 'text-green-700', iconPath: ICON_CHECK,
+      badge: 'Looking Good', badgeCls: 'bg-green-50 text-green-700',
+      numCls: 'text-4xl md:text-5xl font-bold tracking-tight mb-2 text-green-700',
+      seg: 1, segColor: 'bg-green-600', meter: 'Leak severity: low. You are ahead of most.',
+      lead: 'Good news. From what you told me, your fundamentals are stronger than most.',
+      sub:  (est) => 'You are likely leaving under ' + fmt(Math.max(est.high, 800)) + ' a month, which is the easy kind to plug. Your video shows how to keep it that way as you grow.',
+      range: () => 'You are ahead of the pack',
+    },
+  };
+
+  // Tiered result: copy + severity visuals. Never shows $0.
+  function showEstimate(est) {
+    const t = est.high >= 10000 ? TIERS.high : est.high >= 2000 ? TIERS.moderate : TIERS.low;
+
+    document.getElementById('result-icon').className = 'w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5 ' + t.iconBg;
+    document.getElementById('result-icon-svg').setAttribute('class', 'w-8 h-8 ' + t.iconColor);
+    document.getElementById('result-icon-path').setAttribute('d', t.iconPath);
+
+    const badgeEl = document.getElementById('result-badge');
+    badgeEl.textContent = t.badge;
+    badgeEl.className = 'inline-block text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-5 ' + t.badgeCls;
+
+    document.getElementById('result-lead').textContent  = t.lead;
+    document.getElementById('result-range').textContent = t.range(est);
+    document.getElementById('result-range').className   = t.numCls;
+    document.getElementById('result-sub').textContent   = typeof t.sub === 'function' ? t.sub(est) : t.sub;
+
+    for (let i = 1; i <= 3; i++) {
+      document.getElementById('seg-' + i).className = 'h-2 flex-1 rounded-full ' + (i <= t.seg ? t.segColor : 'bg-warm-200');
+    }
+    document.getElementById('meter-label').textContent = t.meter;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (form.querySelector('[name="botcheck"]').value) return;
+
+    const name = document.getElementById('cf-name').value.trim();
+    const business = document.getElementById('cf-business').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const phone = document.getElementById('cf-phone').value.trim();
+
+    if (!name || !business || !email) { setStatus('Please fill in your name, business, and email.', 'error'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setStatus('Please enter a valid email address.', 'error'); return; }
+
+    setStatus('', '');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    const est = computeEstimate();
+    const payload = {
+      access_key: web3key,
+      subject: 'New Lead Audit Quiz — Automated Blueprints',
+      from_name: name,
+      email,
+      business,
+      phone,
+      client_value:  answers.client_value?.label ?? '',
+      missed_weekly: answers.missed?.label ?? '',
+      response_time: answers.response?.label ?? '',
+      tracks_leads:  answers.crm?.label ?? '',
+      website:       answers.website?.label ?? '',
+      found_by:      answers.source?.label ?? '',
+      estimated_monthly_loss: `${fmt(est.low)} to ${fmt(est.high)}`,
+      botcheck: '',
+    };
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message || 'failed');
+
+      // Show result
+      showEstimate(est);
+      const notesEl = document.getElementById('result-notes');
+      buildNotes().forEach((text) => {
+        const p = document.createElement('p');
+        p.className = 'flex items-start gap-2 text-ink-light text-sm leading-relaxed';
+        p.innerHTML = '<span class="text-brand-600 font-bold flex-shrink-0">&bull;</span><span>' + text + '</span>';
+        notesEl.appendChild(p);
+      });
+      form.classList.add('hidden');
+      progressWrap.classList.add('hidden');
+      result.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'See My Results';
+      setStatus('Something went wrong. Email me directly at ' + contactEmail + '.', 'error');
+    }
+  });
+
+  function setStatus(msg, type) {
+    statusEl.textContent = msg;
+    statusEl.className = 'text-sm font-medium text-center min-h-[1.25rem] ' +
+      (type === 'error' ? 'text-red-600' : '');
+  }
+
+  render();
+</script>

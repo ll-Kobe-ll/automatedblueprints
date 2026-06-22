@@ -12,6 +12,7 @@ interface Props {
   canonicalPath?: string;
   schema?: object | object[];
   noIndex?: boolean;
+  bare?: boolean;
 }
 
 const {
@@ -22,6 +23,7 @@ const {
   canonicalPath = Astro.url.pathname,
   schema,
   noIndex = false,
+  bare = false,
 } = Astro.props;
 
 const canonicalUrl = `${site.domain}${canonicalPath}`.replace(/\/$/, '') || site.domain;
@@ -101,10 +103,21 @@ const allSchema = [localBusinessSchema, ...(Array.isArray(schema) ? schema : sch
     >
       Skip to main content
     </a>
-    <Header />
+    {bare ? (
+      <header class="bg-white border-b border-warm-200">
+        <div class="section-container h-16 flex items-center">
+          <a href="/" class="flex items-center gap-2.5" aria-label={`${site.name} home`}>
+            <img src="/favicon.png" alt="" width="32" height="32" class="w-8 h-8 rounded-md flex-shrink-0" />
+            <span class="text-ink font-bold text-lg tracking-tight">{site.name}</span>
+          </a>
+        </div>
+      </header>
+    ) : (
+      <Header />
+    )}
     <main id="main-content" tabindex="-1">
       <slot />
     </main>
-    <Footer />
+    {!bare && <Footer />}
   </body>
 </html>
