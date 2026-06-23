@@ -18,8 +18,35 @@ export const projects: Project[] = [
     descriptor: 'Garage Door Repair & Installation',
     location: 'Orange County',
     type: 'client',
-    // screenshot: '/proof/buc-door.webp',
+    screenshot: '/proof/buc-door.webp',
     caption:
       'Built for a garage door company in Orange County. Loads instant, built to show up in local search, one tap to call.',
   },
+  {
+    name: 'Restaurant',
+    url: 'https://custom-restaurant-templates.pages.dev/',
+    descriptor: 'Menus, Hours & Online Reservations',
+    type: 'template',
+    screenshot: '/proof/restaurant.webp',
+    caption:
+      'A template for restaurants. Menu, hours, and reservations up front, fast on a phone, easy to find on Google.',
+  },
+ /* {
+    name: 'Roofing Company',
+    url: 'https://roofing-company-template.pages.dev/',
+    descriptor: 'Quotes & Local Search',
+    type: 'template',
+    screenshot: '/proof/roofing.webp',
+    caption:
+      'A template for roofing companies. Built to show up in local search and turn visitors into quote requests.',
+  },
+  {
+    name: 'General Contractor',
+    url: 'https://general-contractor-1mb.pages.dev/',
+    descriptor: 'Built to Win Trust Fast',
+    type: 'template',
+    screenshot: '/proof/general-contractor.webp',
+    caption:
+      'A template for general contractors. Clean and fast, built to make a customer trust you before they call.',
+  },*/
 ];
