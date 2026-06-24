@@ -95,6 +95,11 @@ const allSchema = [localBusinessSchema, ...(Array.isArray(schema) ? schema : sch
     {allSchema.map((s) => (
       <script type="application/ld+json" set:html={JSON.stringify(s)} />
     ))}
+
+    <!-- Safety net: if JS is off, never hide reveal content -->
+    <noscript>
+      <style>.reveal { opacity: 1 !important; transform: none !important; }</style>
+    </noscript>
   </head>
   <body class="bg-warm text-ink antialiased">
     <a
@@ -119,5 +124,30 @@ const allSchema = [localBusinessSchema, ...(Array.isArray(schema) ? schema : sch
       <slot />
     </main>
     {!bare && <Footer />}
+
+    <!-- Global scroll-reveal: any element with .reveal fades up once on scroll -->
+    <script>
+      (() => {
+        const els = document.querySelectorAll('.reveal');
+        if (!els.length) return;
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) {
+          els.forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+        );
+        els.forEach((el) => obs.observe(el));
+      })();
+    </script>
   </body>
 </html>

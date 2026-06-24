@@ -1,0 +1,103 @@
+---
+// Live demo: an automatic follow-up sequence playing through Day 1 -> 10.
+// Pure client-side. Auto-plays once on scroll-in, plus a Replay button.
+
+const steps = [
+  { day: 'Day 1', msg: 'Thanks for reaching out to [biz]. When works for a quick call?' },
+  { day: 'Day 2', msg: 'Just following up, any questions on the quote?' },
+  { day: 'Day 5', msg: 'Checking in, is the estimate still open for you?' },
+  { day: 'Day 10', msg: 'Last check, happy to hold your spot this week.' },
+];
+---
+
+<div class="demo-followup bg-warm-100 border border-warm-200 rounded-lg p-6 md:p-8" aria-hidden="true">
+  <div class="flex items-center justify-between mb-5">
+    <p class="text-xs font-semibold uppercase tracking-wider text-ink-muted">Runs automatically</p>
+    <button type="button" class="demo-replay inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 transition-colors" aria-label="Replay the follow-up demo">
+      <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992V4.356M2.985 19.644v-4.992h4.992m-5.073-2.876a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+      </svg>
+      Replay
+    </button>
+  </div>
+
+  <div class="demo-track relative pl-7">
+    <!-- progress rail -->
+    <span class="absolute left-[9px] top-1.5 bottom-1.5 w-0.5 bg-warm-border" aria-hidden="true"></span>
+    <span class="demo-fill absolute left-[9px] top-1.5 w-0.5 bg-brand-600" aria-hidden="true"></span>
+
+    <div class="space-y-4">
+      {steps.map((s, i) => (
+        <div class={`demo-row demo-row-${i} relative`}>
+          <span class="demo-node absolute -left-7 top-1 w-[18px] h-[18px] rounded-full bg-white border-2 border-warm-border flex items-center justify-center" aria-hidden="true">
+            <span class="demo-node-dot w-2 h-2 rounded-full bg-warm-border block"></span>
+          </span>
+          <p class="text-xs font-semibold text-brand-600 mb-1">{s.day}</p>
+          <div class="bg-white border border-warm-200 rounded-lg rounded-tl-sm px-3.5 py-2.5 text-sm text-ink-light">
+            {s.msg.split('[biz]')[0]}<span data-biz>[Business Name]</span>{s.msg.split('[biz]')[1] ?? ''}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .demo-row { opacity: 0; transform: translateY(10px); }
+  .demo-row.is-on { animation: rowIn 0.5s ease forwards; }
+  @keyframes rowIn { to { opacity: 1; transform: translateY(0); } }
+
+  /* node lights up when its row plays */
+  .demo-row.is-on .demo-node { border-color: theme('colors.brand.600'); }
+  .demo-row.is-on .demo-node-dot { background: theme('colors.brand.600'); }
+
+  /* progress fill grows as rows reveal; height set inline by JS */
+  .demo-fill { height: 0; transition: height 0.5s ease; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .demo-row { opacity: 1; transform: none; animation: none; }
+    .demo-row .demo-node { border-color: theme('colors.brand.600'); }
+    .demo-row .demo-node-dot { background: theme('colors.brand.600'); }
+    .demo-fill { height: 100% !important; transition: none; }
+  }
+</style>
+
+<script>
+  (() => {
+    document.querySelectorAll<HTMLElement>('.demo-followup').forEach((demo) => {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const rows = demo.querySelectorAll<HTMLElement>('.demo-row');
+      const fill = demo.querySelector<HTMLElement>('.demo-fill');
+      const replay = demo.querySelector<HTMLButtonElement>('.demo-replay');
+      let timers: number[] = [];
+
+      const clear = () => { timers.forEach((t) => clearTimeout(t)); timers = []; };
+
+      const setFill = (pct: number) => { if (fill) fill.style.height = pct + '%'; };
+
+      const reset = () => {
+        clear();
+        rows.forEach((r) => r.classList.remove('is-on'));
+        setFill(0);
+      };
+
+      const play = () => {
+        if (reduce) { rows.forEach((r) => r.classList.add('is-on')); setFill(100); return; }
+        reset();
+        rows.forEach((row, i) => {
+          timers.push(window.setTimeout(() => {
+            row.classList.add('is-on');
+            setFill(((i + 1) / rows.length) * 100);
+          }, 350 + i * 750));
+        });
+      };
+
+      replay?.addEventListener('click', play);
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { play(); io.unobserve(e.target); } });
+      }, { threshold: 0.35 });
+      io.observe(demo);
+    });
+  })();
+</script>

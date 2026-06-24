@@ -21,6 +21,18 @@ const description = 'Answer a few quick questions and get a free, personalized v
           Six quick questions. At the end I will show you a rough estimate, then send a personalized video breaking down your exact numbers and what I would change.
         </p>
         <p class="text-ink-muted text-sm mt-3">Takes about 60 seconds. No cost. No obligation.</p>
+
+        <!-- Trust line -->
+        <div class="mt-6 inline-flex items-center gap-2.5 bg-white border border-warm-200 rounded-full pl-2.5 pr-4 py-1.5 shadow-sm">
+          <span class="w-6 h-6 rounded-full bg-brand-50 flex items-center justify-center flex-shrink-0">
+            <svg class="w-3.5 h-3.5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+          </span>
+          <span class="text-ink-light text-xs sm:text-sm">
+            Built by the team behind <a href="https://bucdoorsystems.com" target="_blank" rel="noopener" class="font-semibold text-ink hover:text-brand-600 transition-colors">bucdoorsystems.com</a> — real local work, here in OC.
+          </span>
+        </div>
       </div>
 
       <!-- Quiz card -->
@@ -179,11 +191,52 @@ const description = 'Answer a few quick questions and get a free, personalized v
           </div>
 
           <div id="result-notes" class="text-left max-w-md mx-auto space-y-3 mb-8"></div>
-          <div class="bg-warm-50 border border-warm-200 rounded-lg p-6 text-left">
-            <h3 class="font-semibold text-ink mb-2">What happens next</h3>
-            <p class="text-ink-light leading-relaxed text-sm">
-              Your full breakdown is on the way. I will record a short video walking through your exact numbers, where the leaks are, and what I would change to fix them. Check your email within 24 hours.
-            </p>
+
+          <!-- Tiered CTA — the next step, set by severity in showEstimate() -->
+          <div id="result-cta" class="result-reveal rounded-xl border p-6 md:p-7 text-left mb-6">
+            <div class="flex items-start gap-4">
+              <span id="result-cta-icon" class="w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg id="result-cta-icon-svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                  <path id="result-cta-icon-path" stroke-linecap="round" stroke-linejoin="round" d="" />
+                </svg>
+              </span>
+              <div class="flex-1">
+                <h3 id="result-cta-heading" class="font-bold text-ink text-lg mb-1.5"></h3>
+                <p id="result-cta-body" class="text-ink-light text-sm leading-relaxed mb-5"></p>
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <a id="result-cta-primary" class="btn-primary justify-center group" href="#">
+                    <span id="result-cta-primary-label"></span>
+                    <svg class="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                  </a>
+                  <a id="result-cta-secondary" class="inline-flex items-center justify-center font-semibold text-brand-600 hover:text-brand-700 px-4 py-3 transition-colors" href="#"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-reveal bg-warm-50 border border-warm-200 rounded-lg p-6 text-left" style="--reveal-delay: 120ms">
+            <h3 class="font-semibold text-ink mb-3 flex items-center gap-2">
+              <svg class="w-5 h-5 text-brand-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              What happens next
+            </h3>
+            <ol class="space-y-2.5">
+              <li class="flex items-start gap-3 text-ink-light text-sm leading-relaxed">
+                <span class="w-5 h-5 rounded-full bg-brand-600 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+                <span>I review the exact numbers you just gave me.</span>
+              </li>
+              <li class="flex items-start gap-3 text-ink-light text-sm leading-relaxed">
+                <span class="w-5 h-5 rounded-full bg-brand-600 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+                <span>I record a short video on where your leads are leaking and what I would change.</span>
+              </li>
+              <li class="flex items-start gap-3 text-ink-light text-sm leading-relaxed">
+                <span class="w-5 h-5 rounded-full bg-brand-600 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+                <span>It lands in your inbox within 24 hours. No call required.</span>
+              </li>
+            </ol>
           </div>
           <p class="text-ink-muted text-xs mt-6">This is a rough estimate from the numbers you gave. Your video covers the real math.</p>
         </div>
@@ -204,9 +257,31 @@ const description = 'Answer a few quick questions and get a free, personalized v
   .quiz-input {
     @apply w-full border border-warm-200 rounded px-4 py-3 text-ink placeholder-ink-muted bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent transition;
   }
+
+  /* Result screen reveal — payoff should feel earned */
+  #quiz-result.revealed { animation: resultFade 0.45s ease forwards; }
+  @keyframes resultFade { from { opacity: 0; } to { opacity: 1; } }
+
+  #quiz-result .result-reveal {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  #quiz-result.revealed .result-reveal {
+    animation: resultIn 0.55s ease forwards;
+    animation-delay: calc(var(--reveal-delay, 0ms) + 250ms);
+  }
+  @keyframes resultIn { to { opacity: 1; transform: translateY(0); } }
+
+  /* Result icon gets a confident pop */
+  #quiz-result.revealed #result-icon { animation: iconPop 0.5s ease 0.1s both; }
+  @keyframes iconPop {
+    0% { transform: scale(0.6); opacity: 0; }
+    60% { transform: scale(1.08); }
+    100% { transform: scale(1); opacity: 1; }
+  }
 </style>
 
-<script define:vars={{ web3key: site.web3formsKey, contactEmail: site.email }}>
+<script define:vars={{ web3key: site.web3formsKey, contactEmail: site.email, bookingUrl: site.bookingUrl }}>
   const form    = document.getElementById('audit-form');
   const steps   = [...document.querySelectorAll('.quiz-step')];
   const totalQ  = 6; // question steps (excludes contact step)
@@ -303,6 +378,14 @@ const description = 'Answer a few quick questions and get a free, personalized v
   const ICON_WARNING = 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z';
   const ICON_ALERT   = 'M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z';
   const ICON_CHECK   = 'M5 13l4 4L19 7';
+  const ICON_CALENDAR = 'M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5';
+  const ICON_ROCKET   = 'M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z';
+
+  // Where the primary CTA points: a booking link if you have one, else email.
+  const bookHref = bookingUrl
+    ? bookingUrl
+    : 'mailto:' + contactEmail + '?subject=' + encodeURIComponent('Lead Audit — let us talk');
+  const bookLabel = bookingUrl ? 'Grab a time to talk' : 'Email me to get started';
 
   const TIERS = {
     high: {
@@ -313,6 +396,14 @@ const description = 'Answer a few quick questions and get a free, personalized v
       lead: 'Based on what you told me, you could be leaving roughly',
       sub:  'in new customer value on the table every month. That is real money going to whoever answers first.',
       range: (est) => fmt(est.low) + ' to ' + fmt(est.high),
+      cta: {
+        wrap: 'result-reveal rounded-xl border p-6 md:p-7 text-left mb-6 bg-red-50 border-red-200',
+        iconWrap: 'bg-red-100', iconColor: 'text-red-600', iconPath: ICON_CALENDAR,
+        heading: 'This is worth fixing now, not next quarter.',
+        body: 'Every week it stays open, that number walks out the door. Skip the wait and let us go through your exact setup together.',
+        primaryHref: bookHref, primaryLabel: bookLabel,
+        secondaryHref: '/websites', secondaryLabel: 'Or see what I would build →',
+      },
     },
     moderate: {
       iconBg: 'bg-amber-50', iconColor: 'text-amber-600', iconPath: ICON_ALERT,
@@ -322,6 +413,14 @@ const description = 'Answer a few quick questions and get a free, personalized v
       lead: 'Based on what you told me, you are likely leaving around',
       sub:  'a month in new customer value. It adds up faster than most owners expect.',
       range: (est) => fmt(est.low) + ' to ' + fmt(est.high),
+      cta: {
+        wrap: 'result-reveal rounded-xl border p-6 md:p-7 text-left mb-6 bg-amber-50 border-amber-200',
+        iconWrap: 'bg-amber-100', iconColor: 'text-amber-600', iconPath: ICON_CALENDAR,
+        heading: 'The cheapest time to plug this is now.',
+        body: 'It is a smaller leak than most, which means it is the easiest to fix before it grows. Want to walk through it together?',
+        primaryHref: bookHref, primaryLabel: bookLabel,
+        secondaryHref: '/websites', secondaryLabel: 'Or see what I would build →',
+      },
     },
     low: {
       iconBg: 'bg-green-50', iconColor: 'text-green-700', iconPath: ICON_CHECK,
@@ -331,6 +430,14 @@ const description = 'Answer a few quick questions and get a free, personalized v
       lead: 'Good news. From what you told me, your fundamentals are stronger than most.',
       sub:  (est) => 'You are likely leaving under ' + fmt(Math.max(est.high, 800)) + ' a month, which is the easy kind to plug. Your video shows how to keep it that way as you grow.',
       range: () => 'You are ahead of the pack',
+      cta: {
+        wrap: 'result-reveal rounded-xl border p-6 md:p-7 text-left mb-6 bg-green-50 border-green-200',
+        iconWrap: 'bg-green-100', iconColor: 'text-green-700', iconPath: ICON_ROCKET,
+        heading: 'Your response is solid. Let us get you found by more people.',
+        body: 'You already close the leads you get. The biggest win now is a website that brings more of them in, feeding straight into your system.',
+        primaryHref: '/websites', primaryLabel: 'See the websites that feed this',
+        secondaryHref: '/how-it-works', secondaryLabel: 'Or see the full system →',
+      },
     },
   };
 
@@ -355,6 +462,24 @@ const description = 'Answer a few quick questions and get a free, personalized v
       document.getElementById('seg-' + i).className = 'h-2 flex-1 rounded-full ' + (i <= t.seg ? t.segColor : 'bg-warm-200');
     }
     document.getElementById('meter-label').textContent = t.meter;
+
+    // Next-step CTA, tiered by severity
+    const c = t.cta;
+    document.getElementById('result-cta').className = c.wrap;
+    document.getElementById('result-cta-icon').className = 'w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0 ' + c.iconWrap;
+    document.getElementById('result-cta-icon-svg').setAttribute('class', 'w-6 h-6 ' + c.iconColor);
+    document.getElementById('result-cta-icon-path').setAttribute('d', c.iconPath);
+    document.getElementById('result-cta-heading').textContent = c.heading;
+    document.getElementById('result-cta-body').textContent = c.body;
+
+    const primary = document.getElementById('result-cta-primary');
+    primary.href = c.primaryHref;
+    document.getElementById('result-cta-primary-label').textContent = c.primaryLabel;
+    if (/^https?:/.test(c.primaryHref)) { primary.target = '_blank'; primary.rel = 'noopener'; }
+
+    const secondary = document.getElementById('result-cta-secondary');
+    secondary.href = c.secondaryHref;
+    secondary.textContent = c.secondaryLabel;
   }
 
   form.addEventListener('submit', async (e) => {
@@ -412,6 +537,8 @@ const description = 'Answer a few quick questions and get a free, personalized v
       form.classList.add('hidden');
       progressWrap.classList.add('hidden');
       result.classList.remove('hidden');
+      // Trigger the staggered reveal on the next frame so animations run
+      requestAnimationFrame(() => result.classList.add('revealed'));
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch {
       submitBtn.disabled = false;

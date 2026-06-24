@@ -52,7 +52,10 @@
   }
 
   .card {
-    @apply bg-white border border-warm-200 rounded-lg p-8;
+    @apply bg-white border border-warm-200 rounded-lg p-8 transition-all duration-200;
+  }
+  .card:hover {
+    @apply border-brand-200 shadow-md -translate-y-0.5;
   }
 
   .nav-link {
@@ -62,6 +65,58 @@
   .nav-link-active {
     @apply text-brand-600 font-medium whitespace-nowrap;
   }
+}
+
+/* ============================================================
+   Global motion system — applies to every page via BaseLayout.
+   Opt in by adding a class; the observer in BaseLayout handles reveal.
+   ============================================================ */
+
+/* Scroll reveal: hidden until .is-visible is added on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition-delay: var(--delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Opt-in hover lift for non-.card elements (link cards, panels) */
+.card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border-color: theme('colors.brand.600');
+}
+
+/* Tactile press feedback on every button */
+.btn-primary,
+.btn-primary-lg,
+.btn-ghost,
+.btn-ghost-lg {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.12s ease;
+}
+.btn-primary:active,
+.btn-primary-lg:active,
+.btn-ghost:active,
+.btn-ghost-lg:active {
+  transform: scale(0.97);
+}
+
+/* Respect reduced-motion: show everything, no transforms */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .card-hover:hover,
+  .card:hover { transform: none; }
+  .btn-primary:active,
+  .btn-primary-lg:active,
+  .btn-ghost:active,
+  .btn-ghost-lg:active { transform: none; }
 }
 
 /* Rendered Markdown (blog posts) */

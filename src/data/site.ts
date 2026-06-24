@@ -10,6 +10,11 @@ export const site = {
   ctaText: 'Get a Free Lead Audit',
   ctaShort: 'Free Lead Audit',
   ctaHref: '/audit',
+  // Optional direct-contact channels. Paste a value to switch a button on;
+  // leave blank and it falls back to email automatically.
+  bookingUrl: '',   // e.g. https://calendly.com/yourname/15min  → enables "Grab a time"
+  phone: '',        // e.g. +17145550100  → enables one-tap "Text me"
+  facebookUrl: '',  // e.g. https://m.me/yourpage  → enables "Message on Facebook"
   // Course (external checkout). Paste your Gumroad/Stripe/Whop link and price.
   courseUrl: 'PASTE_COURSE_CHECKOUT_URL_HERE',
   coursePrice: '$149',

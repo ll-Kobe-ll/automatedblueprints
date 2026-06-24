@@ -51,27 +51,42 @@ const serviceSchema = {
   ============================================================ -->
   <section class="section-pad bg-white" aria-labelledby="leak-heading">
     <div class="section-container">
-      <h2 id="leak-heading" class="section-heading mb-4">
+      <h2 id="leak-heading" class="section-heading mb-4 reveal">
         Where the Jobs Leak Out
       </h2>
-      <p class="section-sub max-w-2xl mb-16">
+      <p class="section-sub max-w-2xl mb-16 reveal">
         Three gaps cost local businesses work before they ever get a chance to quote it.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="card">
+        <div class="card reveal" style="--delay: 0ms">
+          <div class="w-11 h-11 rounded-lg bg-brand-50 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-brand-600" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+          </div>
           <h3 class="text-xl font-semibold text-ink mb-3">They Can't Find You</h3>
           <p class="text-ink-light leading-relaxed">
             If you are not on the first page when someone searches for what you do, the call goes to whoever is. People do not scroll to page two. They tap the first business that looks real.
           </p>
         </div>
-        <div class="card">
+        <div class="card reveal" style="--delay: 100ms">
+          <div class="w-11 h-11 rounded-lg bg-brand-50 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-brand-600" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+            </svg>
+          </div>
           <h3 class="text-xl font-semibold text-ink mb-3">You Look Closed</h3>
           <p class="text-ink-light leading-relaxed">
             A missing site, or one that has not been touched in years, reads as out of business. People trust their gut in two seconds. A dead web presence tells them to keep looking.
           </p>
         </div>
-        <div class="card">
+        <div class="card reveal" style="--delay: 200ms">
+          <div class="w-11 h-11 rounded-lg bg-brand-50 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-brand-600" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 3.75H6.912a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H15M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859M12 3v8.25m0 0l-3-3m3 3l3-3" />
+            </svg>
+          </div>
           <h3 class="text-xl font-semibold text-ink mb-3">The Site Doesn't Catch the Lead</h3>
           <p class="text-ink-light leading-relaxed">
             Even when they find you and reach out, a site with no follow-up lets the lead sit. By the time you reply, they booked someone faster. The site has to hand the lead straight to a system that responds.
@@ -86,11 +101,11 @@ const serviceSchema = {
   ============================================================ -->
   <section class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="proof-heading">
     <div class="section-container">
-      <p class="text-brand-600 text-sm font-semibold uppercase tracking-wider mb-4">Real Work</p>
-      <h2 id="proof-heading" class="section-heading mb-4">
+      <p class="text-brand-600 text-sm font-semibold uppercase tracking-wider mb-4 reveal">Real Work</p>
+      <h2 id="proof-heading" class="section-heading mb-4 reveal">
         {projects.length > 1 ? 'See What I Build, Live' : 'See One We Built, Live'}
       </h2>
-      <p class="section-sub max-w-2xl mb-12">
+      <p class="section-sub max-w-2xl mb-12 reveal">
         {projects.length > 1
           ? 'A live client build plus industry templates I have put together. All real, all clickable. Take a look.'
           : 'Not a mockup. A real site running for a real business right now. Click it and look around.'}
@@ -114,6 +129,17 @@ const serviceSchema = {
            </blockquote>
       ============================================================ -->
 
+      <!-- Catch them at peak interest, right under the proof -->
+      <div class="mt-14 flex flex-col sm:flex-row items-center justify-center gap-x-5 gap-y-4 text-center">
+        <p class="text-ink font-semibold text-lg">Want one like these for your business?</p>
+        <a href="/contact" class="btn-primary group">
+          Get a Free Quote
+          <svg class="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </a>
+      </div>
+
     </div>
   </section>
 
@@ -122,22 +148,22 @@ const serviceSchema = {
   ============================================================ -->
   <section class="section-pad bg-white" aria-labelledby="bundle-heading">
     <div class="section-container">
-      <h2 id="bundle-heading" class="section-heading mb-5">
+      <h2 id="bundle-heading" class="section-heading mb-5 reveal">
         The Site Gets You Found. The System Catches the Lead.
       </h2>
-      <p class="text-lg md:text-xl text-ink-light leading-relaxed max-w-3xl mb-12">
+      <p class="text-lg md:text-xl text-ink-light leading-relaxed max-w-3xl mb-12 reveal">
         A website with no follow-up is half the job. A follow-up system with no site to feed it is the other half. Together they are one thing: get found, then catch every lead that comes in.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-warm-100 border border-warm-200 rounded-lg p-8">
+        <div class="bg-warm-100 border border-warm-200 rounded-lg p-8 reveal" style="--delay: 0ms">
           <div class="w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center mb-4 text-sm" aria-hidden="true">1</div>
           <h3 class="font-semibold text-ink mb-2 text-lg">The Website</h3>
           <p class="text-ink-light leading-relaxed">
             The front door. Fast, clean, and built so you actually show up when people search for what you do. Most local competitors have nothing real online, so a proper site puts you ahead of them.
           </p>
         </div>
-        <div class="bg-warm-100 border border-warm-200 rounded-lg p-8">
+        <div class="bg-warm-100 border border-warm-200 rounded-lg p-8 reveal" style="--delay: 120ms">
           <div class="w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center mb-4 text-sm" aria-hidden="true">2</div>
           <h3 class="font-semibold text-ink mb-2 text-lg">The Client Capture Engine</h3>
           <p class="text-ink-light leading-relaxed">
@@ -163,7 +189,7 @@ const serviceSchema = {
         Why Getting Found Matters
       </h2>
 
-      <div class="max-w-xl mx-auto text-center">
+      <div class="max-w-xl mx-auto text-center reveal">
         <p class="text-6xl md:text-7xl font-bold text-brand-300 mb-4">98%</p>
         <p class="text-white/80 text-lg leading-relaxed">
           98% of people used the internet to find a local business in the past year. If nothing comes up when they search for you, you are not in the running.
