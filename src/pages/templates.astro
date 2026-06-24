@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { templates } from '../data/templates';
+
+const title       = 'Website Templates for Local Businesses & Agencies | Automated Blueprints';
+const description = 'Ready-to-launch website templates built for local service businesses. Fast, clean, and yours to use. Buy once, launch today. Built for owners and agencies.';
+
+const isLive = (url: string) => !url.startsWith('PASTE');
+---
+
+<BaseLayout {title} {description} canonicalPath="/templates">
+
+  <!-- Hero -->
+  <section class="bg-ink text-white section-pad" aria-label="Templates hero">
+    <div class="section-container">
+      <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">Templates</p>
+      <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-3xl mb-6">
+        Ready-to-Launch Sites You Can Buy Today.
+      </h1>
+      <p class="text-white/75 text-xl leading-relaxed max-w-2xl">
+        Clean, fast templates built for local service businesses. Buy one, drop in your details, and launch. If you run an agency, use them for as many clients as you want.
+      </p>
+    </div>
+  </section>
+
+  <!-- Grid -->
+  <section class="section-pad bg-white" aria-labelledby="templates-heading">
+    <div class="section-container">
+      <h2 id="templates-heading" class="section-heading mb-4">Pick Your Template</h2>
+      <p class="section-sub max-w-2xl mb-16">Every one is a real, live site. Click "Live demo" and look around before you buy.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {templates.map((t) => (
+          <div class="flex flex-col border border-warm-200 rounded-xl overflow-hidden bg-white">
+            <a href={t.demoUrl} target="_blank" rel="noopener noreferrer" class="block group">
+              <div class="aspect-[16/10] bg-warm-100 overflow-hidden">
+                <img
+                  src={t.screenshot}
+                  alt={`${t.name} website template preview`}
+                  width="1000" height="625" loading="lazy" decoding="async"
+                  class="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform"
+                />
+              </div>
+            </a>
+            <div class="flex flex-col flex-1 p-6">
+              <p class="text-xs font-semibold uppercase tracking-wider text-brand-600 mb-2">{t.niche}</p>
+              <h3 class="text-xl font-semibold text-ink mb-2">{t.name}</h3>
+              <p class="text-ink-light text-sm leading-relaxed mb-5 flex-1">{t.blurb}</p>
+              <div class="flex items-center justify-between gap-3">
+                <span class="text-2xl font-bold text-ink">{t.price}</span>
+                <div class="flex items-center gap-2">
+                  <a href={t.demoUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-ink-light hover:text-ink transition-colors">Live demo</a>
+                  {isLive(t.checkoutUrl) ? (
+                    <a href={t.checkoutUrl} target="_blank" rel="noopener noreferrer" class="btn-primary text-sm py-2.5 px-5">Buy</a>
+                  ) : (
+                    <span class="inline-flex items-center bg-warm-200 text-ink-muted font-semibold text-sm py-2.5 px-5 rounded cursor-not-allowed" aria-disabled="true">Coming soon</span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Agency note -->
+  <section class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="agency-heading">
+    <div class="section-container">
+      <div class="max-w-3xl">
+        <h2 id="agency-heading" class="section-heading mb-5">For Agencies and Resellers</h2>
+        <p class="text-lg text-ink-light leading-relaxed mb-6">
+          Run an agency or build sites for clients? These are built to be reskinned fast. Buy once and use them across your client work. Swap the colors, copy, and photos and you have a finished site in an afternoon instead of a week.
+        </p>
+        <p class="text-ink-light leading-relaxed">
+          Want a custom niche or a bulk set built for your stack? <a href="/contact" class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">Get in touch</a> and tell me what you need.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cross-sell to course -->
+  <section class="section-pad bg-white" aria-label="Course cross-sell">
+    <div class="section-container text-center">
+      <h2 class="section-heading mb-4">Want to Learn the Whole System?</h2>
+      <p class="section-sub max-w-xl mx-auto mb-8">
+        The course walks you through setting up a template, hosting it, and wiring in the lead-capture system, step by step.
+      </p>
+      <a href="/course" class="btn-primary-lg">See the Course</a>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,119 @@
+---
+interface Props {
+  heading?: string;
+  sub?: string;
+  variant?: 'white' | 'warm';
+}
+
+const {
+  heading = 'What Do You Need?',
+  sub = 'Four ways to work with me. Pick the one that fits where you are.',
+  variant = 'white',
+} = Astro.props;
+
+const paths = [
+  {
+    tag: 'Free',
+    title: 'Fix My Lead Flow',
+    desc: 'A free audit of where you are losing jobs to slow response, plus a personalized video on what to change.',
+    href: '/audit',
+    cta: 'Get the free audit',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />`,
+  },
+  {
+    tag: 'Done For You',
+    title: 'Build Me a Website',
+    desc: 'I design, build, and host the site for you. Built to get found and turn visitors into calls.',
+    href: '/websites',
+    cta: 'See the work',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />`,
+  },
+  {
+    tag: 'Instant',
+    title: 'I Want the Templates',
+    desc: 'Buy a ready-to-launch site template for your niche. Built fast, yours to use right away.',
+    href: '/templates',
+    cta: 'Browse templates',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />`,
+  },
+  {
+    tag: 'Course',
+    title: 'I Will Do It Myself',
+    desc: 'Templates plus a full walkthrough of how to set up the site, the hosting, and the lead system yourself.',
+    href: '/course',
+    cta: 'See the course',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />`,
+  },
+];
+---
+
+<section
+  class:list={['section-pad', variant === 'warm' ? 'bg-warm-100 border-y border-warm-200' : 'bg-white']}
+  aria-labelledby="paths-heading"
+>
+  <div class="section-container">
+    <h2 id="paths-heading" class="section-heading mb-4 text-center fade-up">{heading}</h2>
+    <p class="section-sub max-w-2xl mx-auto mb-16 text-center fade-up">{sub}</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {paths.map((p, i) => (
+        <a
+          href={p.href}
+          class="path-card flex flex-col bg-white border border-warm-200 rounded-lg p-7 transition-all group fade-up"
+          style={`--delay: ${i * 80}ms`}
+        >
+          <div class="w-10 h-10 rounded-md bg-brand-50 flex items-center justify-center mb-5 group-hover:bg-brand-100 transition-colors">
+            <svg class="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" set:html={p.icon} />
+          </div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-brand-600 mb-3">{p.tag}</span>
+          <h3 class="text-lg font-semibold text-ink mb-3 group-hover:text-brand-600 transition-colors leading-snug">
+            {p.title}
+          </h3>
+          <p class="text-ink-light text-sm leading-relaxed mb-6 flex-1">{p.desc}</p>
+          <span class="text-brand-600 text-sm font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+            {p.cta} <span aria-hidden="true">&rarr;</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .path-card {
+    cursor: pointer;
+  }
+  .path-card:hover {
+    border-color: var(--brand-600, #2563eb);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transform: translateY(-3px);
+  }
+
+  /* Scroll-reveal: start hidden, animate in when .is-visible is added */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition-delay: var(--delay, 0ms);
+  }
+  .fade-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+
+  document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
+</script>

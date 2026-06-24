@@ -10,4 +10,7 @@ export const site = {
   ctaText: 'Get a Free Lead Audit',
   ctaShort: 'Free Lead Audit',
   ctaHref: '/audit',
+  // Course (external checkout). Paste your Gumroad/Stripe/Whop link and price.
+  courseUrl: 'PASTE_COURSE_CHECKOUT_URL_HERE',
+  coursePrice: '$149',
 };

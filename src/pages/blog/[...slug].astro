@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  url: `${site.domain}/blog/${post.slug}`,
+  datePublished: post.data.pubDate.toISOString(),
+  ...(post.data.updatedDate && { dateModified: post.data.updatedDate.toISOString() }),
+  author: { '@type': 'Organization', name: site.name, url: site.domain },
+  publisher: { '@type': 'Organization', name: site.name, url: site.domain },
+};
+---
+
+<BaseLayout
+  title={`${post.data.title} | Automated Blueprints`}
+  description={post.data.description}
+  canonicalPath={`/blog/${post.slug}`}
+  schema={articleSchema}
+>
+  <!-- Hero -->
+  <section class="bg-ink text-white section-pad" aria-label="Article header">
+    <div class="section-container">
+      <a href="/blog" class="text-brand-300 text-sm font-semibold hover:text-white transition-colors">&larr; All guides</a>
+      <h1 class="text-white text-3xl md:text-5xl font-bold tracking-tight leading-tight max-w-3xl mt-5 mb-5">
+        {post.data.title}
+      </h1>
+      <div class="flex items-center gap-3 text-white/60 text-sm">
+        <span class="font-semibold text-brand-300 uppercase tracking-wider text-xs">{post.data.category}</span>
+        <span>{fmtDate(post.data.pubDate)}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Body -->
+  <section class="section-pad bg-white" aria-label="Article body">
+    <div class="section-container">
+      <article class="prose-content max-w-2xl">
+        <Content />
+      </article>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-pad bg-brand-600" aria-label="Call to action">
+    <div class="section-container text-center">
+      <h2 class="text-white text-3xl font-bold tracking-tight mb-4">Want This Handled for You?</h2>
+      <p class="text-white/80 text-lg mb-8 max-w-xl mx-auto leading-relaxed">
+        Get a free audit of where your business is losing leads, with a personalized video on exactly what to fix.
+      </p>
+      <a href={site.ctaHref} class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 focus-visible:outline-white">
+        {site.ctaText}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

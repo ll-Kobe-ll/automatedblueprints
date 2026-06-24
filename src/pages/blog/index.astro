@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+
+const title       = 'Blog: Getting Found & Getting More Leads for Local Businesses | Automated Blueprints';
+const description = 'Plain-English guides on websites, local SEO, missed calls, follow-up, and reviews for local service businesses. No fluff, just what actually moves the needle.';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const blogSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: `${site.name} Blog`,
+  description,
+  url: `${site.domain}/blog`,
+  publisher: { '@type': 'Organization', name: site.name, url: site.domain },
+};
+---
+
+<BaseLayout {title} {description} canonicalPath="/blog" schema={blogSchema}>
+
+  <!-- Hero -->
+  <section class="bg-ink text-white section-pad" aria-label="Blog hero">
+    <div class="section-container">
+      <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">The Blog</p>
+      <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-3xl mb-6">
+        Getting Found and Getting More Leads
+      </h1>
+      <p class="text-white/75 text-xl leading-relaxed max-w-2xl">
+        Straight guides on websites, local search, and turning more of your calls into booked jobs. Written for owners, not marketers.
+      </p>
+    </div>
+  </section>
+
+  <!-- Post list -->
+  <section class="section-pad bg-white" aria-label="Blog posts">
+    <div class="section-container">
+      {posts.length === 0 ? (
+        <p class="text-ink-light text-lg">New guides are on the way. Check back soon.</p>
+      ) : (
+        <div class="max-w-3xl divide-y divide-warm-200">
+          {posts.map((post) => (
+            <article class="py-8 first:pt-0">
+              <a href={`/blog/${post.slug}`} class="group block">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="text-xs font-semibold uppercase tracking-wider text-brand-600">{post.data.category}</span>
+                  <span class="text-xs text-ink-muted">{fmtDate(post.data.pubDate)}</span>
+                </div>
+                <h2 class="text-2xl font-bold text-ink mb-2 group-hover:text-brand-600 transition-colors leading-snug">
+                  {post.data.title}
+                </h2>
+                <p class="text-ink-light leading-relaxed mb-3">{post.data.description}</p>
+                <span class="text-brand-600 text-sm font-semibold">Read the guide &rarr;</span>
+              </a>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+</BaseLayout>

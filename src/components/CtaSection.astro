@@ -5,12 +5,16 @@ interface Props {
   heading?: string;
   body?: string;
   variant?: 'brand' | 'light';
+  href?: string;
+  label?: string;
 }
 
 const {
   heading = 'Ready to Stop Losing Jobs to Whoever Answers First?',
   body = 'Get a free custom video breakdown. No pitch deck, no pressure. I record a short walkthrough of your current setup and show you exactly where leads are falling through.',
   variant = 'brand',
+  href = site.ctaHref,
+  label = site.ctaText,
 } = Astro.props;
 
 const isBrand = variant === 'brand';
@@ -41,13 +45,13 @@ const isBrand = variant === 'brand';
       {body}
     </p>
     <a
-      href={site.ctaHref}
+      href={href}
       class:list={[
         'btn-primary-lg',
         isBrand ? 'bg-white text-brand-700 hover:bg-brand-50 focus-visible:outline-white' : '',
       ]}
     >
-      {site.ctaText}
+      {label}
     </a>
   </div>
 </section>
