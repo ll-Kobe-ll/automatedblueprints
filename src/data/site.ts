@@ -18,4 +18,8 @@ export const site = {
   // Course (external checkout). Paste your Gumroad/Stripe/Whop link and price.
   courseUrl: 'PASTE_COURSE_CHECKOUT_URL_HERE',
   coursePrice: '$149',
+  // Templates storefront. Prices shown on /templates; paste Stripe links when ready.
+  templatePrice: '$249',
+  bundlePrice: '$999',
+  bundleUrl: 'PASTE_BUNDLE_CHECKOUT_URL',
 };

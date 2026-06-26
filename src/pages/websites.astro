@@ -5,8 +5,8 @@ import ProjectCard from '../components/ProjectCard.astro';
 import { site } from '../data/site';
 import { projects } from '../data/projects';
 
-const title       = 'Websites That Get Local Businesses Found | Automated Blueprints';
-const description = 'A fast website built to show up when people search for what you do, then hand every lead to a follow-up system that never lets one go cold. Built for local businesses.';
+const title       = 'The Lead Flow System: Website + Lead Capture, Done for You | Automated Blueprints';
+const description = 'The whole lead flow done for you: a website that gets you found, instant response to every lead, automatic follow-up, and a review engine. Built and run for local businesses.';
 
 const serviceSchema = {
   '@context': 'https://schema.org',
@@ -32,17 +32,22 @@ const serviceSchema = {
   <section class="bg-ink text-white" aria-label="Hero">
     <div class="section-container py-24 md:py-32">
       <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-5">
-        Websites for Local Businesses
+        The Lead Flow System
       </p>
       <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight max-w-3xl mb-6">
-        Your Next Job Is Searching for You.
+        Get Found. Catch Every Lead. Done for You.
       </h1>
       <p class="text-white/75 text-xl md:text-2xl leading-relaxed max-w-2xl mb-10">
-        A lot of your customers Google you before they call. If nothing comes up, or it is a dead Facebook page, they figure you closed and book someone else. You lose jobs from people who already wanted to hire you.
+        It starts with a website that gets you found. Then the system answers new leads in seconds, follows up until they book, and stacks your reviews, on its own. The whole lead flow, built and run for you.
       </p>
-      <a href="/contact" class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 focus-visible:outline-white">
-        Get a Free Quote
-      </a>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/contact" class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 focus-visible:outline-white text-center">
+          Get a Free Quote
+        </a>
+        <a href="/how-it-works" class="btn-ghost-lg border-white/30 text-white hover:bg-white/10 hover:border-white/50 text-center">
+          See How It Works
+        </a>
+      </div>
     </div>
   </section>
 

@@ -1,0 +1,74 @@
+---
+import type { TemplateProduct } from '../data/templates';
+import { site } from '../data/site';
+
+interface Props {
+  template: TemplateProduct;
+}
+
+const { template } = Astro.props;
+const buyable = !template.checkoutUrl.startsWith('PASTE');
+const hasDemo = !!template.demoUrl;
+---
+
+<div class="flex flex-col border border-warm-200 rounded-xl overflow-hidden bg-white card-hover">
+  <!-- Preview: real screenshot, else branded placeholder -->
+  {template.screenshot ? (
+    <a href={template.demoUrl} target="_blank" rel="noopener noreferrer" class="block group" aria-label={`Open the ${template.name} demo`}>
+      <div class="aspect-[16/10] bg-warm-100 overflow-hidden">
+        <img
+          src={template.screenshot}
+          alt={`${template.name} website template preview`}
+          width="1000" height="625" loading="lazy" decoding="async"
+          class="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform"
+        />
+      </div>
+    </a>
+  ) : hasDemo ? (
+    <a href={template.demoUrl} target="_blank" rel="noopener noreferrer" class="block group" aria-label={`Open the ${template.name} demo`}>
+      <div class="aspect-[16/10] bg-ink text-white flex flex-col items-center justify-center text-center px-6">
+        <p class="text-brand-300 text-xs font-semibold uppercase tracking-wider mb-2">{template.niche.split(',')[0]}</p>
+        <p class="text-white text-2xl font-bold tracking-tight">{template.name}</p>
+        <span class="mt-4 inline-flex items-center gap-1.5 bg-white text-brand-700 font-semibold text-sm px-5 py-2.5 rounded group-hover:bg-brand-50 transition-colors">
+          View live demo
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+          </svg>
+        </span>
+      </div>
+    </a>
+  ) : (
+    <div class="aspect-[16/10] bg-ink text-white flex flex-col items-center justify-center text-center px-6">
+      <p class="text-brand-300 text-xs font-semibold uppercase tracking-wider mb-2">{template.niche.split(',')[0]}</p>
+      <p class="text-white text-2xl font-bold tracking-tight">{template.name}</p>
+      <span class="mt-4 inline-flex items-center gap-1.5 text-white/60 text-xs font-semibold uppercase tracking-wider">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Demo coming soon
+      </span>
+    </div>
+  )}
+
+  <div class="flex flex-col flex-1 p-6">
+    <p class="text-xs font-semibold uppercase tracking-wider text-brand-600 mb-2">{template.niche}</p>
+    <h3 class="text-xl font-semibold text-ink mb-2">{template.name}</h3>
+    <p class="text-ink-light text-sm leading-relaxed mb-5 flex-1">{template.blurb}</p>
+
+    <div class="flex items-center justify-between gap-3">
+      <span class="text-2xl font-bold text-ink">{site.templatePrice}</span>
+      <div class="flex items-center gap-3">
+        {hasDemo ? (
+          <a href={template.demoUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-ink-light hover:text-ink transition-colors">Live demo</a>
+        ) : (
+          <span class="text-sm font-semibold text-ink-muted/60" aria-disabled="true">Demo soon</span>
+        )}
+        {buyable ? (
+          <a href={template.checkoutUrl} target="_blank" rel="noopener noreferrer" class="btn-primary text-sm py-2.5 px-5">Buy</a>
+        ) : (
+          <span class="inline-flex items-center bg-warm-200 text-ink-muted font-semibold text-sm py-2.5 px-5 rounded cursor-not-allowed" aria-disabled="true">Coming soon</span>
+        )}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,90 +1,206 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TemplateCard from '../components/TemplateCard.astro';
 import { templates } from '../data/templates';
+import { site } from '../data/site';
 
-const title       = 'Website Templates for Local Businesses & Agencies | Automated Blueprints';
-const description = 'Ready-to-launch website templates built for local service businesses. Fast, clean, and yours to use. Buy once, launch today. Built for owners and agencies.';
+const title       = 'Website Templates for Agencies & Resellers | Automated Blueprints';
+const description = 'Nine production-ready niche website templates. Buy once, launch in an hour, use for unlimited clients. Built on the same stack used for real local businesses.';
 
-const isLive = (url: string) => !url.startsWith('PASTE');
+const bundleLive = !site.bundleUrl.startsWith('PASTE');
+
+const included = [
+  { title: 'Full multi-page site', body: 'Home, Services, About, Contact, Blog, Privacy, Terms, and a 404. Not a one-pager.', icon: 'M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z' },
+  { title: 'SEO built in', body: 'Meta tags, Open Graph, JSON-LD schema, sitemap, and robots.txt. Ready to rank.', icon: 'M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z' },
+  { title: 'Markdown blog engine', body: 'Drop in a file, get a styled post. The content engine that drives organic traffic.', icon: 'M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5' },
+  { title: 'Contact form, ready', body: 'Web3Forms wired in with optional spam protection. No backend to set up.', icon: 'M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75' },
+  { title: 'Booking-ready', body: 'One config line wires in Cal.com or Calendly. Let customers book themselves.', icon: 'M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5' },
+  { title: 'Analytics-ready', body: 'Paste a GA4, Plausible, or Umami ID and tracking fires. Know what is working.', icon: 'M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z' },
+  { title: 'Legal pages auto-built', body: 'Privacy Policy and Terms generated from the config. No copy-paste from a template site.', icon: 'M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
+  { title: 'Fast, mobile, accessible', body: 'Scroll animations, a floating call button on mobile, semantic HTML and focus rings.', icon: 'M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3' },
+  { title: 'Config-driven', body: 'One file controls every piece of content. Reskin a whole site in under an hour.', icon: 'M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z' },
+];
+
+const license = [
+  'Build unlimited sites for unlimited clients',
+  'Charge your clients whatever you want, no royalties or per-site fees',
+  'Recolor, rewrite, and extend however you like',
+  'Host the finished sites anywhere',
+];
 ---
 
 <BaseLayout {title} {description} canonicalPath="/templates">
 
-  <!-- Hero -->
+  <!-- ============================================================
+       HERO — agency / reseller primary
+  ============================================================ -->
   <section class="bg-ink text-white section-pad" aria-label="Templates hero">
     <div class="section-container">
-      <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">Templates</p>
+      <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">Templates for Agencies &amp; Resellers</p>
       <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-3xl mb-6">
-        Ready-to-Launch Sites You Can Buy Today.
+        Nine Niche Sites. Buy Once, Launch in an Hour.
       </h1>
-      <p class="text-white/75 text-xl leading-relaxed max-w-2xl">
-        Clean, fast templates built for local service businesses. Buy one, drop in your details, and launch. If you run an agency, use them for as many clients as you want.
+      <p class="text-white/75 text-xl leading-relaxed max-w-2xl mb-10">
+        Production-ready templates built on the same stack I use for real local businesses. Drop in the details and a finished site is live the same afternoon. Use them for as many clients as you want.
       </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="#templates-grid" class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 focus-visible:outline-white">
+          See the Templates
+        </a>
+        <a href="/contact" class="btn-ghost-lg border-white/30 text-white hover:bg-white/10 hover:border-white/50">
+          Need Something Custom?
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- Grid -->
-  <section class="section-pad bg-white" aria-labelledby="templates-heading">
-    <div class="section-container">
-      <h2 id="templates-heading" class="section-heading mb-4">Pick Your Template</h2>
-      <p class="section-sub max-w-2xl mb-16">Every one is a real, live site. Click "Live demo" and look around before you buy.</p>
+  <!-- ============================================================
+       BUSINESS-OWNER ROUTING BANNER
+  ============================================================ -->
+  <section class="bg-brand-50 border-b border-brand-100" aria-label="For business owners">
+    <div class="section-container py-8">
+      <div class="flex flex-col md:flex-row md:items-center gap-5 md:gap-8">
+        <div class="flex items-start gap-3 flex-1">
+          <span class="w-10 h-10 rounded-lg bg-white border border-brand-100 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z" />
+            </svg>
+          </span>
+          <div>
+            <p class="text-ink font-semibold">Not building sites for a living?</p>
+            <p class="text-ink-light text-sm leading-relaxed">If you just want a site that works for your own business, I build, host, and run the whole thing for you. Start with a free look at where you are losing leads.</p>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 md:flex-shrink-0">
+          <a href="/audit" class="btn-primary text-sm whitespace-nowrap">Get a Free Lead Audit</a>
+          <a href="/how-it-works" class="btn-ghost text-sm whitespace-nowrap">See How It Works</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {templates.map((t) => (
-          <div class="flex flex-col border border-warm-200 rounded-xl overflow-hidden bg-white">
-            <a href={t.demoUrl} target="_blank" rel="noopener noreferrer" class="block group">
-              <div class="aspect-[16/10] bg-warm-100 overflow-hidden">
-                <img
-                  src={t.screenshot}
-                  alt={`${t.name} website template preview`}
-                  width="1000" height="625" loading="lazy" decoding="async"
-                  class="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform"
-                />
-              </div>
-            </a>
-            <div class="flex flex-col flex-1 p-6">
-              <p class="text-xs font-semibold uppercase tracking-wider text-brand-600 mb-2">{t.niche}</p>
-              <h3 class="text-xl font-semibold text-ink mb-2">{t.name}</h3>
-              <p class="text-ink-light text-sm leading-relaxed mb-5 flex-1">{t.blurb}</p>
-              <div class="flex items-center justify-between gap-3">
-                <span class="text-2xl font-bold text-ink">{t.price}</span>
-                <div class="flex items-center gap-2">
-                  <a href={t.demoUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-ink-light hover:text-ink transition-colors">Live demo</a>
-                  {isLive(t.checkoutUrl) ? (
-                    <a href={t.checkoutUrl} target="_blank" rel="noopener noreferrer" class="btn-primary text-sm py-2.5 px-5">Buy</a>
-                  ) : (
-                    <span class="inline-flex items-center bg-warm-200 text-ink-muted font-semibold text-sm py-2.5 px-5 rounded cursor-not-allowed" aria-disabled="true">Coming soon</span>
-                  )}
-                </div>
-              </div>
+  <!-- ============================================================
+       WHAT EVERY TEMPLATE INCLUDES
+  ============================================================ -->
+  <section class="section-pad bg-white" aria-labelledby="included-heading">
+    <div class="section-container">
+      <h2 id="included-heading" class="section-heading mb-4 reveal">Every Template Comes Loaded</h2>
+      <p class="section-sub max-w-2xl mb-16 reveal">
+        Not a pretty shell. A complete, config-driven site with everything a local business actually needs, ready to deploy.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+        {included.map((item, i) => (
+          <div class="flex items-start gap-4 reveal" style={`--delay: ${(i % 3) * 80}ms`}>
+            <span class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d={item.icon} />
+              </svg>
+            </span>
+            <div>
+              <h3 class="font-semibold text-ink mb-1.5">{item.title}</h3>
+              <p class="text-ink-light text-sm leading-relaxed">{item.body}</p>
             </div>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-ink-muted text-sm mt-12 reveal">With your content ready, you go from purchase to a live, deployed site in 30 to 60 minutes.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       THE 9 GRID
+  ============================================================ -->
+  <section id="templates-grid" class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="grid-heading">
+    <div class="section-container">
+      <h2 id="grid-heading" class="section-heading mb-4 reveal">Pick Your Niche</h2>
+      <p class="section-sub max-w-2xl mb-16 reveal">Nine industries, each with its own look. {site.templatePrice} per template or {site.bundlePrice} for all nine — and every purchase includes unlimited client use, no royalties. Resell one and it has paid for itself.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {templates.map((template, i) => (
+          <div class="reveal" style={`--delay: ${(i % 3) * 80}ms`}>
+            <TemplateCard {template} />
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Agency note -->
-  <section class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="agency-heading">
+  <!-- ============================================================
+       TRUST STRIP
+  ============================================================ -->
+  <section class="section-pad bg-white" aria-label="Proof">
     <div class="section-container">
-      <div class="max-w-3xl">
-        <h2 id="agency-heading" class="section-heading mb-5">For Agencies and Resellers</h2>
+      <div class="max-w-3xl reveal">
+        <h2 class="section-heading mb-5">Not Theory. Real Local Work.</h2>
         <p class="text-lg text-ink-light leading-relaxed mb-6">
-          Run an agency or build sites for clients? These are built to be reskinned fast. Buy once and use them across your client work. Swap the colors, copy, and photos and you have a finished site in an afternoon instead of a week.
+          These are built on the exact stack I use for paying clients. The work is live and clickable, including
+          <a href="https://bucdoorsystems.com" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">bucdoorsystems.com</a>, a real local business here in Orange County.
         </p>
-        <p class="text-ink-light leading-relaxed">
-          Want a custom niche or a bulk set built for your stack? <a href="/contact" class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">Get in touch</a> and tell me what you need.
-        </p>
+        <a href="/websites" class="btn-ghost">See the Work</a>
       </div>
     </div>
   </section>
 
-  <!-- Cross-sell to course -->
+  <!-- ============================================================
+       AGENCY BUNDLE + CUSTOM WORK
+  ============================================================ -->
+  <section class="section-pad bg-ink text-white" aria-labelledby="bundle-heading">
+    <div class="section-container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+        <!-- Bundle -->
+        <div class="reveal">
+          <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">Agency Bundle</p>
+          <h2 id="bundle-heading" class="text-white text-3xl md:text-4xl font-bold tracking-tight mb-5">
+            All Nine Templates, {site.bundlePrice}.
+          </h2>
+          <p class="text-white/75 text-lg leading-relaxed mb-6">
+            Every niche, yours to reuse across unlimited clients with no per-site fees. One project pays it back. Built to be reskinned fast for whoever you sign next.
+          </p>
+          <ul class="space-y-3 mb-8">
+            {license.map(item => (
+              <li class="flex items-start gap-3 text-white/85">
+                <svg class="w-5 h-5 text-brand-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          {bundleLive ? (
+            <a href={site.bundleUrl} target="_blank" rel="noopener noreferrer" class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 focus-visible:outline-white">
+              Get All Nine, {site.bundlePrice}
+            </a>
+          ) : (
+            <span class="inline-flex items-center bg-white/15 text-white font-semibold px-8 py-4 rounded text-lg" aria-disabled="true">Bundle opening soon</span>
+          )}
+        </div>
+
+        <!-- Custom work -->
+        <div class="bg-white/5 border border-white/10 rounded-xl p-8 reveal">
+          <h3 class="text-white text-xl font-bold mb-3">Need a Custom Niche or Bulk Build?</h3>
+          <p class="text-white/70 leading-relaxed mb-6">
+            Want a template for a niche that is not here, a set built for your stack, or done-for-you customization on the whole bundle? Tell me what you need and I will scope it.
+          </p>
+          <a href="/contact" class="btn-primary-lg bg-brand-600 hover:bg-brand-700 text-white">
+            Contact Me
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CROSS-SELL TO COURSE
+  ============================================================ -->
   <section class="section-pad bg-white" aria-label="Course cross-sell">
-    <div class="section-container text-center">
-      <h2 class="section-heading mb-4">Want to Learn the Whole System?</h2>
+    <div class="section-container text-center reveal">
+      <h2 class="section-heading mb-4">Want to Be Walked Through It?</h2>
       <p class="section-sub max-w-xl mx-auto mb-8">
-        The course walks you through setting up a template, hosting it, and wiring in the lead-capture system, step by step.
+        The course covers setting up a template, hosting it, and wiring in the lead-capture system, step by step.
       </p>
       <a href="/course" class="btn-primary-lg">See the Course</a>
     </div>

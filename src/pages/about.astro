@@ -3,8 +3,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaSection from '../components/CtaSection.astro';
 import { site } from '../data/site';
 
-const title       = 'About Automated Blueprints | Lead Response Systems';
-const description = 'Automated Blueprints is run by one person based in Orange County, CA. I build lead capture and response systems for businesses anywhere. I do not manage a team. If you work with me, you work with me directly.';
+const title       = 'About Automated Blueprints | Lead Systems & Sites for Local Businesses';
+const description = 'Automated Blueprints is a lead-systems studio for local businesses, based in Orange County, CA. We build websites and lead-flow systems, and license the niche templates we build to agencies.';
+
+const ways = [
+  {
+    label: 'Done For You',
+    title: 'The Lead Flow System',
+    body: 'A site that gets you found, plus missed-call text-back, automatic follow-up, and a review engine. Built and run for you.',
+    href: '/websites',
+    cta: 'See the system',
+  },
+  {
+    label: 'For Agencies',
+    title: 'The Template Library',
+    body: 'The same nine niche sites we build with, licensed for unlimited client use. Reskin and resell as your own.',
+    href: '/templates',
+    cta: 'Browse templates',
+  },
+  {
+    label: 'Free',
+    title: 'A Lead Audit',
+    body: 'A 60-second look at where you are losing jobs, with a personalized video breakdown sent to your inbox.',
+    href: '/audit',
+    cta: 'Get the audit',
+  },
+];
 ---
 
 <BaseLayout {title} {description} canonicalPath="/about">
@@ -14,10 +38,10 @@ const description = 'Automated Blueprints is run by one person based in Orange C
     <div class="section-container">
       <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">About</p>
       <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-3xl mb-6">
-        I Build Systems That Keep Businesses From Losing Work
+        Lead Systems and Sites Built to Win Local Businesses More Work.
       </h1>
       <p class="text-white/75 text-xl leading-relaxed max-w-xl">
-        Based in Orange County, CA. One person, one focus.
+        A lead-systems studio based in Orange County, CA, working with businesses anywhere.
       </p>
     </div>
   </section>
@@ -27,62 +51,77 @@ const description = 'Automated Blueprints is run by one person based in Orange C
     <div class="section-container">
       <div class="max-w-2xl">
 
-        <div class="prose-style space-y-6 text-ink-light text-lg leading-relaxed">
+        <div class="prose-style space-y-6 text-ink-light text-lg leading-relaxed reveal">
           <p>
-            I run Automated Blueprints out of Orange County, CA. I started this because I kept watching well-run businesses lose jobs for a reason that made no sense: they were too busy doing the work to answer the phone.
+            Automated Blueprints builds lead-flow systems and websites for local businesses. We started the studio after seeing well-run companies lose work for reasons that were entirely fixable: a missed call that went to a competitor, a quote nobody followed up on, a business that did great work but had nothing real online when a customer searched for it.
           </p>
           <p>
-            A customer calls with a real job. Gets voicemail. Calls the next number. Books them. The business that missed the call never even knows it happened.
-          </p>
-          <p>
-            That is a fixable problem. Most businesses just do not have a system in place for what happens before the first conversation.
+            A customer calls with a real job. Gets voicemail. Calls the next number. Books them. The business that missed the call never even knows it happened. That is a fixable problem, and most businesses simply do not have a system for what happens before the first conversation.
           </p>
 
           <div class="border-l-4 border-brand-600 pl-6 py-1">
             <p class="text-ink font-medium">
-              I build that system. It handles missed calls, lead follow-up, quote follow-up, and review generation, all automatically, while you do the actual work.
+              We build the whole lead flow: a website that gets you found, then missed-call text-back, automatic follow-up, and review generation, running in the background while you do the actual work.
             </p>
           </div>
 
           <p>
-            I am not an agency. I do not manage a team of contractors or outsource anything. If you work with me, you work with me directly. I come in person when that makes sense, usually for kickoff and the first check-in after you go live.
+            We take on a limited number of done-for-you builds at a time so each one gets senior attention from start to finish. No hand-offs to junior staff, no outsourcing, no templated work passed off as custom. The same people who scope your system build and run it.
           </p>
           <p>
-            I work with a limited number of clients at a time because I build and manage everything myself. That is how the quality stays consistent.
+            The niche website templates we use in client work are also available on their own. Agencies and other studios license them to skip the hard part and reskin a finished, production-ready site for their own clients.
           </p>
           <p>
-            If your business is losing work because of slow response or no follow-up, I would like to talk.
+            The proof is real and local. <a href="https://bucdoorsystems.com" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">bucdoorsystems.com</a> is a live build for an Orange County business, with more to click through on the work pages.
           </p>
         </div>
 
-        <div class="mt-12 pt-10 border-t border-warm-200">
+        <!-- Facts -->
+        <div class="mt-12 pt-10 border-t border-warm-200 reveal">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
             <div>
-              <p class="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-2">Location</p>
+              <p class="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-2">Based In</p>
               <p class="text-ink font-medium">{site.location}</p>
             </div>
             <div>
-              <p class="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-2">Focus</p>
-              <p class="text-ink font-medium">Lead capture and response systems for local businesses</p>
+              <p class="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-2">What We Do</p>
+              <p class="text-ink font-medium">Lead-flow systems and websites for local businesses, plus templates for agencies</p>
             </div>
             <div>
-              <p class="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-2">Approach</p>
-              <p class="text-ink font-medium">One person. In-person when it makes sense. No outsourcing.</p>
+              <p class="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-2">How We Work</p>
+              <p class="text-ink font-medium">Senior-built, hands-on, no hand-offs or outsourcing</p>
             </div>
             <div>
               <p class="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-2">Availability</p>
-              <p class="text-ink font-medium">Limited client slots. Current availability by inquiry.</p>
+              <p class="text-ink font-medium">Limited done-for-you slots. Templates available anytime.</p>
             </div>
           </div>
-        </div>
-
-        <div class="mt-12">
-          <a href={site.ctaHref} class="btn-primary-lg">
-            {site.ctaText}
-          </a>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Ways to work together -->
+  <section class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="ways-heading">
+    <div class="section-container">
+      <h2 id="ways-heading" class="section-heading mb-4 reveal">Three Ways to Work With Us</h2>
+      <p class="section-sub max-w-2xl mb-16 reveal">Whether you want it built for you, you build it yourself, or you just want to see your numbers.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {ways.map((w, i) => (
+          <a href={w.href} class="flex flex-col bg-white border border-warm-200 rounded-lg p-7 card-hover group reveal" style={`--delay: ${i * 80}ms`}>
+            <span class="text-xs font-semibold uppercase tracking-wider text-brand-600 mb-4">{w.label}</span>
+            <h3 class="text-lg font-semibold text-ink mb-3 group-hover:text-brand-600 transition-colors">{w.title}</h3>
+            <p class="text-ink-light text-sm leading-relaxed mb-6 flex-1">{w.body}</p>
+            <span class="text-brand-600 text-sm font-semibold inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+              {w.cta} <span aria-hidden="true">&rarr;</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
 
 </BaseLayout>
