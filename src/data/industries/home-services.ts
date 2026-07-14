@@ -40,14 +40,14 @@ export const data: IndustryData = {
         'Most contractors do quality work and have almost nothing to show for it on Google. The shops with 150 reviews are not necessarily better. They just have a system that asks. An automatic review request that goes out after every completed job builds your Google profile over time. More reviews means more calls from search without spending on ads.',
     },
   ],
-  solutionHeading: 'Three Things Running Automatically While You Are on Jobs',
+  solutionHeading: 'The Whole Lead Flow, Running While You Are on Jobs',
   solutionIntro:
-    'The Client Capture Engine handles missed calls, lead follow-up, and review generation without adding anything to your plate. Missed calls get a text back in under 60 seconds. New leads and estimates trigger a follow-up sequence automatically. Completed jobs get a review request. All three run in the background while you do the work.',
+    'The Lead Flow System starts with a website built to show up when homeowners search for your trade, then catches everything it brings in: missed calls get a text back in under 60 seconds, new leads and estimates trigger a follow-up sequence automatically, and completed jobs get a review request. All of it runs in the background while you do the work.',
   systemNote:
     'We do not touch your scheduling app, your invoicing system, or any tool you currently use. Whatever you are running stays exactly as it is. We sit in front of those systems and handle only the incoming lead stage and post-job follow-up.',
   ctaHeading: 'Want to See How Many Jobs You Are Losing to Slow Response?',
   ctaBody:
-    'Get a free custom video breakdown. I will look at your current setup and show you exactly where leads are falling through before you ever get a chance to quote them.',
+    'Get a free custom video breakdown. We will look at your current setup and show you exactly where leads are falling through before you ever get a chance to quote them.',
   schema: {
     serviceType: 'Lead Response System for Home Services',
     serviceDescription:

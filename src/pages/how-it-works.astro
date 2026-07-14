@@ -6,62 +6,53 @@ import DemoFollowUp from '../components/DemoFollowUp.astro';
 import DemoReviews from '../components/DemoReviews.astro';
 import { site } from '../data/site';
 
-const title       = 'How the Client Capture Engine Works | Automated Blueprints';
-const description = 'Three components. One system. Missed call text-back in under 60 seconds, automatic follow-up sequences, and review generation. Here is exactly how the Client Capture Engine works and what the first 30 days look like.';
+const title       = 'How the Lead Flow System Works | Automated Blueprints';
+const description = 'Four parts, one system: a website that gets you found, missed call text-back in under 60 seconds, automatic follow-up, and review generation. Here is exactly how the Lead Flow System works and what the first 30 days look like.';
+
+// One source of truth: rendered in the FAQ section AND emitted as FAQPage schema.
+const faqs = [
+  {
+    q: 'I already have a website. Do I have to replace it?',
+    a: 'No. If your site works, the capture side of the system plugs into it and every lead it brings in gets caught. If it is old or weak, we rebuild it as part of the setup so the whole flow runs on one foundation.',
+  },
+  {
+    q: 'Will this break my current system or workflow?',
+    a: 'No. The Lead Flow System runs alongside your existing setup. Your office manager still uses the same tools and your estimating or job management software is untouched. We handle how leads find you, how they get answered, and how they get followed up.',
+  },
+  {
+    q: 'Do I have to learn new software?',
+    a: 'No. You get one simple inbox app on your phone to see conversations. We build everything else and run it.',
+  },
+  {
+    q: 'Am I locked into a contract?',
+    a: 'No. Every agreement includes a 90-day out clause. If it is not working, you can leave.',
+  },
+  {
+    q: 'How long does setup take?',
+    a: 'About a week from kickoff to going live. A new website build can add a few days, and we tell you the exact timeline up front.',
+  },
+  {
+    q: 'What if I already have something like this?',
+    a: 'Then let us look at whether it is actually working. Most setups we see have gaps costing jobs every week. A free lead audit is enough to tell.',
+  },
+  {
+    q: 'Do I keep my phone number?',
+    a: 'Yes. You keep your number. Calls forward instantly. Automated texts go out on a dedicated local number with your area code.',
+  },
+  {
+    q: 'What happens after the first 30 days?',
+    a: 'A monthly retainer covers hosting, ongoing monitoring, message tuning, and any adjustments. If something is not converting, we fix it. Most clients see the system pay for itself within the first month.',
+  },
+];
 
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'Will this break my current system or workflow?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'No. The Client Capture Engine sits in front of your existing setup. Nothing in your workflow changes. Your office manager still uses the same tools. Your estimating or job management software is untouched. We handle only the initial inquiry and follow-up stage.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Do I have to learn new software?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'No. You get one simple inbox app on your phone to see conversations. I build everything else and run it.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Am I locked into a contract?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'No. Every agreement includes a 90-day out clause. If it is not working, you can leave.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How long does setup take?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'About a week from kickoff to going live.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What if I already have something like this?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Then let us look at whether it is actually working. Most setups I see have gaps that are costing jobs every week.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Do I keep my phone number?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. You keep your number. Calls forward instantly. Automated texts go out on a dedicated local number with your area code.',
-      },
-    },
-  ],
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
 };
 ---
 
@@ -72,20 +63,20 @@ const faqSchema = {
     <div class="section-container">
       <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">The System</p>
       <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-3xl mb-6">
-        How the Client Capture Engine Works
+        How the Lead Flow System Works
       </h1>
       <p class="text-white/75 text-xl leading-relaxed max-w-2xl">
-        Three components. Installed in about a week. Running in the background while you do the work.
+        A website that gets you found, and a capture engine that answers every lead, follows up, and stacks your reviews. Installed in about a week, running while you do the work.
       </p>
     </div>
   </section>
 
-  <!-- The 3 components -->
+  <!-- The 4 parts -->
   <section class="section-pad bg-white" aria-labelledby="components-heading">
     <div class="section-container">
-      <h2 id="components-heading" class="section-heading mb-4">Three Components, One System</h2>
+      <h2 id="components-heading" class="section-heading mb-4">Four Parts, One System</h2>
       <p class="section-sub max-w-2xl mb-8">
-        Each one is live below. Watch it run, or make it yours.
+        The site brings the leads in. The next three make sure none of them slip away. Each one is live below, watch it run or make it yours.
       </p>
 
       <!-- Personalization bar — live-updates every demo message -->
@@ -106,11 +97,54 @@ const faqSchema = {
         </div>
       </div>
 
-      <!-- Component 1 -->
+      <!-- Part 1: the website -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start mb-20 pb-20 border-b border-warm-200">
         <div>
           <div class="flex items-center gap-4 mb-6">
             <span class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-600 text-white font-bold text-xl flex items-center justify-center" aria-hidden="true">1</span>
+            <h3 class="text-2xl font-bold text-ink">A Website That Gets You Found</h3>
+          </div>
+          <p class="text-ink-light leading-relaxed mb-4">
+            Every lead starts the same way: someone searches for what you do. If nothing real comes up, the job goes to whoever does show up. The system starts with a fast site built to rank for your trade and your area.
+          </p>
+          <p class="text-ink-light leading-relaxed mb-4">
+            Already have a site that works? The rest of the system plugs straight into it. If it is old or weak, we rebuild it as part of the setup, on the same stack behind our <a href="/websites" class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">live client work</a>.
+          </p>
+          <p class="text-ink-light leading-relaxed">
+            The point is not a pretty brochure. It is a front door wired directly into the three parts below, so every visitor it earns gets caught.
+          </p>
+        </div>
+        <div class="bg-warm-100 border border-warm-200 rounded-lg p-6 md:p-8" aria-hidden="true">
+          <p class="text-xs font-semibold uppercase tracking-wider text-ink-muted mb-4">What the customer sees on Google</p>
+          <div class="bg-white border border-warm-200 rounded-lg p-4 mb-3">
+            <div class="flex items-center gap-2 border border-warm-200 rounded-full px-4 py-2 mb-4">
+              <svg class="w-4 h-4 text-ink-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+              </svg>
+              <span class="text-sm text-ink">plumber near me</span>
+            </div>
+            <div class="border-l-2 border-brand-600 pl-3 py-1 mb-3">
+              <p class="text-brand-600 text-sm font-semibold"><span data-biz>[Business Name]</span> — Licensed &amp; Insured</p>
+              <p class="text-xs text-ink-muted">Fast response. 120+ five-star reviews. Free estimates.</p>
+            </div>
+            <div class="opacity-40 pl-3 mb-2">
+              <p class="text-ink text-sm">Some Other Company</p>
+              <p class="text-xs text-ink-muted">No website. 4 reviews.</p>
+            </div>
+            <div class="opacity-25 pl-3">
+              <p class="text-ink text-sm">Another Competitor</p>
+              <p class="text-xs text-ink-muted">Site last updated 2019.</p>
+            </div>
+          </div>
+          <p class="text-xs text-ink-muted text-center">First to show up, first to get the call</p>
+        </div>
+      </div>
+
+      <!-- Part 2 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start mb-20 pb-20 border-b border-warm-200">
+        <div>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-600 text-white font-bold text-xl flex items-center justify-center" aria-hidden="true">2</span>
             <h3 class="text-2xl font-bold text-ink">Missed Call Text-Back</h3>
           </div>
           <p class="text-ink-light leading-relaxed mb-4">
@@ -126,11 +160,11 @@ const faqSchema = {
         <DemoTextBack />
       </div>
 
-      <!-- Component 2 -->
+      <!-- Part 3 -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start mb-20 pb-20 border-b border-warm-200">
         <div>
           <div class="flex items-center gap-4 mb-6">
-            <span class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-600 text-white font-bold text-xl flex items-center justify-center" aria-hidden="true">2</span>
+            <span class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-600 text-white font-bold text-xl flex items-center justify-center" aria-hidden="true">3</span>
             <h3 class="text-2xl font-bold text-ink">Lead &amp; Quote Follow-Up</h3>
           </div>
           <p class="text-ink-light leading-relaxed mb-4">
@@ -146,11 +180,11 @@ const faqSchema = {
         <DemoFollowUp />
       </div>
 
-      <!-- Component 3 -->
+      <!-- Part 4 -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
         <div>
           <div class="flex items-center gap-4 mb-6">
-            <span class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-600 text-white font-bold text-xl flex items-center justify-center" aria-hidden="true">3</span>
+            <span class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-600 text-white font-bold text-xl flex items-center justify-center" aria-hidden="true">4</span>
             <h3 class="text-2xl font-bold text-ink">Review Generation</h3>
           </div>
           <p class="text-ink-light leading-relaxed mb-4">
@@ -181,22 +215,22 @@ const faqSchema = {
           {
             range: 'Days 1 to 3',
             title: 'Kickoff and Audit',
-            body: 'We do a kickoff call, I test your current setup the way a real customer would, and I map every place where leads fall through. You see the same gaps your customers see.',
+            body: 'We do a kickoff call, test your current setup the way a real customer would, and map every place where leads fall through. You see the same gaps your customers see.',
           },
           {
             range: 'Days 4 to 10',
             title: 'The Build',
-            body: 'Phone number provisioned, messages drafted with you, sequences built and tested. You approve every message before it goes live.',
+            body: 'Website built or wired in, phone number provisioned, messages drafted with you, sequences built and tested. You approve every message before it goes live.',
           },
           {
             range: 'Days 11 to 14',
             title: 'Full Test Round',
-            body: 'I run the full system as a test customer. We catch anything unexpected, make adjustments, and confirm every component is working correctly.',
+            body: 'We run the full system as a test customer, from the Google search to the review request. Anything unexpected gets caught and fixed before launch.',
           },
           {
             range: 'Day 15',
             title: 'Live',
-            body: 'System goes live. I monitor the first two weeks closely and make adjustments as needed.',
+            body: 'The system goes live. We monitor the first two weeks closely and make adjustments as needed.',
           },
           {
             range: 'Days 15 to 30',
@@ -229,36 +263,7 @@ const faqSchema = {
       <p class="section-sub max-w-xl mb-16">Straight answers to what most owners ask before they decide.</p>
 
       <div class="max-w-3xl divide-y divide-warm-200 border-t border-warm-200">
-        {[
-          {
-            q: 'Will this break my current system or workflow?',
-            a: 'No. The Client Capture Engine sits in front of your existing setup. Nothing in your workflow changes. Your office manager still uses the same tools. Your estimating or job management software is untouched. We handle only the initial inquiry and follow-up stage.',
-          },
-          {
-            q: 'Do I have to learn new software?',
-            a: 'No. You get one simple inbox app on your phone to see conversations. I build everything else and run it.',
-          },
-          {
-            q: 'Am I locked into a contract?',
-            a: 'No. Every agreement includes a 90-day out clause. If it is not working, you can leave.',
-          },
-          {
-            q: 'How long does setup take?',
-            a: 'About a week from kickoff to going live.',
-          },
-          {
-            q: 'What if I already have something like this?',
-            a: 'Then let us look at whether it is actually working. Most setups I see have gaps costing jobs every week. A free video breakdown is enough to tell.',
-          },
-          {
-            q: 'Do I keep my phone number?',
-            a: 'Yes. You keep your number. Calls forward instantly. Automated texts go out on a dedicated local number with your area code.',
-          },
-          {
-            q: 'What happens after the first 30 days?',
-            a: 'Monthly retainer covers ongoing monitoring, message tuning, and any adjustments. If something is not converting, we fix it. Most clients see the system pay for itself within the first month.',
-          },
-        ].map(item => (
+        {faqs.map(item => (
           <details class="group py-1">
             <summary class="flex items-center justify-between py-5 cursor-pointer list-none text-ink font-semibold text-lg hover:text-brand-600 transition-colors [&::-webkit-details-marker]:hidden gap-4">
               {item.q}

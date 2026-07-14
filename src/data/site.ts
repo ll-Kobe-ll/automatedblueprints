@@ -6,7 +6,7 @@ export const site = {
   serviceArea: 'Orange County, CA, and remote',
   email: 'automatedblueprintstrategies@gmail.com',
   web3formsKey: '76659629-9592-4c0c-b8fa-d0b6fb3718d6',
-  offer: 'Client Capture Engine',
+  offer: 'Lead Flow System',
   ctaText: 'Get a Free Lead Audit',
   ctaShort: 'Free Lead Audit',
   ctaHref: '/audit',
@@ -18,8 +18,12 @@ export const site = {
   // Course (external checkout). Paste your Gumroad/Stripe/Whop link and price.
   courseUrl: 'PASTE_COURSE_CHECKOUT_URL_HERE',
   coursePrice: '$149',
+  // Done-for-you monthly pricing, shown on /websites. Two separate packages:
+  // the website, and the lead capture system. Clients can run either or both.
+  sitePrice: '$200',
+  systemPrice: '$500',
   // Templates storefront. Prices shown on /templates; paste Stripe links when ready.
-  templatePrice: '$249',
-  bundlePrice: '$999',
-  bundleUrl: 'PASTE_BUNDLE_CHECKOUT_URL',
+  templatePrice: '$197',
+  bundlePrice: '$998',
+  bundleUrl: 'https://buy.stripe.com/aFaaEX3QB3DQ2CF2gu7IY09',
 };

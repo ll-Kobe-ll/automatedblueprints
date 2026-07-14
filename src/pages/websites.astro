@@ -11,10 +11,10 @@ const description = 'The whole lead flow done for you: a website that gets you f
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Website Design for Local Businesses',
-  serviceType: 'Website design and development',
+  name: 'The Lead Flow System',
+  serviceType: 'Website design, lead capture, and follow-up automation',
   description:
-    'Fast websites built so local businesses show up when people search for what they do, paired with a lead capture and follow-up system.',
+    'A done-for-you lead system for local businesses: a website built to get found, missed-call text-back, automatic follow-up, and review generation.',
   provider: {
     '@type': 'LocalBusiness',
     name: site.name,
@@ -41,13 +41,16 @@ const serviceSchema = {
         It starts with a website that gets you found. Then the system answers new leads in seconds, follows up until they book, and stacks your reviews, on its own. The whole lead flow, built and run for you.
       </p>
       <div class="flex flex-col sm:flex-row gap-4">
-        <a href="/contact" class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 focus-visible:outline-white text-center">
-          Get a Free Quote
+        <a href={site.ctaHref} class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 focus-visible:outline-white text-center">
+          {site.ctaText}
         </a>
         <a href="/how-it-works" class="btn-ghost-lg border-white/30 text-white hover:bg-white/10 hover:border-white/50 text-center">
           See How It Works
         </a>
       </div>
+      <p class="text-white/60 text-sm mt-6">
+        Flat monthly pricing from {site.sitePrice}/month, no long contract. <a href="#pricing" class="text-brand-300 font-semibold hover:text-white transition-colors">See pricing &darr;</a>
+      </p>
     </div>
   </section>
 
@@ -108,11 +111,11 @@ const serviceSchema = {
     <div class="section-container">
       <p class="text-brand-600 text-sm font-semibold uppercase tracking-wider mb-4 reveal">Real Work</p>
       <h2 id="proof-heading" class="section-heading mb-4 reveal">
-        {projects.length > 1 ? 'See What I Build, Live' : 'See One We Built, Live'}
+        {projects.length > 1 ? 'See What We Build, Live' : 'See One We Built, Live'}
       </h2>
       <p class="section-sub max-w-2xl mb-12 reveal">
         {projects.length > 1
-          ? 'A live client build plus industry templates I have put together. All real, all clickable. Take a look.'
+          ? 'A live client build plus industry templates we have put together. All real, all clickable. Take a look.'
           : 'Not a mockup. A real site running for a real business right now. Click it and look around.'}
       </p>
 
@@ -137,8 +140,8 @@ const serviceSchema = {
       <!-- Catch them at peak interest, right under the proof -->
       <div class="mt-14 flex flex-col sm:flex-row items-center justify-center gap-x-5 gap-y-4 text-center">
         <p class="text-ink font-semibold text-lg">Want one like these for your business?</p>
-        <a href="/contact" class="btn-primary group">
-          Get a Free Quote
+        <a href={site.ctaHref} class="btn-primary group">
+          {site.ctaText}
           <svg class="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
           </svg>
@@ -170,7 +173,7 @@ const serviceSchema = {
         </div>
         <div class="bg-warm-100 border border-warm-200 rounded-lg p-8 reveal" style="--delay: 120ms">
           <div class="w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center mb-4 text-sm" aria-hidden="true">2</div>
-          <h3 class="font-semibold text-ink mb-2 text-lg">The Client Capture Engine</h3>
+          <h3 class="font-semibold text-ink mb-2 text-lg">The Capture Engine</h3>
           <p class="text-ink-light leading-relaxed">
             Every lead the site brings in gets an instant response and an automatic follow-up. Missed calls get a text back. Quotes get chased. Nothing the site earns you slips through.
           </p>
@@ -182,6 +185,76 @@ const serviceSchema = {
           See How the System Works
         </a>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRICING — two tiers, flat monthly
+  ============================================================ -->
+  <section id="pricing" class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="pricing-heading">
+    <div class="section-container">
+      <h2 id="pricing-heading" class="section-heading mb-4 text-center reveal">Simple Monthly Pricing</h2>
+      <p class="section-sub max-w-2xl mx-auto mb-16 text-center reveal">
+        No five-figure agency quote and no long contract. Every agreement includes a 90-day out clause.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto items-stretch">
+
+        <!-- Tier 1: website only -->
+        <div class="flex flex-col bg-white border border-warm-200 rounded-xl p-8 reveal" style="--delay: 0ms">
+          <h3 class="text-lg font-semibold text-ink mb-1">The Website</h3>
+          <p class="text-ink-muted text-sm mb-5">For businesses that just need to get found.</p>
+          <p class="mb-6"><span class="text-4xl font-bold text-ink">{site.sitePrice}</span><span class="text-ink-muted text-sm">/month</span></p>
+          <ul class="space-y-3 mb-8 flex-1">
+            {[
+              'Design, build, and copy done for you',
+              'Hosting, updates, and edits included',
+              'Built to rank for your trade and your area',
+              'Every lead goes straight to your phone',
+            ].map(item => (
+              <li class="flex items-start gap-3 text-ink-light text-sm leading-relaxed">
+                <svg class="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <a href={site.ctaHref} class="btn-ghost w-full justify-center">Start With the Free Audit</a>
+        </div>
+
+        <!-- Tier 2: the full system (flagship) -->
+        <div class="relative flex flex-col bg-ink text-white border-2 border-brand-600 rounded-xl p-8 reveal" style="--delay: 120ms">
+          <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full whitespace-nowrap">Most Popular</span>
+          <h3 class="text-lg font-semibold text-white mb-1">The Lead Flow System</h3>
+          <p class="text-white/60 text-sm mb-5">Never drop a lead again.</p>
+          <p class="mb-1"><span class="text-4xl font-bold text-white">{site.systemPrice}</span><span class="text-white/60 text-sm">/month</span></p>
+          <p class="text-white/50 text-xs mb-6">Plugs into your current website, or the one we build.</p>
+          <ul class="space-y-3 mb-8 flex-1">
+            {[
+              'Missed-call text-back in under 60 seconds',
+              'Automatic lead and quote follow-up',
+              'Review requests after every job',
+              'One simple inbox for every conversation',
+              'Works with your existing website and number',
+              'Monitored and tuned for you every month',
+            ].map(item => (
+              <li class="flex items-start gap-3 text-white/85 text-sm leading-relaxed">
+                <svg class="w-5 h-5 text-brand-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <a href={site.ctaHref} class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 w-full justify-center text-base">Get a Free Lead Audit</a>
+        </div>
+      </div>
+
+      <p class="text-ink-muted text-sm text-center mt-8 reveal">
+        Two separate packages. Take the one you need, or run both together and the site feeds the system every lead it earns.
+        Not sure? The free audit shows you what the leak costs, so the answer is usually obvious.
+      </p>
     </div>
   </section>
 
@@ -209,10 +282,8 @@ const serviceSchema = {
   ============================================================ -->
   <CtaSection
     variant="light"
-    href="/contact"
-    label="Get a Free Quote"
-    heading="Want a Site Like These for Your Business?"
-    body="Tell me about your business and what you need. I will put together a quote and show you what your site could look like. No pressure, no obligation."
+    heading="Ready to Get Found and Stop Losing Leads?"
+    body="Start with the free lead audit. Sixty seconds, no call, and you get a personalized video showing exactly where your leads are leaking and what the system would fix."
   />
 
 </BaseLayout>

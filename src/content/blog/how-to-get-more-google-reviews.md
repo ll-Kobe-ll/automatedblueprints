@@ -46,4 +46,4 @@ That is why the smart move is to make it automatic. When a job is marked complet
 
 More reviews do not just build trust. They also push you up in Google's local results, which means more people find you in the first place. More reviews lead to more calls, which lead to more jobs, which lead to more reviews. The wheel feeds itself once it is turning.
 
-If you want this running automatically alongside missed-call text-back and follow-up, [take the free lead audit](/audit) and I will show you where the gaps are. Or [see how the full system works](/how-it-works).
+If you want this running automatically alongside missed-call text-back and follow-up, [take the free lead audit](/audit) and we will show you where the gaps are. Or [see how the full system works](/how-it-works).

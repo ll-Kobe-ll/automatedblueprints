@@ -18,7 +18,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
           Find Out How Many Jobs You Are Losing.
         </h1>
         <p class="text-ink-light text-lg leading-relaxed">
-          Six quick questions. At the end I will show you a rough estimate, then send a personalized video breaking down your exact numbers and what I would change.
+          Six quick questions. At the end you get a rough estimate, then we send a personalized video breaking down your exact numbers and what we would change.
         </p>
         <p class="text-ink-muted text-sm mt-3">Takes about 60 seconds. No cost. No obligation.</p>
 
@@ -132,8 +132,8 @@ const description = 'Answer a few quick questions and get a free, personalized v
 
           <!-- Step 7: contact -->
           <div class="quiz-step hidden" data-key="contact">
-            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">Where should I send your breakdown?</h2>
-            <p class="text-ink-muted text-sm mb-6">I will record a short video on your numbers and send it here.</p>
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">Where should we send your breakdown?</h2>
+            <p class="text-ink-muted text-sm mb-6">We record a short video on your numbers and send it here.</p>
             <div class="space-y-4">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
@@ -226,11 +226,11 @@ const description = 'Answer a few quick questions and get a free, personalized v
             <ol class="space-y-2.5">
               <li class="flex items-start gap-3 text-ink-light text-sm leading-relaxed">
                 <span class="w-5 h-5 rounded-full bg-brand-600 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
-                <span>I review the exact numbers you just gave me.</span>
+                <span>We review the exact numbers you just gave us.</span>
               </li>
               <li class="flex items-start gap-3 text-ink-light text-sm leading-relaxed">
                 <span class="w-5 h-5 rounded-full bg-brand-600 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
-                <span>I record a short video on where your leads are leaking and what I would change.</span>
+                <span>We record a short video on where your leads are leaking and what we would change.</span>
               </li>
               <li class="flex items-start gap-3 text-ink-light text-sm leading-relaxed">
                 <span class="w-5 h-5 rounded-full bg-brand-600 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
@@ -385,7 +385,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
   const bookHref = bookingUrl
     ? bookingUrl
     : 'mailto:' + contactEmail + '?subject=' + encodeURIComponent('Lead Audit — let us talk');
-  const bookLabel = bookingUrl ? 'Grab a time to talk' : 'Email me to get started';
+  const bookLabel = bookingUrl ? 'Grab a time to talk' : 'Email us to get started';
 
   const TIERS = {
     high: {
@@ -402,7 +402,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
         heading: 'This is worth fixing now, not next quarter.',
         body: 'Every week it stays open, that number walks out the door. Skip the wait and let us go through your exact setup together.',
         primaryHref: bookHref, primaryLabel: bookLabel,
-        secondaryHref: '/websites', secondaryLabel: 'Or see what I would build →',
+        secondaryHref: '/websites', secondaryLabel: 'Or see the Lead Flow System →',
       },
     },
     moderate: {
@@ -419,7 +419,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
         heading: 'The cheapest time to plug this is now.',
         body: 'It is a smaller leak than most, which means it is the easiest to fix before it grows. Want to walk through it together?',
         primaryHref: bookHref, primaryLabel: bookLabel,
-        secondaryHref: '/websites', secondaryLabel: 'Or see what I would build →',
+        secondaryHref: '/websites', secondaryLabel: 'Or see the Lead Flow System →',
       },
     },
     low: {
@@ -435,7 +435,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
         iconWrap: 'bg-green-100', iconColor: 'text-green-700', iconPath: ICON_ROCKET,
         heading: 'Your response is solid. Let us get you found by more people.',
         body: 'You already close the leads you get. The biggest win now is a website that brings more of them in, feeding straight into your system.',
-        primaryHref: '/websites', primaryLabel: 'See the websites that feed this',
+        primaryHref: '/websites', primaryLabel: 'See the system that feeds this',
         secondaryHref: '/how-it-works', secondaryLabel: 'Or see the full system →',
       },
     },
@@ -543,7 +543,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
     } catch {
       submitBtn.disabled = false;
       submitBtn.textContent = 'See My Results';
-      setStatus('Something went wrong. Email me directly at ' + contactEmail + '.', 'error');
+      setStatus('Something went wrong. Email us directly at ' + contactEmail + '.', 'error');
     }
   });
 

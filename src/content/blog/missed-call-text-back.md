@@ -36,6 +36,6 @@ With text-back running, both callers got a message within a minute. One replied 
 
 You keep your existing number. Calls still ring your phone like normal. The system just watches for the ones that go unanswered and fires the text. You see every reply in one simple inbox, so nothing falls through.
 
-This is one piece of a bigger system that also handles follow-up on quotes and asks for reviews after a job. If you want to see how much slow response is actually costing you, [take the free 60-second lead audit](/audit) and I will send you a personalized breakdown.
+This is one piece of a bigger system that also handles follow-up on quotes and asks for reviews after a job. If you want to see how much slow response is actually costing you, [take the free 60-second lead audit](/audit) and we will send you a personalized breakdown.
 
 Or if you just want it set up and running for you, [here is how the whole system works](/how-it-works).

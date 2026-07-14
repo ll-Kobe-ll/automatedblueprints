@@ -42,12 +42,12 @@ export const data: IndustryData = {
   ],
   solutionHeading: 'A System That Responds When Your Staff Cannot',
   solutionIntro:
-    'The Client Capture Engine handles the gap between when a client reaches out and when your team is available. Missed calls get a text back in under 60 seconds. New consult requests trigger an immediate response followed by a short follow-up sequence. Clients at the right stage in their treatment cycle get a reactivation message automatically. Reviews go out after completed services.',
+    'The Lead Flow System starts with a website that shows up when someone searches for treatments in your area, then handles the gap between when a client reaches out and when your team is available. Missed calls get a text back in under 60 seconds. New consult requests trigger an immediate response followed by a short follow-up sequence. Clients at the right stage in their treatment cycle get a reactivation message automatically. Reviews go out after completed services.',
   systemNote:
     'We do not touch your booking system, your patient records, or your EMR. Whatever practice management software you use stays exactly as it is. We sit in front of those systems and handle only first contact, follow-up, and review generation.',
   ctaHeading: 'Want to See What a Faster Response Looks Like for Your Practice?',
   ctaBody:
-    'Get a free custom video breakdown. I will walk through your current setup and show you where consult requests are falling through.',
+    'Get a free custom video breakdown. We will walk through your current setup and show you where consult requests are falling through.',
   schema: {
     serviceType: 'Lead Response System for Med Spas',
     serviceDescription:

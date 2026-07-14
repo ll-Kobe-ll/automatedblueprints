@@ -42,12 +42,12 @@ export const data: IndustryData = {
   ],
   solutionHeading: 'One System That Sits in Front of Your Existing Setup',
   solutionIntro:
-    'The Client Capture Engine adds three layers to your current operation: missed call text-back, RFQ and quote follow-up sequences, and automatic review requests after jobs ship. Every missed call gets a text response in under 60 seconds. Every quote triggers a follow-up sequence. Every completed job gets a review ask. None of it requires your team to do anything different.',
+    'The Lead Flow System starts with a website that shows up when buyers search for your capabilities, then adds three layers to your current operation: missed call text-back, RFQ and quote follow-up sequences, and automatic review requests after jobs ship. Every missed call gets a text response in under 60 seconds. Every quote triggers a follow-up sequence. None of it requires your team to do anything different.',
   systemNote:
     'We never integrate with, modify, or access your job management system. Whether you run JobBOSS, E2 Shop, ProShop, or a custom ERP, it stays exactly as it is. We sit in front of those systems and handle only the initial inquiry and follow-up stage. Your estimator still quotes the same way. Your office manager still uses the same tools. Nothing in your shop changes.',
   ctaHeading: 'Want to See Where You Are Losing Bids?',
   ctaBody:
-    'Get a free custom video breakdown. I will look at your current setup and show you exactly where inquiries are falling through before they ever reach your quoting stage.',
+    'Get a free custom video breakdown. We will look at your current setup and show you exactly where inquiries are falling through before they ever reach your quoting stage.',
   schema: {
     serviceType: 'Lead Response System for Precision Manufacturing',
     serviceDescription:

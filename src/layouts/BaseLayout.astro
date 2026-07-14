@@ -9,6 +9,7 @@ interface Props {
   description: string;
   ogTitle?: string;
   ogDescription?: string;
+  ogImage?: string;
   canonicalPath?: string;
   schema?: object | object[];
   noIndex?: boolean;
@@ -20,6 +21,7 @@ const {
   description,
   ogTitle,
   ogDescription,
+  ogImage,
   canonicalPath = Astro.url.pathname,
   schema,
   noIndex = false,
@@ -29,6 +31,10 @@ const {
 const canonicalUrl = `${site.domain}${canonicalPath}`.replace(/\/$/, '') || site.domain;
 const resolvedOgTitle = ogTitle ?? title;
 const resolvedOgDesc  = ogDescription ?? description;
+// Per-page OG image (absolute URL); falls back to the global card.
+const resolvedOgImage = ogImage
+  ? (ogImage.startsWith('http') ? ogImage : `${site.domain}${ogImage}`)
+  : `${site.domain}/og-image.png`;
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
@@ -46,7 +52,19 @@ const localBusinessSchema = {
   areaServed: 'US',
 };
 
-const allSchema = [localBusinessSchema, ...(Array.isArray(schema) ? schema : schema ? [schema] : [])];
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.name,
+  url: site.domain,
+  logo: `${site.domain}/favicon.png`,
+  email: site.email,
+  description: site.tagline,
+  // Paste social profile URLs here once they exist (LinkedIn, Facebook, etc.).
+  sameAs: [],
+};
+
+const allSchema = [localBusinessSchema, organizationSchema, ...(Array.isArray(schema) ? schema : schema ? [schema] : [])];
 ---
 
 <!doctype html>
@@ -72,13 +90,16 @@ const allSchema = [localBusinessSchema, ...(Array.isArray(schema) ? schema : sch
     <meta property="og:url"         content={canonicalUrl} />
     <meta property="og:type"        content="website" />
     <meta property="og:site_name"   content={site.name} />
-    <meta property="og:image"       content={`${site.domain}/og-image.png`} />
+    <meta property="og:image"       content={resolvedOgImage} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card"        content="summary_large_image" />
     <meta name="twitter:title"       content={resolvedOgTitle} />
     <meta name="twitter:description" content={resolvedOgDesc} />
-    <meta name="twitter:image"       content={`${site.domain}/og-image.png`} />
+    <meta name="twitter:image"       content={resolvedOgImage} />
+
+    <!-- RSS feed autodiscovery -->
+    <link rel="alternate" type="application/rss+xml" title={`${site.name} Blog`} href={`${site.domain}/rss.xml`} />
 
     <!-- Theme color -->
     <meta name="theme-color" content="#1a2440" />

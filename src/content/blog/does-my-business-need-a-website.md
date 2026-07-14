@@ -38,7 +38,7 @@ Here is the good news. Most of your local competitors have nothing real online e
 
 You have three options, depending on your time and budget:
 
-1. **Have it built for you.** If you would rather just hand it off, [I build and host sites for local businesses](/websites) so you never have to think about it.
+1. **Have it built for you.** If you would rather just hand it off, [we build and host sites for local businesses](/websites) so you never have to think about it.
 2. **Buy a template.** If you want a head start and do not mind dropping in your own details, the [ready-to-launch templates](/templates) get you most of the way there for cheap.
 3. **Do it yourself.** If you like learning by doing, [the course](/course) walks you through the whole thing, hosting and all.
 

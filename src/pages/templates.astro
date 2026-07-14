@@ -2,31 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TemplateCard from '../components/TemplateCard.astro';
 import { templates } from '../data/templates';
+import { included, license } from '../data/templateKit';
 import { site } from '../data/site';
 
 const title       = 'Website Templates for Agencies & Resellers | Automated Blueprints';
 const description = 'Nine production-ready niche website templates. Buy once, launch in an hour, use for unlimited clients. Built on the same stack used for real local businesses.';
 
 const bundleLive = !site.bundleUrl.startsWith('PASTE');
-
-const included = [
-  { title: 'Full multi-page site', body: 'Home, Services, About, Contact, Blog, Privacy, Terms, and a 404. Not a one-pager.', icon: 'M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z' },
-  { title: 'SEO built in', body: 'Meta tags, Open Graph, JSON-LD schema, sitemap, and robots.txt. Ready to rank.', icon: 'M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z' },
-  { title: 'Markdown blog engine', body: 'Drop in a file, get a styled post. The content engine that drives organic traffic.', icon: 'M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5' },
-  { title: 'Contact form, ready', body: 'Web3Forms wired in with optional spam protection. No backend to set up.', icon: 'M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75' },
-  { title: 'Booking-ready', body: 'One config line wires in Cal.com or Calendly. Let customers book themselves.', icon: 'M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5' },
-  { title: 'Analytics-ready', body: 'Paste a GA4, Plausible, or Umami ID and tracking fires. Know what is working.', icon: 'M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z' },
-  { title: 'Legal pages auto-built', body: 'Privacy Policy and Terms generated from the config. No copy-paste from a template site.', icon: 'M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
-  { title: 'Fast, mobile, accessible', body: 'Scroll animations, a floating call button on mobile, semantic HTML and focus rings.', icon: 'M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3' },
-  { title: 'Config-driven', body: 'One file controls every piece of content. Reskin a whole site in under an hour.', icon: 'M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z' },
-];
-
-const license = [
-  'Build unlimited sites for unlimited clients',
-  'Charge your clients whatever you want, no royalties or per-site fees',
-  'Recolor, rewrite, and extend however you like',
-  'Host the finished sites anywhere',
-];
 ---
 
 <BaseLayout {title} {description} canonicalPath="/templates">
@@ -41,7 +23,7 @@ const license = [
         Nine Niche Sites. Buy Once, Launch in an Hour.
       </h1>
       <p class="text-white/75 text-xl leading-relaxed max-w-2xl mb-10">
-        Production-ready templates built on the same stack I use for real local businesses. Drop in the details and a finished site is live the same afternoon. Use them for as many clients as you want.
+        Production-ready templates built on the same stack we use for real local businesses. Drop in the details and a finished site is live the same afternoon. Use them for as many clients as you want.
       </p>
       <div class="flex flex-col sm:flex-row gap-4">
         <a href="#templates-grid" class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 focus-visible:outline-white">
@@ -50,6 +32,34 @@ const license = [
         <a href="/contact" class="btn-ghost-lg border-white/30 text-white hover:bg-white/10 hover:border-white/50">
           Need Something Custom?
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BUNDLE STRIP — the package offer, up front
+  ============================================================ -->
+  <section class="bg-brand-600" aria-label="Agency bundle offer">
+    <div class="section-container py-6">
+      <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+        <div class="flex-1">
+          <p class="text-white font-bold text-lg leading-snug">
+            The Agency Bundle: all nine templates, {site.bundlePrice}.
+          </p>
+          <p class="text-white/80 text-sm mt-1">
+            Unlimited client use, no royalties. Resell one site and it has paid for itself.
+          </p>
+        </div>
+        <div class="flex items-center gap-4 md:flex-shrink-0">
+          {bundleLive ? (
+            <a href={site.bundleUrl} target="_blank" rel="noopener noreferrer" class="btn-primary bg-white !text-brand-700 hover:bg-brand-50 whitespace-nowrap">
+              Get All Nine, {site.bundlePrice}
+            </a>
+          ) : (
+            <span class="inline-flex items-center bg-white/15 text-white font-semibold px-6 py-3 rounded" aria-disabled="true">Opening soon</span>
+          )}
+          <a href="#bundle" class="text-white/90 text-sm font-semibold hover:text-white transition-colors whitespace-nowrap">Details &darr;</a>
+        </div>
       </div>
     </div>
   </section>
@@ -68,7 +78,7 @@ const license = [
           </span>
           <div>
             <p class="text-ink font-semibold">Not building sites for a living?</p>
-            <p class="text-ink-light text-sm leading-relaxed">If you just want a site that works for your own business, I build, host, and run the whole thing for you. Start with a free look at where you are losing leads.</p>
+            <p class="text-ink-light text-sm leading-relaxed">If you just want a site that works for your own business, we build, host, and run the whole thing for you. Start with a free look at where you are losing leads.</p>
           </div>
         </div>
         <div class="flex flex-col sm:flex-row gap-3 md:flex-shrink-0">
@@ -106,6 +116,30 @@ const license = [
       </div>
 
       <p class="text-ink-muted text-sm mt-12 reveal">With your content ready, you go from purchase to a live, deployed site in 30 to 60 minutes.</p>
+
+      <!-- What you actually download -->
+      <div class="mt-16 bg-warm-100 border border-warm-200 rounded-xl p-8 md:p-10 reveal">
+        <h3 class="text-xl font-bold text-ink mb-2">What You Actually Download</h3>
+        <p class="text-ink-light mb-8 max-w-2xl">One zip, delivered right after checkout. No account to make, no drip-fed lessons. Everything below is in the file:</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 max-w-3xl">
+          {[
+            'The complete source code: every page, component, and image',
+            'Quick-start README: three commands to a running site',
+            'Deploy guide for Cloudflare Pages, Netlify, and Vercel',
+            'AI setup prompt: paste it into ChatGPT or Claude to customize fast',
+            'Reseller guide: pricing, packaging, and client handoff',
+            'The license in writing: unlimited client use, no royalties',
+          ].map(item => (
+            <div class="flex items-start gap-3 text-ink-light text-sm leading-relaxed">
+              <svg class="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              {item}
+            </div>
+          ))}
+        </div>
+        <p class="text-ink-muted text-sm mt-8">Questions before you buy? <a href={`mailto:${site.email}`} class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">Email us</a> and you will get a straight answer.</p>
+      </div>
     </div>
   </section>
 
@@ -135,7 +169,7 @@ const license = [
       <div class="max-w-3xl reveal">
         <h2 class="section-heading mb-5">Not Theory. Real Local Work.</h2>
         <p class="text-lg text-ink-light leading-relaxed mb-6">
-          These are built on the exact stack I use for paying clients. The work is live and clickable, including
+          These are built on the exact stack we use for paying clients. The work is live and clickable, including
           <a href="https://bucdoorsystems.com" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">bucdoorsystems.com</a>, a real local business here in Orange County.
         </p>
         <a href="/websites" class="btn-ghost">See the Work</a>
@@ -146,7 +180,7 @@ const license = [
   <!-- ============================================================
        AGENCY BUNDLE + CUSTOM WORK
   ============================================================ -->
-  <section class="section-pad bg-ink text-white" aria-labelledby="bundle-heading">
+  <section id="bundle" class="section-pad bg-ink text-white" aria-labelledby="bundle-heading">
     <div class="section-container">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
@@ -182,7 +216,7 @@ const license = [
         <div class="bg-white/5 border border-white/10 rounded-xl p-8 reveal">
           <h3 class="text-white text-xl font-bold mb-3">Need a Custom Niche or Bulk Build?</h3>
           <p class="text-white/70 leading-relaxed mb-6">
-            Want a template for a niche that is not here, a set built for your stack, or done-for-you customization on the whole bundle? Tell me what you need and I will scope it.
+            Want a template for a niche that is not here, a set built for your stack, or done-for-you customization on the whole bundle? Tell us what you need and we will scope it.
           </p>
           <a href="/contact" class="btn-primary-lg bg-brand-600 hover:bg-brand-700 text-white">
             Contact Me

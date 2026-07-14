@@ -3,20 +3,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
 
 const title       = 'The Course: Build & Launch Your Own Lead-Getting Site | Automated Blueprints';
-const description = 'Get the templates plus a full walkthrough of setting up your site, hosting it, and wiring in the lead-capture system yourself. Everything I do, handed to you.';
+const description = 'Get the templates plus a full walkthrough of setting up your site, hosting it, and wiring in the lead-capture system yourself. Everything we do, handed to you.';
 
 const courseLive = !site.courseUrl.startsWith('PASTE');
 
 const included = [
-  { title: 'The template pack', body: 'The same niche templates I sell and use for clients. Yours to launch and reuse.' },
+  { title: 'The template pack', body: 'The same niche templates we sell and use for clients. Yours to launch and reuse.' },
   { title: 'Step-by-step setup videos', body: 'Watch me set a template up from scratch. Colors, copy, photos, pages, the whole thing.' },
   { title: 'Hosting, done simply', body: 'How to get the site live on a fast, free host and point your domain at it. No guesswork.' },
   { title: 'The lead-capture setup', body: 'How to wire in the form, missed-call text-back, and follow-up so the site actually catches leads.' },
-  { title: 'The exact tools I use', body: 'No fluff and no upsells. The real stack, why each piece is there, and how to keep costs low.' },
+  { title: 'The exact tools we use', body: 'No fluff and no upsells. The real stack, why each piece is there, and how to keep costs low.' },
 ];
 
 const faqs = [
-  { q: 'Do I need to know how to code?', a: 'No. The whole point is that you follow along and copy what I do. If you can change text in a document, you can do this.' },
+  { q: 'Do I need to know how to code?', a: 'No. The whole point is that you follow along and copy what we do. If you can change text in a document, you can do this.' },
   { q: 'Can I use the templates for clients?', a: 'Yes. Once you have the course you can use the templates for your own business or for client work.' },
   { q: 'What if I get stuck?', a: 'The videos cover the spots people usually get stuck on. If something still trips you up, you can reach out.' },
 ];
@@ -29,10 +29,10 @@ const faqs = [
     <div class="section-container">
       <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">The Course</p>
       <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-3xl mb-6">
-        Build It Yourself, the Way I Build It.
+        Build It Yourself, the Way We Build It.
       </h1>
       <p class="text-white/75 text-xl leading-relaxed max-w-2xl mb-10">
-        Get the templates plus a full walkthrough of setting up the site, hosting it, and wiring in the lead system. Everything I do for clients, handed to you to do on your own.
+        Get the templates plus a full walkthrough of setting up the site, hosting it, and wiring in the lead system. Everything we do for clients, handed to you to do on your own.
       </p>
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
         {courseLive ? (
@@ -76,7 +76,7 @@ const faqs = [
           The business owner who wants a real site but does not want to pay full done-for-you prices. The side-hustler who wants to build sites for others. Anyone who learns faster by watching someone do it than by reading docs.
         </p>
         <p class="text-ink-light leading-relaxed">
-          If you would rather I just build and host it for you, that is the <a href="/websites" class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">done-for-you option</a> instead.
+          If you would rather have it built and hosted for you, that is the <a href="/websites" class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">done-for-you option</a> instead.
         </p>
       </div>
     </div>
