@@ -70,7 +70,7 @@ const navLinkClass = (path: string) =>
         <div class="relative group">
           <button
             id="products-toggle"
-            class={`${isActive('/websites') || isActive('/how-it-works') || isActive('/templates') || isActive('/course') ? 'nav-link-active' : 'nav-link'} flex items-center gap-1 py-2`}
+            class={`${isActive('/websites') || isActive('/how-it-works') || isActive('/templates') ? 'nav-link-active' : 'nav-link'} flex items-center gap-1 py-2`}
             aria-haspopup="true"
             aria-expanded="false"
             aria-controls="products-menu"
@@ -89,13 +89,9 @@ const navLinkClass = (path: string) =>
               <span class="block font-medium text-ink text-sm">How It Works</span>
               <span class="text-xs text-ink-muted">Watch the system run, live</span>
             </a>
-            <a href="/templates" class="block px-4 py-3.5 hover:bg-warm transition-colors border-t border-warm-200">
+            <a href="/templates" class="block px-4 py-3.5 hover:bg-warm rounded-b-lg transition-colors border-t border-warm-200">
               <span class="block font-medium text-ink text-sm">Templates</span>
               <span class="text-xs text-ink-muted">Ready-made sites for agencies</span>
-            </a>
-            <a href="/course" class="block px-4 py-3.5 hover:bg-warm rounded-b-lg transition-colors border-t border-warm-200">
-              <span class="block font-medium text-ink text-sm">Course</span>
-              <span class="text-xs text-ink-muted">Build it yourself with guidance</span>
             </a>
           </div>
         </div>
@@ -163,7 +159,6 @@ const navLinkClass = (path: string) =>
       <a href="/websites"     class="px-3 py-2.5 text-ink-light hover:text-ink hover:bg-warm rounded transition-colors">Lead Flow System</a>
       <a href="/how-it-works" class="px-3 py-2.5 text-ink-light hover:text-ink hover:bg-warm rounded transition-colors">How It Works</a>
       <a href="/templates"    class="px-3 py-2.5 text-ink-light hover:text-ink hover:bg-warm rounded transition-colors">Templates</a>
-      <a href="/course"       class="px-3 py-2.5 text-ink-light hover:text-ink hover:bg-warm rounded transition-colors">Course</a>
       <div class="my-1 border-t border-warm-200"></div>
       <p class="text-xs font-semibold text-ink-muted uppercase tracking-wider px-3 py-2">Learn</p>
       <a href="/blog"         class="px-3 py-2.5 text-ink-light hover:text-ink hover:bg-warm rounded transition-colors">Blog</a>

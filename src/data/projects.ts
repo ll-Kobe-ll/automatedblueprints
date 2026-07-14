@@ -31,22 +31,13 @@ export const projects: Project[] = [
     caption:
       'A template for restaurants. Menu, hours, and reservations up front, fast on a phone, easy to find on Google.',
   },
- /* {
-    name: 'Roofing Company',
-    url: 'https://roofing-company-template.pages.dev/',
-    descriptor: 'Quotes & Local Search',
-    type: 'template',
-    screenshot: '/proof/roofing.webp',
-    caption:
-      'A template for roofing companies. Built to show up in local search and turn visitors into quote requests.',
-  },
   {
     name: 'General Contractor',
     url: 'https://general-contractor-1mb.pages.dev/',
     descriptor: 'Built to Win Trust Fast',
     type: 'template',
-    screenshot: '/proof/general-contractor.webp',
+    screenshot: '/templates/general-contractor.webp',
     caption:
       'A template for general contractors. Clean and fast, built to make a customer trust you before they call.',
-  },*/
+  },
 ];

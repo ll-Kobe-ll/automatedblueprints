@@ -3,8 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { site } from '../data/site';
 
-const title       = 'Get a Free Custom Video Breakdown | Automated Blueprints';
-const description = 'Get a free, personalized video breakdown from Automated Blueprints. No pitch deck, no pressure. We review your current setup and show you exactly where leads are falling through.';
+const title       = 'Contact Us: Quotes, Templates & Custom Work | Automated Blueprints';
+const description = 'Get a quote for the Lead Flow System, ask a question about the templates, or scope custom agency work. Straight answers within a business day.';
 ---
 
 <BaseLayout {title} {description} canonicalPath="/contact">
@@ -14,10 +14,13 @@ const description = 'Get a free, personalized video breakdown from Automated Blu
     <div class="section-container">
       <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">Get in Touch</p>
       <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-2xl mb-6">
-        A Free Video Breakdown. No Pitch. Just an Honest Look at Your Setup.
+        Quotes, Template Questions, and Custom Work.
       </h1>
-      <p class="text-white/75 text-xl leading-relaxed max-w-xl">
-        Tell us about your business and your website. We will record a short video walking through your current setup and send it to your email. If there is a fit, we talk next steps. If not, we will say so.
+      <p class="text-white/75 text-xl leading-relaxed max-w-xl mb-6">
+        Want a quote for the Lead Flow System, have a question before buying a template, or need a custom build for your agency? Tell us what you need and you will get a straight answer within a business day.
+      </p>
+      <p class="text-white/50 text-sm">
+        Want to see what your lead leak costs first? Start with the <a href="/audit" class="text-brand-300 font-semibold hover:text-white transition-colors">free 60-second audit</a> instead.
       </p>
     </div>
   </section>
@@ -31,7 +34,7 @@ const description = 'Get a free, personalized video breakdown from Automated Blu
         <div>
           <h2 class="text-2xl font-bold text-ink mb-2">Send a Message</h2>
           <p class="text-ink-light mb-8 leading-relaxed">
-            Fill out the form below with your business and website. We will record a short, personalized video walking through your current setup and email it to you.
+            Tell us about your business and what you need: a quote, a template question, or a custom build. The more detail, the faster the useful answer.
           </p>
           <ContactForm />
         </div>
@@ -55,10 +58,10 @@ const description = 'Get a free, personalized video breakdown from Automated Blu
               <h3 class="text-lg font-semibold text-ink mb-3">What to Expect</h3>
               <ul class="space-y-3">
                 {[
-                  'A personalized video walkthrough sent to your email',
-                  'A look at your current setup, no slides, no sales script',
-                  'An honest read on where leads are slipping through',
-                  'A clear next step if there is a fit',
+                  'A reply within one business day',
+                  'A straight answer, no sales script',
+                  'A real quote with real numbers, not a range that doubles later',
+                  'If we are not the right fit, we will say so',
                 ].map(item => (
                   <li class="flex items-start gap-3 text-ink-light">
                     <svg class="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">

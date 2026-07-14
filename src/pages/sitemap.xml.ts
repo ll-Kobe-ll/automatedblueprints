@@ -23,8 +23,9 @@ export const GET: APIRoute = async () => {
   add('/audit', '1.0', 'monthly');
   add('/websites', '0.9');
   add('/templates', '0.9');
-  add('/course', '0.8');
   add('/how-it-works', '0.9');
+  add('/privacy', '0.3');
+  add('/terms', '0.3');
   add('/learn', '0.8');
   add('/blog', '0.8', 'weekly');
   add('/about', '0.7');

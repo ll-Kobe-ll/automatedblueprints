@@ -29,6 +29,9 @@ const {
 } = Astro.props;
 
 const canonicalUrl = `${site.domain}${canonicalPath}`.replace(/\/$/, '') || site.domain;
+// Mobile sticky CTA: owner-facing pages only. Skipped on bare pages (funnel/thank-you)
+// and on /templates, where the audience is agencies, not local owners.
+const showStickyCta = !bare && !Astro.url.pathname.startsWith('/templates');
 const resolvedOgTitle = ogTitle ?? title;
 const resolvedOgDesc  = ogDescription ?? description;
 // Per-page OG image (absolute URL); falls back to the global card.
@@ -145,6 +148,17 @@ const allSchema = [localBusinessSchema, organizationSchema, ...(Array.isArray(sc
       <slot />
     </main>
     {!bare && <Footer />}
+
+    {showStickyCta && (
+      <>
+        <!-- Mobile sticky CTA -->
+        <div class="md:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-t border-warm-200 px-4 pt-3" style="padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));">
+          <a href={site.ctaHref} class="btn-primary w-full justify-center">{site.ctaText}</a>
+        </div>
+        <!-- Spacer so the bar never covers page content -->
+        <div class="h-20 md:hidden" aria-hidden="true"></div>
+      </>
+    )}
 
     <!-- Global scroll-reveal: any element with .reveal fades up once on scroll -->
     <script>

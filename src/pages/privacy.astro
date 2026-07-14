@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const title       = 'Privacy Policy | Automated Blueprints';
+const description = 'What Automated Blueprints collects, why, and what never happens with your data. Written in plain English.';
+
+const updated = 'July 14, 2026';
+---
+
+<BaseLayout {title} {description} canonicalPath="/privacy">
+
+  <section class="bg-ink text-white section-pad" aria-label="Page hero">
+    <div class="section-container">
+      <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">Legal</p>
+      <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-2xl mb-4">Privacy Policy</h1>
+      <p class="text-white/60 text-sm">Last updated {updated}. Written in plain English on purpose.</p>
+    </div>
+  </section>
+
+  <section class="section-pad bg-white" aria-label="Privacy policy">
+    <div class="section-container">
+      <div class="max-w-2xl space-y-10 text-ink-light leading-relaxed">
+
+        <div>
+          <h2 class="text-xl font-bold text-ink mb-3">What we collect</h2>
+          <p class="mb-3">Only what you give us, and only so we can do what you asked:</p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><strong class="text-ink font-semibold">Form submissions.</strong> When you fill out the contact form or the lead audit, we receive what you typed: your name, business name, email, optional phone number, and your answers. Submissions are delivered to our inbox by Web3Forms, our form processor.</li>
+            <li><strong class="text-ink font-semibold">Payments.</strong> Purchases are processed by Stripe. Your card number goes to Stripe, not to us. We see what you bought, the amount, and the email you used at checkout, which we use to deliver your files and help with support.</li>
+            <li><strong class="text-ink font-semibold">Basic analytics.</strong> We use Cloudflare Web Analytics, which is cookie-free. It tells us things like how many people visited a page and where they came from. It does not track you across the internet or build a profile of you.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold text-ink mb-3">What we do with it</h2>
+          <p>We use your information to reply to you, deliver what you purchased, run the services you signed up for, and nothing else.</p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold text-ink mb-3">What we never do</h2>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>We do not sell your data. To anyone. Ever.</li>
+            <li>We do not add you to a mailing list you did not ask for.</li>
+            <li>We do not share your information with anyone except the processors named above (Web3Forms, Stripe, Cloudflare), which are required to run the site at all.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold text-ink mb-3">Cookies</h2>
+          <p>This site does not set tracking cookies. That is why there is no cookie banner.</p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold text-ink mb-3">Want your data removed?</h2>
+          <p>Email <a href={`mailto:${site.email}`} class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">{site.email}</a> and we will delete what we hold about you and confirm when it is done.</p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold text-ink mb-3">Changes</h2>
+          <p>If this policy changes, the date at the top changes with it. Questions? <a href={`mailto:${site.email}`} class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">Email us</a>.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

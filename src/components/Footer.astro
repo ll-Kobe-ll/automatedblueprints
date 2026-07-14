@@ -28,7 +28,6 @@ const year = new Date().getFullYear();
             <li><a href="/websites"      class="text-white/70 hover:text-white transition-colors text-sm">Lead Flow System</a></li>
             <li><a href="/how-it-works"  class="text-white/70 hover:text-white transition-colors text-sm">How It Works</a></li>
             <li><a href="/templates"     class="text-white/70 hover:text-white transition-colors text-sm">Templates</a></li>
-            <li><a href="/course"        class="text-white/70 hover:text-white transition-colors text-sm">Course</a></li>
             <li><a href="/blog"          class="text-white/70 hover:text-white transition-colors text-sm">Blog</a></li>
             <li><a href="/learn"         class="text-white/70 hover:text-white transition-colors text-sm">Crash Course</a></li>
             <li><a href="/about"         class="text-white/70 hover:text-white transition-colors text-sm">About</a></li>
@@ -64,9 +63,11 @@ const year = new Date().getFullYear();
       <p class="text-white/40 text-sm">
         &copy; {year} {site.name}. All rights reserved.
       </p>
-      <p class="text-white/40 text-sm">
-        Based in {site.location}
-      </p>
+      <div class="flex items-center gap-5">
+        <a href="/privacy" class="text-white/40 hover:text-white/70 transition-colors text-sm">Privacy</a>
+        <a href="/terms"   class="text-white/40 hover:text-white/70 transition-colors text-sm">Terms</a>
+        <p class="text-white/40 text-sm">Based in {site.location}</p>
+      </div>
     </div>
   </div>
 </footer>

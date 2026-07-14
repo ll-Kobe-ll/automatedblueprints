@@ -2,10 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaSection from '../components/CtaSection.astro';
 import PathChooser from '../components/PathChooser.astro';
+import DemoTextBack from '../components/DemoTextBack.astro';
 import { site } from '../data/site';
+import { projects } from '../data/projects';
 
-const title       = 'Automated Blueprints | Lead Capture & Follow-Up Systems for Local Businesses';
-const description = 'Missed calls, slow follow-up, and ignored quotes cost local businesses jobs every week. Automated Blueprints builds the system that responds in under 60 seconds, follows up automatically, and keeps leads from going cold.';
+const title       = 'Automated Blueprints | The Lead Flow System for Local Businesses';
+const description = 'Missed calls, slow follow-up, and ignored quotes cost local businesses jobs every week. The Lead Flow System gets you found, responds in under 60 seconds, follows up automatically, and keeps leads from going cold.';
+
+const proof = projects.filter(p => p.screenshot).slice(0, 3);
 ---
 
 <BaseLayout {title} {description} canonicalPath="/">
@@ -14,26 +18,36 @@ const description = 'Missed calls, slow follow-up, and ignored quotes cost local
        HERO
   ============================================================ -->
   <section class="bg-ink text-white" aria-label="Hero">
-    <div class="section-container py-24 md:py-36">
-      <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-5 hero-fade" style="--delay: 0ms">
-        For Local Businesses Everywhere
-      </p>
-      <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight max-w-3xl mb-6 hero-fade" style="--delay: 120ms">
-        The First Business to Answer Gets the Job.
-      </h1>
-      <p class="text-white/75 text-xl md:text-2xl leading-relaxed max-w-2xl mb-6 hero-fade" style="--delay: 240ms">
-        Your missed calls, unanswered texts, and ignored follow-ups are sending customers to whoever shows up next. The Lead Flow System fixes all of it, in about a week.
-      </p>
-      <p class="text-white/60 text-lg leading-relaxed max-w-2xl mb-10 hero-fade" style="--delay: 340ms">
-        It starts with a website that gets you found, then a system that catches every lead it brings in.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 hero-fade" style="--delay: 460ms">
-        <a href={site.ctaHref} class="btn-primary-lg bg-white text-brand-700 hover:bg-brand-50 text-center">
-          {site.ctaText}
-        </a>
-        <a href="/how-it-works" class="btn-ghost-lg border-white/30 text-white hover:bg-white/10 hover:border-white/50 text-center">
-          See How It Works
-        </a>
+    <div class="section-container py-24 md:py-32">
+      <div class="lg:grid lg:grid-cols-[1fr,26rem] lg:gap-16 lg:items-center">
+        <div>
+          <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-5 hero-fade" style="--delay: 0ms">
+            For Local Businesses Everywhere
+          </p>
+          <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight max-w-3xl mb-6 hero-fade" style="--delay: 120ms">
+            The First Business to Answer Gets the Job.
+          </h1>
+          <p class="text-white/75 text-xl md:text-2xl leading-relaxed max-w-2xl mb-6 hero-fade" style="--delay: 240ms">
+            Your missed calls, unanswered texts, and ignored follow-ups are sending customers to whoever shows up next. The Lead Flow System fixes all of it, in about a week.
+          </p>
+          <p class="text-white/60 text-lg leading-relaxed max-w-2xl mb-10 hero-fade" style="--delay: 340ms">
+            It starts with a website that gets you found, then a system that catches every lead it brings in.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 hero-fade" style="--delay: 460ms">
+            <a href={site.ctaHref} class="btn-primary-lg bg-white text-brand-700 hover:bg-brand-50 text-center">
+              {site.ctaText}
+            </a>
+            <a href="/how-it-works" class="btn-ghost-lg border-white/30 text-white hover:bg-white/10 hover:border-white/50 text-center">
+              See How It Works
+            </a>
+          </div>
+        </div>
+
+        <!-- Live demo: the system answering a missed call, right in the hero -->
+        <div class="hidden lg:block hero-fade" style="--delay: 560ms">
+          <DemoTextBack />
+          <p class="text-white/50 text-xs text-center mt-3">Live demo: what your customers get when you cannot pick up. <a href="/how-it-works" class="text-brand-300 font-semibold hover:text-white transition-colors">See the whole system &rarr;</a></p>
+        </div>
       </div>
     </div>
   </section>
@@ -145,6 +159,40 @@ const description = 'Missed calls, slow follow-up, and ignored quotes cost local
         <a href="/how-it-works" class="btn-primary">
           See the Full System, Live
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROOF STRIP — real work, live
+  ============================================================ -->
+  <section class="section-pad bg-white" aria-labelledby="proof-strip-heading">
+    <div class="section-container">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+        <div>
+          <h2 id="proof-strip-heading" class="section-heading mb-3 reveal">Real Work, Live Right Now</h2>
+          <p class="text-ink-light text-lg reveal">A live client build plus templates from our library. Not mockups, click any of them and look around.</p>
+        </div>
+        <a href="/websites" class="text-brand-600 font-semibold whitespace-nowrap hover:text-brand-700 transition-colors reveal">See what we build &rarr;</a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        {proof.map((p, i) => (
+          <a href={p.url} target="_blank" rel="noopener noreferrer" class="block border border-warm-200 rounded-xl overflow-hidden bg-white card-hover reveal" style={`--delay: ${i * 100}ms`} aria-label={`Open ${p.name} in a new tab`}>
+            <div class="aspect-[16/10] bg-warm-100 overflow-hidden">
+              <img src={p.screenshot} alt={`Screenshot of the ${p.name} website`} width="1000" height="625" loading="lazy" decoding="async" class="w-full h-full object-cover object-top" />
+            </div>
+            <div class="p-4 flex items-center justify-between gap-3">
+              <div>
+                <p class="font-semibold text-ink text-sm">{p.name}</p>
+                <p class="text-ink-muted text-xs">{p.descriptor}</p>
+              </div>
+              {p.type === 'client' && (
+                <span class="text-xs font-semibold bg-green-50 text-green-700 px-2 py-1 rounded whitespace-nowrap">Live client</span>
+              )}
+            </div>
+          </a>
+        ))}
       </div>
     </div>
   </section>

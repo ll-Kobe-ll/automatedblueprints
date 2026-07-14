@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const title       = 'Terms of Service | Automated Blueprints';
+const description = 'The terms for Automated Blueprints websites, the Lead Flow System, and template purchases. Refunds, licensing, and delivery, in plain English.';
+
+const updated = 'July 14, 2026';
+---
+
+<BaseLayout {title} {description} canonicalPath="/terms">
+
+  <section class="bg-ink text-white section-pad" aria-label="Page hero">
+    <div class="section-container">
+      <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">Legal</p>
+      <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-2xl mb-4">Terms of Service</h1>
+      <p class="text-white/60 text-sm">Last updated {updated}. Written in plain English on purpose.</p>
+    </div>
+  </section>
+
+  <section class="section-pad bg-white" aria-label="Terms of service">
+    <div class="section-container">
+      <div class="max-w-2xl space-y-10 text-ink-light leading-relaxed">
+
+        <div>
+          <h2 class="text-xl font-bold text-ink mb-3">Who we are</h2>
+          <p>{site.name}, based in {site.location}. Reach us any time at <a href={`mailto:${site.email}`} class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">{site.email}</a>. By using this site or buying from us, you agree to these terms.</p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold text-ink mb-3">What we sell</h2>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><strong class="text-ink font-semibold">Done-for-you services.</strong> Websites and the Lead Flow System, billed monthly. The exact scope is agreed with you before anything starts.</li>
+            <li><strong class="text-ink font-semibold">Website templates.</strong> Digital downloads, delivered as a zip file immediately after checkout.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold text-ink mb-3">Refunds</h2>
+          <p class="mb-3"><strong class="text-ink font-semibold">Templates and digital downloads: all sales are final.</strong> Once the files are delivered, they cannot be returned, so we cannot offer refunds on digital products. Every template has a full live demo you can click through before buying, so you can see exactly what you are getting.</p>
+          <p>That said, we stand behind the product. If something in your download is broken or not as described, email us and we will make it right.</p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold text-ink mb-3">Template license, the short version</h2>
+          <p class="mb-3">Buying a template gives you a license to:</p>
+          <ul class="list-disc pl-6 space-y-2 mb-3">
+            <li>Build unlimited websites for unlimited clients, with no royalties or per-site fees</li>
+            <li>Charge your clients whatever you want</li>
+            <li>Modify, recolor, rewrite, and extend the templates however you like</li>
+            <li>Host the finished websites anywhere</li>
+          </ul>
+          <p class="mb-3">The one thing you cannot do: resell, redistribute, or give away the template source files themselves as a template, theme, starter kit, or anything similar. You sell finished websites, not our files.</p>
+          <p>The full license text is included in every download and is the version that governs.</p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold text-ink mb-3">Delivery</h2>
+          <p>Template purchases are delivered by an instant download link right after checkout. The link stays valid for 30 days. Lose the file after that? Email us with your receipt and we will resend it, no charge.</p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold text-ink mb-3">Monthly services</h2>
+          <p>Done-for-you plans are month to month. Every agreement includes a 90-day out clause: if it is not working, you can leave. Specific terms are set out in the agreement you sign before we start, and that agreement governs the service.</p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold text-ink mb-3">The sensible fine print</h2>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Templates and services are provided as described. We do not guarantee specific business results, rankings, or revenue, because nobody honestly can.</li>
+            <li>Our total liability for any claim is capped at the amount you paid us for the product or service in question.</li>
+            <li>If these terms change, the date at the top changes with it. Continued use after a change means you accept the new terms.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold text-ink mb-3">Questions</h2>
+          <p>Anything unclear? <a href={`mailto:${site.email}`} class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">Email us</a> and you will get a straight answer.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
