@@ -171,7 +171,7 @@ const proof = projects.filter(p => p.screenshot).slice(0, 3);
       <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
         <div>
           <h2 id="proof-strip-heading" class="section-heading mb-3 reveal">Real Work, Live Right Now</h2>
-          <p class="text-ink-light text-lg reveal">A live client build plus templates from our library. Not mockups, click any of them and look around.</p>
+          <p class="text-ink-light text-lg reveal">Not mockups. Click any of them and look around.</p>
         </div>
         <a href="/websites" class="text-brand-600 font-semibold whitespace-nowrap hover:text-brand-700 transition-colors reveal">See what we build &rarr;</a>
       </div>
@@ -187,8 +187,10 @@ const proof = projects.filter(p => p.screenshot).slice(0, 3);
                 <p class="font-semibold text-ink text-sm">{p.name}</p>
                 <p class="text-ink-muted text-xs">{p.descriptor}</p>
               </div>
-              {p.type === 'client' && (
+              {p.type === 'client' ? (
                 <span class="text-xs font-semibold bg-green-50 text-green-700 px-2 py-1 rounded whitespace-nowrap">Live client</span>
+              ) : (
+                <span class="text-xs font-semibold bg-warm-100 text-ink-muted px-2 py-1 rounded whitespace-nowrap">Template demo</span>
               )}
             </div>
           </a>
