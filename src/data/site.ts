@@ -4,7 +4,7 @@ export const site = {
   domain: 'https://automatedblueprints.com',
   location: 'Orange County, CA',
   serviceArea: 'Orange County, CA, and remote',
-  email: 'automatedblueprintstrategies@gmail.com',
+  email: 'hello@automatedblueprints.com',
   web3formsKey: '76659629-9592-4c0c-b8fa-d0b6fb3718d6',
   offer: 'Lead Flow System',
   ctaText: 'Get a Free Lead Audit',
