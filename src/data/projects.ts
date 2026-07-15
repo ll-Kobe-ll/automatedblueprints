@@ -12,22 +12,14 @@ export interface Project {
 // For a template/demo (not a paid client), set type: 'template' so it gets
 // labeled honestly and does not imply a client track record.
 export const projects: Project[] = [
-  {
-    name: 'Buc Door Systems',
-    url: 'https://bucdoorsystems.com',
-    descriptor: 'Garage Door Repair & Installation',
-    location: 'Orange County',
-    type: 'client',
-    screenshot: '/proof/buc-door.webp',
-    caption:
-      'Built for a garage door company in Orange County. Loads instant, built to show up in local search, one tap to call.',
-  },
+  // Buc Door Systems (real client build) removed 2026-07: the client site went
+  // offline, so it can no longer serve as clickable proof. Re-add if it returns.
   {
     name: 'Restaurant',
-    url: 'https://custom-restaurant-templates.pages.dev/',
+    url: 'https://restaurant-35g.pages.dev/',
     descriptor: 'Menus, Hours & Online Reservations',
     type: 'template',
-    screenshot: '/proof/restaurant.webp',
+    screenshot: '/templates/restaurant.webp',
     caption:
       'A template for restaurants. Menu, hours, and reservations up front, fast on a phone, easy to find on Google.',
   },
@@ -39,5 +31,14 @@ export const projects: Project[] = [
     screenshot: '/templates/general-contractor.webp',
     caption:
       'A template for general contractors. Clean and fast, built to make a customer trust you before they call.',
+  },
+  {
+    name: 'Dental Practice',
+    url: 'https://dental-practice.pages.dev/',
+    descriptor: 'Bookings That Feel Easy',
+    type: 'template',
+    screenshot: '/templates/dental-practice.webp',
+    caption:
+      'A template for dental and health practices. Soft, reassuring design with an easy path to book a visit.',
   },
 ];
