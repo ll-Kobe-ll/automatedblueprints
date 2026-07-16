@@ -1,10 +1,10 @@
 export interface Project {
-  name: string;          // "Buc Door Systems"
-  url: string;           // "https://bucdoorsystems.com"
-  descriptor: string;    // "Garage Door Repair & Installation"
+  name: string;          // "Restaurant"
+  url: string;           // live demo URL
+  descriptor: string;    // "Menus, Hours & Online Reservations"
   location?: string;     // "Orange County"
   type: 'client' | 'template';
-  screenshot?: string;   // "/proof/buc-door.webp" — optional; falls back to styled frame
+  screenshot?: string;   // "/templates/restaurant.webp" — optional; falls back to styled frame
   caption: string;       // honest, claims-safe one-liner shown under the card
 }
 
