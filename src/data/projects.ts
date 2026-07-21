@@ -41,4 +41,58 @@ export const projects: Project[] = [
     caption:
       'A template for dental and health practices. Soft, reassuring design with an easy path to book a visit.',
   },
+  {
+    name: 'Hair Salon',
+    url: 'https://hair-salon-emi.pages.dev/',
+    descriptor: 'Booking-First Design',
+    type: 'template',
+    screenshot: '/templates/hair-salon.webp',
+    caption:
+      'A template for salons and spas. Clean visuals up front, built to turn browsers into booked appointments.',
+  },
+  {
+    name: 'Hardware Store',
+    url: 'https://hardware-store.pages.dev/',
+    descriptor: 'Built for Local Retail',
+    type: 'template',
+    screenshot: '/templates/hardware-store.webp',
+    caption:
+      'A template for hardware and retail shops. Product-forward layout that gets people in the door.',
+  },
+  {
+    name: 'Machine Shop',
+    url: 'https://machine-shop.pages.dev/',
+    descriptor: 'Industrial, No Fluff',
+    type: 'template',
+    screenshot: '/templates/machine-shop.webp',
+    caption:
+      'A template for machine shops and fabricators. Straightforward and technical, built to win RFQs.',
+  },
+  {
+    name: 'Fitness Studio',
+    url: 'https://fitness-studio-4ja.pages.dev/',
+    descriptor: 'High-Energy, Fast Signups',
+    type: 'template',
+    screenshot: '/templates/fitness-studio.webp',
+    caption:
+      'A template for gyms and studios. Bold and energetic, built to turn visitors into trial signups.',
+  },
+  {
+    name: 'Real Estate',
+    url: 'https://real-estate-awb.pages.dev/',
+    descriptor: 'Listings That Sell Themselves',
+    type: 'template',
+    screenshot: '/templates/real-estate.webp',
+    caption:
+      'A template for agents and brokerages. Photo-forward layout built to showcase listings and capture leads.',
+  },
+  {
+    name: 'Professional Services',
+    url: 'https://professional-services-76l.pages.dev/',
+    descriptor: 'Trust-First, Credible',
+    type: 'template',
+    screenshot: '/templates/professional-services.webp',
+    caption:
+      'A template for law, accounting, and consulting firms. Clean and credible, built to convert inquiries into calls.',
+  },
 ];

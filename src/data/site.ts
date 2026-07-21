@@ -18,7 +18,7 @@ export const site = {
   // Course (external checkout). Paste your Gumroad/Stripe/Whop link and price.
   courseUrl: 'PASTE_COURSE_CHECKOUT_URL_HERE',
   coursePrice: '$149',
-  // Done-for-you pricing, shown on /websites. Two separate packages:
+  // Done-for-you pricing, shown on /pricing. Two separate packages:
   // the website, and the lead capture system. Clients can run either or both.
   // Setup is one-time (50% upfront, 50% on delivery); monthly billing starts
   // one month after delivery.

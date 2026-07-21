@@ -36,10 +36,9 @@ Here is the good news. Most of your local competitors have nothing real online e
 
 ## Where to start
 
-You have three options, depending on your time and budget:
+You have two options, depending on your time and budget:
 
-1. **Have it built for you.** If you would rather just hand it off, [we build and host sites for local businesses](/websites) so you never have to think about it.
-2. **Buy a template.** If you want a head start and do not mind dropping in your own details, the [ready-to-launch templates](/templates) get you most of the way there for cheap.
-3. **Learn how it all works first.** The [free crash course](/learn) walks through the whole lead system in six short lessons, no email required.
+1. **Have it built for you.** If you would rather just hand it off, [we build and host sites for local businesses](/pricing) so you never have to think about it.
+2. **Learn how it all works first.** The [free crash course](/learn) walks through the whole lead system in six short lessons, no email required.
 
 Whichever route you take, the point is the same: when someone Googles you, give them a reason to call instead of a reason to keep looking.

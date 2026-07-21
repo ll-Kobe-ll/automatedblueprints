@@ -4,22 +4,15 @@ import CtaSection from '../components/CtaSection.astro';
 import { site } from '../data/site';
 
 const title       = 'About Automated Blueprints | Lead Systems & Sites for Local Businesses';
-const description = 'Automated Blueprints is a lead-systems studio for local businesses, based in Orange County, CA. We build websites and lead-flow systems, and license the niche templates we build to agencies.';
+const description = 'Automated Blueprints is a lead-systems studio for local businesses, based in Orange County, CA. We build websites and lead-flow systems, done for you.';
 
 const ways = [
   {
     label: 'Done For You',
     title: 'The Lead Flow System',
     body: 'A site that gets you found, plus missed-call text-back, automatic follow-up, and a review engine. Built and run for you.',
-    href: '/websites',
+    href: '/pricing',
     cta: 'See the system',
-  },
-  {
-    label: 'For Agencies',
-    title: 'The Template Library',
-    body: 'The same nine niche sites we build with, licensed for unlimited client use. Reskin and resell as your own.',
-    href: '/templates',
-    cta: 'Browse templates',
   },
   {
     label: 'Free',
@@ -69,10 +62,7 @@ const ways = [
             We take on a limited number of done-for-you builds at a time so each one gets senior attention from start to finish. No hand-offs to junior staff, no outsourcing, no templated work passed off as custom. The same people who scope your system build and run it.
           </p>
           <p>
-            The niche website templates behind our builds are also available on their own. Agencies and other studios license them to skip the hard part and reskin a finished, production-ready site for their own clients.
-          </p>
-          <p>
-            The proof is clickable. Every template we sell runs as a full, live demo site you can walk through end to end. <a href="/websites" class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">See the work</a> and judge it yourself.
+            The proof is clickable. Every build we have shipped runs as a full, live demo site you can walk through end to end. <a href="/pricing" class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">See the work</a> and judge it yourself.
           </p>
         </div>
 
@@ -85,7 +75,7 @@ const ways = [
             </div>
             <div>
               <p class="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-2">What We Do</p>
-              <p class="text-ink font-medium">Lead-flow systems and websites for local businesses, plus templates for agencies</p>
+              <p class="text-ink font-medium">Lead-flow systems and websites for local businesses</p>
             </div>
             <div>
               <p class="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-2">How We Work</p>
@@ -93,7 +83,7 @@ const ways = [
             </div>
             <div>
               <p class="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-2">Availability</p>
-              <p class="text-ink font-medium">Limited done-for-you slots. Templates available anytime.</p>
+              <p class="text-ink font-medium">Limited done-for-you slots each month.</p>
             </div>
           </div>
         </div>
@@ -104,10 +94,10 @@ const ways = [
   <!-- Ways to work together -->
   <section class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="ways-heading">
     <div class="section-container">
-      <h2 id="ways-heading" class="section-heading mb-4 reveal">Three Ways to Work With Us</h2>
-      <p class="section-sub max-w-2xl mb-16 reveal">Whether you want it built for you, you build it yourself, or you just want to see your numbers.</p>
+      <h2 id="ways-heading" class="section-heading mb-4 reveal">Two Ways to Work With Us</h2>
+      <p class="section-sub max-w-2xl mb-16 reveal">Whether you want it built for you, or you just want to see your numbers first.</p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl">
         {ways.map((w, i) => (
           <a href={w.href} class="flex flex-col bg-white border border-warm-200 rounded-lg p-7 card-hover group reveal" style={`--delay: ${i * 80}ms`}>
             <span class="text-xs font-semibold uppercase tracking-wider text-brand-600 mb-4">{w.label}</span>

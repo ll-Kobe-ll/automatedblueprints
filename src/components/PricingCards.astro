@@ -1,0 +1,74 @@
+---
+// The two package cards + bundle note + billing footnote, shared by
+// /pricing and /how-it-works so the numbers can never drift apart.
+// Prices and setup fees live in src/data/site.ts.
+import { site } from '../data/site';
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto items-stretch">
+
+  <!-- Package 1: the website -->
+  <div class="flex flex-col bg-white border border-warm-200 rounded-xl p-8 reveal" style="--delay: 0ms">
+    <h3 class="text-lg font-semibold text-ink mb-1">The Website</h3>
+    <p class="text-ink-muted text-sm mb-5">For businesses that do not have a site that works yet.</p>
+    <p class="mb-1"><span class="text-4xl font-bold text-ink">{site.sitePrice}</span><span class="text-ink-muted text-sm">/month</span></p>
+    <p class="text-ink-muted text-xs mb-6">One-time setup: {site.siteSetup}. Half to start, half on delivery.</p>
+    <ul class="space-y-3 mb-8 flex-1">
+      {[
+        'Design, build, and copy done for you',
+        'Hosting, updates, and edits included',
+        'Built to rank for your trade and your area',
+        'Every lead goes straight to your phone',
+      ].map(item => (
+        <li class="flex items-start gap-3 text-ink-light text-sm leading-relaxed">
+          <svg class="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+          {item}
+        </li>
+      ))}
+    </ul>
+    <a href="/contact" class="btn-ghost w-full justify-center">Get Started</a>
+  </div>
+
+  <!-- Package 2: the system (flagship) -->
+  <div class="relative flex flex-col bg-ink text-white border-2 border-brand-600 rounded-xl p-8 reveal" style="--delay: 120ms">
+    <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full whitespace-nowrap">Most Popular</span>
+    <h3 class="text-lg font-semibold text-white mb-1">The Lead Flow System</h3>
+    <p class="text-white/60 text-sm mb-5">For businesses that already have a working site.</p>
+    <p class="mb-1"><span class="text-4xl font-bold text-white">{site.systemPrice}</span><span class="text-white/60 text-sm">/month</span></p>
+    <p class="text-white/50 text-xs mb-6">One-time setup: {site.systemSetup}. Half to start, half on delivery.</p>
+    <ul class="space-y-3 mb-8 flex-1">
+      {[
+        'Missed-call text-back in under 60 seconds',
+        'Automatic lead and quote follow-up',
+        'Review requests after every job',
+        'One simple inbox for every conversation',
+        'Works with your existing website and number',
+        'Monitored and tuned for you every month',
+      ].map(item => (
+        <li class="flex items-start gap-3 text-white/85 text-sm leading-relaxed">
+          <svg class="w-5 h-5 text-brand-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+          {item}
+        </li>
+      ))}
+    </ul>
+    <a href="/contact" class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 w-full justify-center text-base">Get Started</a>
+  </div>
+</div>
+
+<!-- Both / bundle note -->
+<div class="max-w-4xl mx-auto mt-6 bg-white border border-warm-200 rounded-xl p-6 flex flex-col sm:flex-row sm:items-center gap-4 reveal">
+  <div class="flex-1">
+    <p class="font-semibold text-ink text-sm">Need a site and the system?</p>
+    <p class="text-ink-light text-sm">Get both together. One setup process, one monthly bill.</p>
+  </div>
+  <a href="/contact" class="btn-ghost text-sm whitespace-nowrap">Ask About Both</a>
+</div>
+
+<p class="text-ink-muted text-sm text-center mt-8 reveal">
+  Most builds are live within about a week. Your first monthly bill comes one month after delivery, not the day you sign up.
+  Not sure which one you need? Take the <a href="/audit" class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">free lead audit</a> and the answer is usually obvious.
+</p>

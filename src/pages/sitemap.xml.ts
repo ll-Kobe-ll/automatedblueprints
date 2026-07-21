@@ -1,6 +1,5 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { templates } from '../data/templates';
 import { lessons } from '../data/lessons';
 import { site } from '../data/site';
 
@@ -21,8 +20,7 @@ export const GET: APIRoute = async () => {
   // Core pages
   add('/', '1.0', 'weekly');
   add('/audit', '1.0', 'monthly');
-  add('/websites', '0.9');
-  add('/templates', '0.9');
+  add('/pricing', '0.9');
   add('/how-it-works', '0.9');
   add('/privacy', '0.3');
   add('/terms', '0.3');
@@ -33,9 +31,6 @@ export const GET: APIRoute = async () => {
   add('/industries/precision-manufacturing', '0.8');
   add('/industries/med-spas', '0.8');
   add('/industries/home-services', '0.8');
-
-  // Per-template landing pages
-  for (const t of templates) add(`/templates/${t.slug}-website-template`, '0.8');
 
   // Lessons
   for (const l of lessons) add(`/learn/${l.slug}`, '0.7');

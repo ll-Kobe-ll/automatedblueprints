@@ -4,6 +4,7 @@ import CtaSection from '../components/CtaSection.astro';
 import DemoTextBack from '../components/DemoTextBack.astro';
 import DemoFollowUp from '../components/DemoFollowUp.astro';
 import DemoReviews from '../components/DemoReviews.astro';
+import PricingCards from '../components/PricingCards.astro';
 import { site } from '../data/site';
 
 const title       = 'How the Lead Flow System Works | Automated Blueprints';
@@ -108,7 +109,7 @@ const faqSchema = {
             Every lead starts the same way: someone searches for what you do. If nothing real comes up, the job goes to whoever does show up. The system starts with a fast site built to rank for your trade and your area.
           </p>
           <p class="text-ink-light leading-relaxed mb-4">
-            Already have a site that works? The rest of the system plugs straight into it. If it is old or weak, we rebuild it as part of the setup, on the same stack behind our <a href="/websites" class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">live builds</a>.
+            Already have a site that works? The rest of the system plugs straight into it. If it is old or weak, we rebuild it as part of the setup, on the same stack behind our <a href="/pricing" class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">live builds</a>.
           </p>
           <p class="text-ink-light leading-relaxed">
             The point is not a pretty brochure. It is a front door wired directly into the three parts below, so every visitor it earns gets caught.
@@ -256,8 +257,20 @@ const faqSchema = {
     </div>
   </section>
 
+  <!-- Pricing: same two packages as /pricing, one shared component -->
+  <section id="pricing" class="section-pad bg-white" aria-labelledby="hiw-pricing-heading">
+    <div class="section-container">
+      <h2 id="hiw-pricing-heading" class="section-heading mb-4 text-center reveal">What It Costs</h2>
+      <p class="section-sub max-w-2xl mx-auto mb-16 text-center reveal">
+        Two packages, no long contract. Every agreement includes a 90-day out clause.
+      </p>
+
+      <PricingCards />
+    </div>
+  </section>
+
   <!-- FAQ -->
-  <section class="section-pad bg-white" aria-labelledby="faq-heading">
+  <section class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="faq-heading">
     <div class="section-container">
       <h2 id="faq-heading" class="section-heading mb-4">Common Questions</h2>
       <p class="section-sub max-w-xl mb-16">Straight answers to what most owners ask before they decide.</p>
