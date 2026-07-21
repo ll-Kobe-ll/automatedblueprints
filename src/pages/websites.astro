@@ -69,8 +69,9 @@ const serviceSchema = {
         <!-- Package 1: the website -->
         <div class="flex flex-col bg-white border border-warm-200 rounded-xl p-8 reveal" style="--delay: 0ms">
           <h3 class="text-lg font-semibold text-ink mb-1">The Website</h3>
-          <p class="text-ink-muted text-sm mb-5">For businesses that just need to get found.</p>
-          <p class="mb-6"><span class="text-4xl font-bold text-ink">{site.sitePrice}</span><span class="text-ink-muted text-sm">/month</span></p>
+          <p class="text-ink-muted text-sm mb-5">For businesses that do not have a site that works yet.</p>
+          <p class="mb-1"><span class="text-4xl font-bold text-ink">{site.sitePrice}</span><span class="text-ink-muted text-sm">/month</span></p>
+          <p class="text-ink-muted text-xs mb-6">One-time setup: {site.siteSetup}. Half to start, half on delivery.</p>
           <ul class="space-y-3 mb-8 flex-1">
             {[
               'Design, build, and copy done for you',
@@ -86,16 +87,16 @@ const serviceSchema = {
               </li>
             ))}
           </ul>
-          <a href={site.ctaHref} class="btn-ghost w-full justify-center">Start With the Free Audit</a>
+          <a href="/contact" class="btn-ghost w-full justify-center">Get Started</a>
         </div>
 
         <!-- Package 2: the system (flagship) -->
         <div class="relative flex flex-col bg-ink text-white border-2 border-brand-600 rounded-xl p-8 reveal" style="--delay: 120ms">
           <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full whitespace-nowrap">Most Popular</span>
           <h3 class="text-lg font-semibold text-white mb-1">The Lead Flow System</h3>
-          <p class="text-white/60 text-sm mb-5">Never drop a lead again.</p>
+          <p class="text-white/60 text-sm mb-5">For businesses that already have a working site.</p>
           <p class="mb-1"><span class="text-4xl font-bold text-white">{site.systemPrice}</span><span class="text-white/60 text-sm">/month</span></p>
-          <p class="text-white/50 text-xs mb-6">Plugs into your current website, or the one we build.</p>
+          <p class="text-white/50 text-xs mb-6">One-time setup: {site.systemSetup}. Half to start, half on delivery.</p>
           <ul class="space-y-3 mb-8 flex-1">
             {[
               'Missed-call text-back in under 60 seconds',
@@ -113,13 +114,22 @@ const serviceSchema = {
               </li>
             ))}
           </ul>
-          <a href={site.ctaHref} class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 w-full justify-center text-base">Get a Free Lead Audit</a>
+          <a href="/contact" class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 w-full justify-center text-base">Get Started</a>
         </div>
       </div>
 
+      <!-- Both / bundle note -->
+      <div class="max-w-4xl mx-auto mt-6 bg-white border border-warm-200 rounded-xl p-6 flex flex-col sm:flex-row sm:items-center gap-4 reveal">
+        <div class="flex-1">
+          <p class="font-semibold text-ink text-sm">Need a site and the system?</p>
+          <p class="text-ink-light text-sm">Get both together. One setup process, one monthly bill.</p>
+        </div>
+        <a href="/contact" class="btn-ghost text-sm whitespace-nowrap">Ask About Both</a>
+      </div>
+
       <p class="text-ink-muted text-sm text-center mt-8 reveal">
-        Two separate packages. Take the one you need, or run both together and the site feeds the system every lead it earns.
-        Not sure? The free audit shows you what the leak costs, so the answer is usually obvious.
+        Most builds are live within about a week. Your first monthly bill comes one month after delivery, not the day you sign up.
+        Not sure which one you need? Take the <a href="/audit" class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">free lead audit</a> and the answer is usually obvious.
         Want to see the system in action first? <a href="/how-it-works" class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">Watch it run, live</a>.
       </p>
     </div>

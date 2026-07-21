@@ -37,7 +37,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
             </svg>
           </span>
           <span class="text-ink-light text-xs sm:text-sm">
-            Built by the team behind <a href="/websites" class="font-semibold text-ink hover:text-brand-600 transition-colors">nine live demo sites</a> you can click through — based in Orange County.
+            Built by the team behind <a href="/websites" class="font-semibold text-ink hover:text-brand-600 transition-colors">nine live demo sites</a> you can click through, based in Orange County.
           </span>
         </div>
       </div>
@@ -199,7 +199,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
 
           <div id="result-notes" class="text-left max-w-md mx-auto space-y-3 mb-8"></div>
 
-          <!-- Tiered CTA — the next step, set by severity in showEstimate() -->
+          <!-- Tiered CTA: the next step, set by severity in showEstimate() -->
           <div id="result-cta" class="result-reveal rounded-xl border p-6 md:p-7 text-left mb-6">
             <div class="flex items-start gap-4">
               <span id="result-cta-icon" class="w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -391,7 +391,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
   // Where the primary CTA points: a booking link if you have one, else email.
   const bookHref = bookingUrl
     ? bookingUrl
-    : 'mailto:' + contactEmail + '?subject=' + encodeURIComponent('Lead Audit — let us talk');
+    : 'mailto:' + contactEmail + '?subject=' + encodeURIComponent('Lead Audit: let us talk');
   const bookLabel = bookingUrl ? 'Grab a time to talk' : 'Email us to get started';
 
   const TIERS = {
@@ -508,7 +508,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
     const est = computeEstimate();
     const payload = {
       access_key: web3key,
-      subject: 'New Lead Audit Quiz — Automated Blueprints',
+      subject: 'New Lead Audit Quiz: Automated Blueprints',
       from_name: name,
       email,
       business,

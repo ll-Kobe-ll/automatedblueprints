@@ -12,14 +12,14 @@ const description = 'Get a quote for the Lead Flow System, ask a question about 
   <!-- Hero -->
   <section class="bg-ink text-white section-pad" aria-label="Contact hero">
     <div class="section-container">
-      <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">Get in Touch</p>
-      <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-2xl mb-6">
+      <p id="contact-eyebrow" class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-4">Get in Touch</p>
+      <h1 id="contact-heading" class="text-white text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-2xl mb-6">
         Quotes, Template Questions, and Custom Work.
       </h1>
-      <p class="text-white/75 text-xl leading-relaxed max-w-xl mb-6">
+      <p id="contact-intro" class="text-white/75 text-xl leading-relaxed max-w-xl mb-6">
         Want a quote for the Lead Flow System, have a question before buying a template, or need a custom build for your agency? Tell us what you need and you will get a straight answer within a business day.
       </p>
-      <p class="text-white/50 text-sm">
+      <p id="contact-alt" class="text-white/50 text-sm">
         Want to see what your lead leak costs first? Start with the <a href="/audit" class="text-brand-300 font-semibold hover:text-white transition-colors">free 60-second audit</a> instead.
       </p>
     </div>
@@ -33,7 +33,7 @@ const description = 'Get a quote for the Lead Flow System, ask a question about 
         <!-- Left: form -->
         <div>
           <h2 class="text-2xl font-bold text-ink mb-2">Send a Message</h2>
-          <p class="text-ink-light mb-8 leading-relaxed">
+          <p id="contact-form-intro" class="text-ink-light mb-8 leading-relaxed">
             Tell us about your business and what you need: a quote, a template question, or a custom build. The more detail, the faster the useful answer.
           </p>
           <ContactForm />
@@ -79,3 +79,22 @@ const description = 'Get a quote for the Lead Flow System, ask a question about 
   </section>
 
 </BaseLayout>
+
+<script>
+  // Arriving from a product CTA (?about=weekly-report): swap the page framing
+  // so the click-promise ("Claim a Free 30-Day Trial") matches what they land on.
+  (() => {
+    const about = new URLSearchParams(window.location.search).get('about');
+    if (about !== 'weekly-report') return;
+
+    const set = (id: string, text: string) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    };
+    set('contact-eyebrow', 'The Weekly Report: Early Access');
+    set('contact-heading', 'Claim Your Free 30-Day Trial.');
+    set('contact-intro', 'Tell us about your business and the tools you run on. We reply within a business day to book your 20-minute connection call, and your first report lands the following Monday. Free for 30 days.');
+    set('contact-form-intro', 'Name, business, and email are all we need. If you want a head start, mention your accounting tool and CRM in the message box.');
+    document.getElementById('contact-alt')?.classList.add('hidden');
+  })();
+</script>

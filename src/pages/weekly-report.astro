@@ -1,0 +1,338 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import WeeklyReportDemo from '../components/WeeklyReportDemo.astro';
+import { site } from '../data/site';
+
+const title       = 'The Weekly Report | Business Intelligence Every Monday | Automated Blueprints';
+const description = 'Connect your books, CRM, and inbox. Get one email every Monday showing what is leaking money in your business and the one move to make, with the math.';
+
+// One source of truth: rendered in the FAQ section AND emitted as FAQPage schema.
+const faqs = [
+  {
+    q: 'What tools do you connect to?',
+    a: 'QuickBooks, Xero, most CRMs including GoHighLevel, Stripe, Square, Gmail, and Outlook. If it has an API, we can likely connect it. Tell us your stack on the call and we will confirm on the spot.',
+  },
+  {
+    q: 'Is my data safe?',
+    a: 'Yes. Connections use read-only OAuth, which means we can look but never touch. Data is encrypted, and you can revoke access from your own tools at any time.',
+  },
+  {
+    q: 'How long is setup?',
+    a: 'One 20-minute call to connect your tools. Your first report lands the following Monday.',
+  },
+  {
+    q: 'What if a number looks wrong?',
+    a: 'Every metric links to its source and shows when it last synced. Reply to the email and it is flagged, verified, and corrected. That accountability is the whole point.',
+  },
+  {
+    q: 'What does it cost?',
+    a: 'Early access spots include a free 30-day trial. Pricing is a fraction of an analyst’s salary and confirmed on the call, before anything starts.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'The Weekly Report',
+  serviceType: 'Business intelligence and weekly financial reporting',
+  description:
+    'A weekly business intelligence service: connects QuickBooks, CRM, payments, and inbox, then delivers one Monday email showing what is leaking money and the one move to make, with the math behind it.',
+  provider: { '@type': 'Organization', name: site.name, url: site.domain },
+  areaServed: 'US',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+---
+
+<BaseLayout
+  {title}
+  {description}
+  canonicalPath="/weekly-report"
+  schema={[serviceSchema, faqSchema]}
+  ogImage="/og/weekly-report.png"
+  stickyCtaHref="/contact?about=weekly-report"
+  stickyCtaLabel="Claim a Free 30-Day Trial"
+  noIndex={true}
+>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="bg-ink text-white" aria-label="Hero">
+    <div class="section-container py-16 md:py-32">
+      <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-5 hero-fade" style="--delay: 0ms">
+        Early Access: For Businesses Doing $2M+
+      </p>
+      <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight max-w-3xl mb-6 hero-fade" style="--delay: 120ms">
+        Know Exactly What's Leaking Money. Every Monday. One Email.
+      </h1>
+      <p class="text-white/75 text-xl md:text-2xl leading-relaxed max-w-2xl mb-10 hero-fade" style="--delay: 240ms">
+        We connect your books, your CRM, and your inbox. Every Monday morning you get one report: what came in, what is slipping, and the one move worth making this week, with the math behind it.
+      </p>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5 hero-fade" style="--delay: 360ms">
+        <a href="/contact?about=weekly-report" class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 focus-visible:outline-white text-center">
+          Claim a Free 30-Day Trial
+        </a>
+        <a href="#sample-report" class="text-brand-300 font-semibold hover:text-white transition-colors">
+          See a sample report &darr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SAMPLE REPORT — animated email demo
+  ============================================================ -->
+  <section id="sample-report" class="section-pad bg-warm-100 border-b border-warm-200" aria-labelledby="sample-heading">
+    <div class="section-container">
+      <h2 id="sample-heading" class="section-heading mb-4 text-center reveal">This Is What Monday Looks Like</h2>
+      <p class="section-sub max-w-2xl mx-auto mb-12 text-center reveal">
+        No dashboards to dig through unless you want to. The report reads in ninety seconds.
+      </p>
+      <div class="max-w-2xl mx-auto reveal">
+        <WeeklyReportDemo />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROBLEM — 3 cards
+  ============================================================ -->
+  <section class="section-pad bg-white" aria-labelledby="problem-heading">
+    <div class="section-container">
+      <h2 id="problem-heading" class="section-heading mb-4 reveal">
+        You're Running a Multi-Million Dollar Business Without Real Reporting
+      </h2>
+      <p class="section-sub max-w-2xl mb-16 reveal">
+        The numbers exist. They are just spread across five tools nobody looks at together.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card reveal" style="--delay: 0ms">
+          <div class="w-11 h-11 rounded-lg bg-brand-50 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-brand-600" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-ink mb-3">The Bank Balance Check</h3>
+          <p class="text-ink-light leading-relaxed">
+            Checking the account to know how the business is doing is not reporting. It is guessing. The balance tells you nothing about what is owed, what is slipping, or what is about to hit.
+          </p>
+        </div>
+        <div class="card reveal" style="--delay: 100ms">
+          <div class="w-11 h-11 rounded-lg bg-brand-50 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-brand-600" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-ink mb-3">Invoices Nobody Chases</h3>
+          <p class="text-ink-light leading-relaxed">
+            Receivables sit past 30, 60, 90 days because chasing them is nobody's actual job. That is not a cash flow problem. It is money you already earned, sitting in someone else's account.
+          </p>
+        </div>
+        <div class="card reveal" style="--delay: 200ms">
+          <div class="w-11 h-11 rounded-lg bg-brand-50 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-brand-600" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.143 17.082a24.248 24.248 0 003.844.148m-3.844-.148a23.856 23.856 0 01-5.455-1.31 8.964 8.964 0 002.3-5.542m3.155 6.852a3 3 0 005.667 1.97m1.965-2.277L21 21m-4.225-4.225a23.81 23.81 0 003.536-1.003A8.967 8.967 0 0118 9.75V9A6 6 0 006.53 6.53m10.245 10.245L6.53 6.53M3 3l3.53 3.53" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-ink mb-3">Leads That Die Quietly</h3>
+          <p class="text-ink-light leading-relaxed">
+            Slow follow-up and dropped threads never show up on any report. They are just jobs that went to someone else, and nobody can tell you how many or how much they were worth.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW IT WORKS — 3 steps
+  ============================================================ -->
+  <section class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="steps-heading">
+    <div class="section-container">
+      <h2 id="steps-heading" class="section-heading mb-4 reveal">Connected in a Week, Not a Quarter</h2>
+      <p class="section-sub max-w-2xl mb-16 reveal">
+        No new software to learn, no team retraining. Your tools stay exactly as they are.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <div class="reveal" style="--delay: 0ms">
+          <div class="step-number" aria-hidden="true">1</div>
+          <h3 class="text-xl font-semibold text-ink mb-3">Connect</h3>
+          <p class="text-ink-light leading-relaxed">
+            One 20-minute call. We link your QuickBooks or Xero, CRM, payment processor, and inbox with secure read-only access. We can look, never touch.
+          </p>
+        </div>
+        <div class="reveal" style="--delay: 120ms">
+          <div class="step-number" aria-hidden="true">2</div>
+          <h3 class="text-xl font-semibold text-ink mb-3">Watch</h3>
+          <p class="text-ink-light leading-relaxed">
+            Your numbers sync daily. The system checks revenue, receivables, response times, and pipeline against your own baselines, not industry averages.
+          </p>
+        </div>
+        <div class="reveal" style="--delay: 240ms">
+          <div class="step-number" aria-hidden="true">3</div>
+          <h3 class="text-xl font-semibold text-ink mb-3">Act</h3>
+          <p class="text-ink-light leading-relaxed">
+            Every Monday: one email and one recommended move with the dollar math shown, plus a dashboard when you want to dig deeper. You approve it or skip it. Ninety seconds, then back to running the business.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       THE MATH — comparison
+  ============================================================ -->
+  <section class="section-pad bg-white" aria-labelledby="math-heading">
+    <div class="section-container">
+      <h2 id="math-heading" class="section-heading mb-4 text-center reveal">The Alternative Is a Salary</h2>
+      <p class="section-sub max-w-2xl mx-auto mb-16 text-center reveal">
+        This is the work a junior analyst or part-time controller would do. Here is how that math compares.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto items-stretch">
+
+        <div class="flex flex-col bg-warm-50 border border-warm-200 rounded-xl p-8 reveal" style="--delay: 0ms">
+          <h3 class="text-lg font-semibold text-ink mb-5">Hiring for this</h3>
+          <ul class="space-y-3 flex-1">
+            {[
+              'Junior analyst or part-time controller: $70k–$110k a year',
+              '2 to 3 months to hire, then months to ramp',
+              'Needs managing, reviewing, and double-checking',
+              'And when they leave, the process leaves with them',
+            ].map(item => (
+              <li class="flex items-start gap-3 text-ink-light text-sm leading-relaxed">
+                <svg class="w-5 h-5 text-ink-muted flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="relative flex flex-col bg-ink text-white border-2 border-brand-600 rounded-xl p-8 reveal" style="--delay: 120ms">
+          <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full whitespace-nowrap">The Weekly Report</span>
+          <h3 class="text-lg font-semibold text-white mb-5">The Weekly Report</h3>
+          <ul class="space-y-3 flex-1">
+            {[
+              'A fraction of the cost of a hire',
+              'Live in 2 weeks, first report the following Monday',
+              'Never misses a Monday, never needs managing',
+              'Every number sourced and timestamped',
+            ].map(item => (
+              <li class="flex items-start gap-3 text-white/85 text-sm leading-relaxed">
+                <svg class="w-5 h-5 text-brand-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <p class="text-ink-muted text-sm text-center mt-8 reveal">
+        Early access pricing is discussed on the call, and the first month is free.
+      </p>
+
+      <div class="text-center mt-8 reveal">
+        <a href="/contact?about=weekly-report" class="btn-primary group">
+          Claim a Free 30-Day Trial
+          <svg class="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TRUST STRIP
+  ============================================================ -->
+  <section class="py-12 bg-warm-100 border-y border-warm-200" aria-label="Data safety">
+    <div class="section-container">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {[
+          { icon: 'M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z', text: 'Read-only access: we can look, never touch' },
+          { icon: 'M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z', text: 'Every number shows its source and sync time' },
+          { icon: 'M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z', text: 'Disconnect anytime, your data stays yours' },
+        ].map((item, i) => (
+          <div class="flex items-center gap-3 reveal" style={`--delay: ${i * 80}ms`}>
+            <span class="w-10 h-10 rounded-lg bg-white border border-warm-200 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d={item.icon} />
+              </svg>
+            </span>
+            <p class="text-ink-light text-sm leading-snug font-medium">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FAQ
+  ============================================================ -->
+  <section class="section-pad bg-white" aria-labelledby="faq-heading">
+    <div class="section-container">
+      <h2 id="faq-heading" class="section-heading mb-4 reveal">Common Questions</h2>
+      <p class="section-sub max-w-xl mb-16 reveal">Straight answers before you get on a call.</p>
+
+      <div class="max-w-3xl divide-y divide-warm-200 border-t border-warm-200">
+        {faqs.map(item => (
+          <details class="group py-1">
+            <summary class="flex items-center justify-between py-5 cursor-pointer list-none text-ink font-semibold text-lg hover:text-brand-600 transition-colors [&::-webkit-details-marker]:hidden gap-4">
+              {item.q}
+              <span class="flex-shrink-0 w-6 h-6 rounded-full border border-warm-200 flex items-center justify-center text-ink-muted group-open:text-brand-600 group-open:border-brand-200 group-open:bg-brand-50 transition-colors">
+                <svg class="w-3.5 h-3.5 transition-transform group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12M6 12h12" />
+                </svg>
+              </span>
+            </summary>
+            <div class="pb-5 text-ink-light leading-relaxed max-w-2xl">
+              {item.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FINAL CTA
+  ============================================================ -->
+  <CtaSection
+    heading="Taking 5 Early Access Spots"
+    body="Free for 30 days. If the first four Mondays don't pay for themselves, turn it off."
+    href="/contact?about=weekly-report"
+    label="Claim a Free Trial"
+  />
+
+</BaseLayout>
+
+<style>
+  /* Hero entrance (same pattern as the homepage) */
+  .hero-fade {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: heroIn 0.6s ease forwards;
+    animation-delay: var(--delay, 0ms);
+  }
+  @keyframes heroIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-fade { opacity: 1; transform: none; animation: none; }
+  }
+</style>

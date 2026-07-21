@@ -14,6 +14,8 @@ interface Props {
   schema?: object | object[];
   noIndex?: boolean;
   bare?: boolean;
+  stickyCtaHref?: string;
+  stickyCtaLabel?: string;
 }
 
 const {
@@ -26,6 +28,8 @@ const {
   schema,
   noIndex = false,
   bare = false,
+  stickyCtaHref = site.ctaHref,
+  stickyCtaLabel = site.ctaText,
 } = Astro.props;
 
 const canonicalUrl = `${site.domain}${canonicalPath}`.replace(/\/$/, '') || site.domain;
@@ -153,7 +157,7 @@ const allSchema = [localBusinessSchema, organizationSchema, ...(Array.isArray(sc
       <>
         <!-- Mobile sticky CTA -->
         <div class="md:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-t border-warm-200 px-4 pt-3" style="padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));">
-          <a href={site.ctaHref} class="btn-primary w-full justify-center">{site.ctaText}</a>
+          <a href={stickyCtaHref} class="btn-primary w-full justify-center">{stickyCtaLabel}</a>
         </div>
         <!-- Spacer so the bar never covers page content -->
         <div class="h-20 md:hidden" aria-hidden="true"></div>
