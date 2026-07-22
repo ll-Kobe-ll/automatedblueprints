@@ -12,7 +12,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
   canonicalPath="/audit"
   bare={true}
   ogTitle="Find out how many jobs you're losing. Free, 60 seconds."
-  ogDescription="Answer 6 quick questions and see what slow response and a weak website are costing you. No call, no email wall."
+  ogDescription="Answer 11 quick questions and see what slow response and a weak website are costing you. No call, no email wall."
 >
 
   <section class="bg-warm-50 min-h-[calc(100vh-4rem)] py-12 md:py-16" aria-label="Lead audit quiz">
@@ -25,7 +25,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
           Find Out How Many Jobs You Are Losing.
         </h1>
         <p class="text-ink-light text-lg leading-relaxed">
-          Six quick questions. At the end you get a rough estimate, then we send a personalized video breaking down your exact numbers and what we would change.
+          Eleven quick questions. At the end you get a rough estimate, then we send a personalized video breaking down your exact numbers and what we would change.
         </p>
         <p class="text-ink-muted text-sm mt-3">Takes about 60 seconds. No cost. No obligation.</p>
 
@@ -60,9 +60,109 @@ const description = 'Answer a few quick questions and get a free, personalized v
           <!-- Honeypot -->
           <input type="text" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-          <!-- Step 1: client value -->
-          <div class="quiz-step" data-key="client_value">
-            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">What does one new customer pay you, over the life of the relationship?</h2>
+          <!-- Step 1: missed call outcome -->
+          <div class="quiz-step" data-key="missed_call_outcome">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">What happens to calls you can't answer?</h2>
+            <p class="text-ink-muted text-sm mb-6">Be honest, this sets the tone for the rest.</p>
+            <div class="space-y-3">
+              <button type="button" class="quiz-option" data-label="Goes to voicemail, no follow-up">Goes to voicemail, no follow-up</button>
+              <button type="button" class="quiz-option" data-label="I try to call back when I can">I try to call back when I can</button>
+              <button type="button" class="quiz-option" data-label="We have a system that texts back automatically">We have a system that texts back automatically</button>
+              <button type="button" class="quiz-option" data-label="Not sure" data-unsure="1">Not sure</button>
+            </div>
+          </div>
+
+          <!-- Step 2: missed calls per week -->
+          <div class="quiz-step hidden" data-key="missed_calls">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">Roughly how many calls do you miss a week?</h2>
+            <p class="text-ink-muted text-sm mb-6">Your best guess is fine.</p>
+            <div class="space-y-3">
+              <button type="button" class="quiz-option" data-label="0 to 2" data-num="1">0 to 2</button>
+              <button type="button" class="quiz-option" data-label="3 to 5" data-num="4">3 to 5</button>
+              <button type="button" class="quiz-option" data-label="6 to 10" data-num="8">6 to 10</button>
+              <button type="button" class="quiz-option" data-label="More than 10" data-num="14">More than 10</button>
+              <button type="button" class="quiz-option" data-label="Not sure" data-num="" data-unsure="1">Not sure, I do not track it</button>
+            </div>
+          </div>
+
+          <!-- Step 3: response speed -->
+          <div class="quiz-step hidden" data-key="response_speed">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">How fast do you reply to a new lead or form fill?</h2>
+            <p class="text-ink-muted text-sm mb-6">This is the one that costs the most.</p>
+            <div class="space-y-3">
+              <button type="button" class="quiz-option" data-label="Within 5 minutes" data-low="0.03" data-high="0.08">Within 5 minutes</button>
+              <button type="button" class="quiz-option" data-label="Within an hour" data-low="0.06" data-high="0.12">Within an hour</button>
+              <button type="button" class="quiz-option" data-label="A few hours" data-low="0.10" data-high="0.20">A few hours</button>
+              <button type="button" class="quiz-option" data-label="Next day or whenever I can" data-low="0.15" data-high="0.30">Next day or whenever I can</button>
+              <button type="button" class="quiz-option" data-label="It varies a lot" data-low="0.10" data-high="0.20" data-unsure="1">It varies a lot</button>
+            </div>
+          </div>
+
+          <!-- Step 4: quote follow-up -->
+          <div class="quiz-step hidden" data-key="quote_followup">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">What's your follow-up after sending a quote?</h2>
+            <p class="text-ink-muted text-sm mb-6">Most businesses stop after the first try.</p>
+            <div class="space-y-3">
+              <button type="button" class="quiz-option" data-label="I follow up automatically over time">I follow up automatically over time</button>
+              <button type="button" class="quiz-option" data-label="I follow up once, maybe twice">I follow up once, maybe twice</button>
+              <button type="button" class="quiz-option" data-label="I rarely follow up" data-unsure="1">I rarely follow up</button>
+              <button type="button" class="quiz-option" data-label="Not sure" data-unsure="1">Not sure</button>
+            </div>
+          </div>
+
+          <!-- Step 5: quotes unanswered -->
+          <div class="quiz-step hidden" data-key="quotes_unanswered">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">How many quotes went unanswered last month?</h2>
+            <p class="text-ink-muted text-sm mb-6">Quotes you sent but never heard back on.</p>
+            <div class="space-y-3">
+              <button type="button" class="quiz-option" data-label="None, I always hear back">None, I always hear back</button>
+              <button type="button" class="quiz-option" data-label="A few (1 to 5)">A few (1 to 5)</button>
+              <button type="button" class="quiz-option" data-label="Several (6 to 15)">Several (6 to 15)</button>
+              <button type="button" class="quiz-option" data-label="More than 15">More than 15</button>
+              <button type="button" class="quiz-option" data-label="Not sure" data-unsure="1">Not sure</button>
+            </div>
+          </div>
+
+          <!-- Step 6: reviews vs competitor -->
+          <div class="quiz-step hidden" data-key="reviews_vs_competitor">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">Your Google review count vs. your top competitor's?</h2>
+            <p class="text-ink-muted text-sm mb-6">Roughly speaking.</p>
+            <div class="space-y-3">
+              <button type="button" class="quiz-option" data-label="We have more reviews">We have more reviews</button>
+              <button type="button" class="quiz-option" data-label="About the same">About the same</button>
+              <button type="button" class="quiz-option" data-label="They have more than us">They have more than us</button>
+              <button type="button" class="quiz-option" data-label="Not sure" data-unsure="1">Not sure, we don't track it</button>
+            </div>
+          </div>
+
+          <!-- Step 7: asks for reviews -->
+          <div class="quiz-step hidden" data-key="asks_for_reviews">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">Do you ask customers for reviews, and how?</h2>
+            <p class="text-ink-muted text-sm mb-6">Pick the closest one.</p>
+            <div class="space-y-3">
+              <button type="button" class="quiz-option" data-label="Yes, consistently after every job">Yes, consistently after every job</button>
+              <button type="button" class="quiz-option" data-label="Sometimes, but not consistent">Sometimes, but not consistent</button>
+              <button type="button" class="quiz-option" data-label="No, we don't ask">No, we don't ask</button>
+              <button type="button" class="quiz-option" data-label="Not sure" data-unsure="1">Not sure</button>
+            </div>
+          </div>
+
+          <!-- Step 8: job source -->
+          <div class="quiz-step hidden" data-key="job_source">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">Where do most jobs come from right now?</h2>
+            <p class="text-ink-muted text-sm mb-6">Pick the biggest one.</p>
+            <div class="space-y-3">
+              <button type="button" class="quiz-option" data-label="Referrals and word of mouth">Referrals and word of mouth</button>
+              <button type="button" class="quiz-option" data-label="Google search">Google search</button>
+              <button type="button" class="quiz-option" data-label="Facebook or social">Facebook or social</button>
+              <button type="button" class="quiz-option" data-label="Paid ads">Paid ads</button>
+              <button type="button" class="quiz-option" data-label="Not sure" data-unsure="1">Not really sure</button>
+            </div>
+          </div>
+
+          <!-- Step 9: average job value -->
+          <div class="quiz-step hidden" data-key="job_value">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">What's an average job worth to you?</h2>
             <p class="text-ink-muted text-sm mb-6">Your best guess is fine.</p>
             <div class="space-y-3">
               <button type="button" class="quiz-option" data-label="Under $500" data-num="300">Under $500</button>
@@ -74,93 +174,46 @@ const description = 'Answer a few quick questions and get a free, personalized v
             </div>
           </div>
 
-          <!-- Step 2: missed leads -->
-          <div class="quiz-step hidden" data-key="missed">
-            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">How many calls or leads slip through in a typical week?</h2>
-            <p class="text-ink-muted text-sm mb-6">Missed calls, voicemails you never returned, form fills that went cold.</p>
-            <div class="space-y-3">
-              <button type="button" class="quiz-option" data-label="0 to 2" data-num="1">0 to 2</button>
-              <button type="button" class="quiz-option" data-label="3 to 5" data-num="4">3 to 5</button>
-              <button type="button" class="quiz-option" data-label="6 to 10" data-num="8">6 to 10</button>
-              <button type="button" class="quiz-option" data-label="More than 10" data-num="14">More than 10</button>
-              <button type="button" class="quiz-option" data-label="No idea" data-num="" data-unsure="1">No idea, I do not track it</button>
-            </div>
-          </div>
-
-          <!-- Step 3: response time -->
-          <div class="quiz-step hidden" data-key="response">
-            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">When a new lead comes in, how fast do you usually respond?</h2>
-            <p class="text-ink-muted text-sm mb-6">Be honest. This is the one that costs the most.</p>
-            <div class="space-y-3">
-              <button type="button" class="quiz-option" data-label="Within 5 minutes" data-low="0.03" data-high="0.08">Within 5 minutes</button>
-              <button type="button" class="quiz-option" data-label="Within an hour" data-low="0.06" data-high="0.12">Within an hour</button>
-              <button type="button" class="quiz-option" data-label="A few hours" data-low="0.10" data-high="0.20">A few hours</button>
-              <button type="button" class="quiz-option" data-label="Next day or whenever I can" data-low="0.15" data-high="0.30">Next day or whenever I can</button>
-              <button type="button" class="quiz-option" data-label="It varies a lot" data-low="0.10" data-high="0.20" data-unsure="1">It varies a lot</button>
-            </div>
-          </div>
-
-          <!-- Step 4: CRM -->
-          <div class="quiz-step hidden" data-key="crm">
-            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">How do you track leads and follow-ups right now?</h2>
-            <p class="text-ink-muted text-sm mb-6">Where do new leads actually live?</p>
-            <div class="space-y-3">
-              <button type="button" class="quiz-option" data-label="A real CRM or system">A real CRM or system</button>
-              <button type="button" class="quiz-option" data-label="Spreadsheet, notes, or paper" data-unsure="1">Spreadsheet, notes, or paper</button>
-              <button type="button" class="quiz-option" data-label="In my head and my phone" data-unsure="1">Mostly in my head and my phone</button>
-              <button type="button" class="quiz-option" data-label="Nothing really" data-unsure="1">Nothing really</button>
-            </div>
-          </div>
-
-          <!-- Step 5: website -->
+          <!-- Step 10: website situation -->
           <div class="quiz-step hidden" data-key="website">
-            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">What is your website situation?</h2>
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">What's your website situation?</h2>
             <p class="text-ink-muted text-sm mb-6">What does a customer see when they Google you?</p>
             <div class="space-y-3">
-              <button type="button" class="quiz-option" data-label="A site that works well">A real site that works well</button>
-              <button type="button" class="quiz-option" data-label="Old or weak site" data-weak="1">A site, but it is old or weak</button>
-              <button type="button" class="quiz-option" data-label="Just a Facebook or social page" data-weak="1">Just a Facebook or social page</button>
-              <button type="button" class="quiz-option" data-label="No website" data-weak="1">No website at all</button>
+              <button type="button" class="quiz-option" data-label="No website" data-weak="1">No website</button>
+              <button type="button" class="quiz-option" data-label="DIY, I built it myself" data-weak="1">DIY, I built it myself</button>
+              <button type="button" class="quiz-option" data-label="Agency-built, a professional built it">Agency-built, a professional built it</button>
+              <button type="button" class="quiz-option" data-label="Not sure" data-unsure="1">Not sure</button>
             </div>
           </div>
 
-          <!-- Step 6: source -->
-          <div class="quiz-step hidden" data-key="source">
-            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">How do most new customers find you today?</h2>
-            <p class="text-ink-muted text-sm mb-6">Pick the biggest one.</p>
-            <div class="space-y-3">
-              <button type="button" class="quiz-option" data-label="Referrals and word of mouth">Referrals and word of mouth</button>
-              <button type="button" class="quiz-option" data-label="Google search">Google search</button>
-              <button type="button" class="quiz-option" data-label="Facebook or social">Facebook or social</button>
-              <button type="button" class="quiz-option" data-label="Paid ads">Paid ads</button>
-              <button type="button" class="quiz-option" data-label="Not sure" data-unsure="1">Not really sure</button>
-            </div>
-          </div>
-
-          <!-- Step 7: contact -->
+          <!-- Step 11: contact -->
           <div class="quiz-step hidden" data-key="contact">
             <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">Where should we send your breakdown?</h2>
             <p class="text-ink-muted text-sm mb-6">We record a short video on your numbers and send it here.</p>
             <div class="space-y-4">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label for="cf-name" class="block text-sm font-semibold text-ink mb-1.5">Your Name <span class="text-brand-600">*</span></label>
-                  <input type="text" id="cf-name" name="name" autocomplete="name" placeholder="Jane Smith" required class="quiz-input" />
-                </div>
-                <div>
                   <label for="cf-business" class="block text-sm font-semibold text-ink mb-1.5">Business Name <span class="text-brand-600">*</span></label>
                   <input type="text" id="cf-business" name="business" autocomplete="organization" placeholder="Smith HVAC" required class="quiz-input" />
                 </div>
-              </div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label for="cf-email" class="block text-sm font-semibold text-ink mb-1.5">Email <span class="text-brand-600">*</span></label>
                   <input type="email" id="cf-email" name="email" autocomplete="email" placeholder="jane@smithhvac.com" required class="quiz-input" />
                 </div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label for="cf-phone" class="block text-sm font-semibold text-ink mb-1.5">Phone <span class="text-ink-muted font-normal">(optional)</span></label>
-                  <input type="tel" id="cf-phone" name="phone" autocomplete="tel" placeholder="(714) 555-0100" class="quiz-input" />
+                  <label for="cf-phone" class="block text-sm font-semibold text-ink mb-1.5">Phone <span class="text-brand-600">*</span></label>
+                  <input type="tel" id="cf-phone" name="phone" autocomplete="tel" placeholder="(714) 555-0100" required class="quiz-input" />
                 </div>
+                <div>
+                  <label for="cf-instagram" class="block text-sm font-semibold text-ink mb-1.5">Instagram <span class="text-ink-muted font-normal">(optional)</span></label>
+                  <input type="text" id="cf-instagram" name="instagram" autocomplete="off" placeholder="@smithhvac" class="quiz-input" />
+                </div>
+              </div>
+              <div>
+                <label for="cf-website" class="block text-sm font-semibold text-ink mb-1.5">Website <span class="text-ink-muted font-normal">(if you have one)</span></label>
+                <input type="url" id="cf-website" name="website_url" autocomplete="url" placeholder="https://smithhvac.com" class="quiz-input" />
               </div>
               <button type="submit" id="cf-submit" class="btn-primary-lg w-full">See My Results</button>
               <p id="cf-status" role="status" aria-live="polite" class="text-sm font-medium text-center min-h-[1.25rem]"></p>
@@ -291,7 +344,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
 <script define:vars={{ web3key: site.web3formsKey, contactEmail: site.email, bookingUrl: site.bookingUrl }}>
   const form    = document.getElementById('audit-form');
   const steps   = [...document.querySelectorAll('.quiz-step')];
-  const totalQ  = 6; // question steps (excludes contact step)
+  const totalQ  = 10; // question steps (excludes contact step)
   const bar     = document.getElementById('quiz-bar');
   const counter = document.getElementById('quiz-counter');
   const pct     = document.getElementById('quiz-pct');
@@ -344,10 +397,10 @@ const description = 'Answer a few quick questions and get a free, personalized v
   }
 
   function computeEstimate() {
-    const valueNum = parseFloat(answers.client_value?.num) || 2000;
-    const missedNum = parseFloat(answers.missed?.num) || 5;
-    const low  = parseFloat(answers.response?.low)  || 0.10;
-    const high = parseFloat(answers.response?.high) || 0.20;
+    const valueNum = parseFloat(answers.job_value?.num) || 2000;
+    const missedNum = parseFloat(answers.missed_calls?.num) || 5;
+    const low  = parseFloat(answers.response_speed?.low)  || 0.10;
+    const high = parseFloat(answers.response_speed?.high) || 0.20;
     const monthlyMissed = missedNum * 4.3;
     let lo = monthlyMissed * low  * valueNum;
     let hi = monthlyMissed * high * valueNum;
@@ -360,14 +413,14 @@ const description = 'Answer a few quick questions and get a free, personalized v
 
   function buildNotes() {
     const notes = [];
-    const anyUnsure = ['client_value', 'missed', 'response', 'source'].some((k) => answers[k]?.unsure);
-    if (anyUnsure || answers.crm?.unsure) {
+    const anyUnsure = ['job_value', 'missed_calls', 'response_speed', 'job_source'].some((k) => answers[k]?.unsure);
+    if (anyUnsure) {
       notes.push('You were not sure of some of these numbers. That is the real problem. When you cannot see your numbers, you cannot fix them. That is the first thing we set up.');
     }
     if (answers.website?.weak) {
       notes.push('Your website is not set up to catch and convert the leads you do get. The video covers what to change there too.');
     }
-    const r = answers.response?.label || '';
+    const r = answers.response_speed?.label || '';
     if (r.includes('Next day') || r.includes('few hours') || r.includes('varies')) {
       notes.push('Most of this leak comes from response time. The businesses that answer first win the job, and right now you are not first.');
     } else if (r.includes('Within 5 minutes')) {
@@ -493,12 +546,13 @@ const description = 'Answer a few quick questions and get a free, personalized v
     e.preventDefault();
     if (form.querySelector('[name="botcheck"]').value) return;
 
-    const name = document.getElementById('cf-name').value.trim();
-    const business = document.getElementById('cf-business').value.trim();
-    const email = document.getElementById('cf-email').value.trim();
-    const phone = document.getElementById('cf-phone').value.trim();
+    const business  = document.getElementById('cf-business').value.trim();
+    const email     = document.getElementById('cf-email').value.trim();
+    const phone     = document.getElementById('cf-phone').value.trim();
+    const instagram = document.getElementById('cf-instagram').value.trim();
+    const websiteUrl = document.getElementById('cf-website').value.trim();
 
-    if (!name || !business || !email) { setStatus('Please fill in your name, business, and email.', 'error'); return; }
+    if (!business || !email || !phone) { setStatus('Please fill in your business name, email, and phone.', 'error'); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setStatus('Please enter a valid email address.', 'error'); return; }
 
     setStatus('', '');
@@ -509,16 +563,22 @@ const description = 'Answer a few quick questions and get a free, personalized v
     const payload = {
       access_key: web3key,
       subject: 'New Lead Audit Quiz: Automated Blueprints',
-      from_name: name,
-      email,
+      from_name: business,
       business,
+      email,
       phone,
-      client_value:  answers.client_value?.label ?? '',
-      missed_weekly: answers.missed?.label ?? '',
-      response_time: answers.response?.label ?? '',
-      tracks_leads:  answers.crm?.label ?? '',
-      website:       answers.website?.label ?? '',
-      found_by:      answers.source?.label ?? '',
+      instagram: instagram || 'Not provided',
+      website_url: websiteUrl || 'Not provided',
+      missed_call_outcome:    answers.missed_call_outcome?.label ?? '',
+      missed_calls_weekly:    answers.missed_calls?.label ?? '',
+      response_speed:         answers.response_speed?.label ?? '',
+      quote_followup:         answers.quote_followup?.label ?? '',
+      quotes_unanswered_last_month: answers.quotes_unanswered?.label ?? '',
+      reviews_vs_competitor:  answers.reviews_vs_competitor?.label ?? '',
+      asks_for_reviews:       answers.asks_for_reviews?.label ?? '',
+      job_source:             answers.job_source?.label ?? '',
+      job_value:               answers.job_value?.label ?? '',
+      website:                answers.website?.label ?? '',
       estimated_monthly_loss: `${fmt(est.low)} to ${fmt(est.high)}`,
       botcheck: '',
     };
