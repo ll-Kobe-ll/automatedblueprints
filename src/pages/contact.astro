@@ -81,20 +81,41 @@ const description = 'Get a quote for the Lead Flow System, ask a question about 
 </BaseLayout>
 
 <script>
-  // Arriving from a product CTA (?about=weekly-report): swap the page framing
-  // so the click-promise ("Claim a Free 30-Day Trial") matches what they land on.
+  // Arriving from a product CTA (?about=...): swap the page framing so the
+  // click-promise on the previous page matches what they land on here.
   (() => {
     const about = new URLSearchParams(window.location.search).get('about');
-    if (about !== 'weekly-report') return;
 
     const set = (id: string, text: string) => {
       const el = document.getElementById(id);
       if (el) el.textContent = text;
     };
-    set('contact-eyebrow', 'The Weekly Report: Early Access');
-    set('contact-heading', 'Claim Your Free 30-Day Trial.');
-    set('contact-intro', 'Tell us about your business and the tools you run on. We reply within a business day to book your 20-minute connection call, and your first report lands the following Monday. Free for 30 days.');
-    set('contact-form-intro', 'Name, business, and email are all we need. If you want a head start, mention your accounting tool and CRM in the message box.');
-    document.getElementById('contact-alt')?.classList.add('hidden');
+
+    if (about === 'weekly-report') {
+      set('contact-eyebrow', 'The Weekly Report: Early Access');
+      set('contact-heading', 'Claim Your Free 30-Day Trial.');
+      set('contact-intro', 'Tell us about your business and the tools you run on. We reply within a business day to book your 20-minute connection call, and your first report lands the following Monday. Free for 30 days.');
+      set('contact-form-intro', 'Name, business, and email are all we need. If you want a head start, mention your accounting tool and CRM in the message box.');
+      document.getElementById('contact-alt')?.classList.add('hidden');
+      set('cf-submit', 'Claim My Free Trial');
+    } else if (about === 'website') {
+      set('contact-eyebrow', 'Getting Started: The Website');
+      set('contact-heading', "Let's Get Your Website Built.");
+      set('contact-intro', 'Tell us about your business and we will follow up within a business day to scope the build and get the setup process started.');
+      set('contact-form-intro', 'The more detail you give us here, the faster we can get your build moving.');
+      set('cf-submit', 'Get Started');
+    } else if (about === 'lead-flow-system') {
+      set('contact-eyebrow', 'Getting Started: The Lead Flow System');
+      set('contact-heading', "Let's Get Your Lead Flow System Set Up.");
+      set('contact-intro', 'Tell us about your business and we will follow up within a business day to scope the build and get the setup process started.');
+      set('contact-form-intro', 'The more detail you give us here, the faster we can get your build moving.');
+      set('cf-submit', 'Get Started');
+    } else if (about === 'growth-partner') {
+      set('contact-eyebrow', 'Getting Started: Growth Partner');
+      set('contact-heading', "Let's Get Growth Partner Set Up.");
+      set('contact-intro', 'Tell us about your business and we will follow up within a business day to scope the build, the reporting, and get the setup process started.');
+      set('contact-form-intro', 'The more detail you give us here, the faster we can get your build moving.');
+      set('cf-submit', 'Get Started');
+    }
   })();
 </script>

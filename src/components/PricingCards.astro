@@ -1,11 +1,11 @@
 ---
-// The two package cards + bundle note + billing footnote, shared by
+// The three package cards + bundle note + billing footnote, shared by
 // /pricing and /how-it-works so the numbers can never drift apart.
 // Prices and setup fees live in src/data/site.ts.
 import { site } from '../data/site';
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto items-stretch">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto items-stretch">
 
   <!-- Package 1: the website -->
   <div class="flex flex-col bg-white border border-warm-200 rounded-xl p-8 reveal" style="--delay: 0ms">
@@ -28,7 +28,7 @@ import { site } from '../data/site';
         </li>
       ))}
     </ul>
-    <a href="/contact" class="btn-ghost w-full justify-center">Get Started</a>
+    <a href="/contact?about=website" class="btn-ghost w-full justify-center">Get Started</a>
   </div>
 
   <!-- Package 2: the system (flagship) -->
@@ -55,17 +55,42 @@ import { site } from '../data/site';
         </li>
       ))}
     </ul>
-    <a href="/contact" class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 w-full justify-center text-base">Get Started</a>
+    <a href="/contact?about=lead-flow-system" class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 w-full justify-center text-base">Get Started</a>
+  </div>
+
+  <!-- Package 3: Growth Partner -->
+  <div class="flex flex-col bg-white border border-warm-200 rounded-xl p-8 reveal" style="--delay: 240ms">
+    <h3 class="text-lg font-semibold text-ink mb-1">Growth Partner</h3>
+    <p class="text-ink-muted text-sm mb-5">Everything, done for you and reported on every month.</p>
+    <p class="mb-1"><span class="text-4xl font-bold text-ink">{site.growthPrice}</span><span class="text-ink-muted text-sm">/month</span></p>
+    <p class="text-ink-muted text-xs mb-6">One-time setup: {site.growthSetup}. Half to start, half on delivery.</p>
+    <ul class="space-y-3 mb-8 flex-1">
+      {[
+        'Website + Lead Flow System, both included',
+        'Urgent leads and reviews flagged to you same-day',
+        'Priority changes, same-day turnaround',
+        'Monthly written report + video walkthrough of results',
+        'Limited spots available',
+      ].map(item => (
+        <li class="flex items-start gap-3 text-ink-light text-sm leading-relaxed">
+          <svg class="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+          {item}
+        </li>
+      ))}
+    </ul>
+    <a href="/contact?about=growth-partner" class="btn-ghost w-full justify-center">Get Started</a>
   </div>
 </div>
 
-<!-- Both / bundle note -->
+<!-- Growth Partner promo / bundle note -->
 <div class="max-w-4xl mx-auto mt-6 bg-white border border-warm-200 rounded-xl p-6 flex flex-col sm:flex-row sm:items-center gap-4 reveal">
   <div class="flex-1">
-    <p class="font-semibold text-ink text-sm">Need a site and the system?</p>
-    <p class="text-ink-light text-sm">Get both together. One setup process, one monthly bill.</p>
+    <p class="font-semibold text-ink text-sm">Want it all built, run, and reported on for you?</p>
+    <p class="text-ink-light text-sm">Growth Partner bundles the site and the system, then adds a monthly report and video walkthrough of your results.</p>
   </div>
-  <a href="/contact" class="btn-ghost text-sm whitespace-nowrap">Ask About Both</a>
+  <a href="/growth-partner" class="btn-ghost text-sm whitespace-nowrap">See Growth Partner</a>
 </div>
 
 <p class="text-ink-muted text-sm text-center mt-8 reveal">

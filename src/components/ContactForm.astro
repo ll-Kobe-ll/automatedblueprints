@@ -152,7 +152,7 @@ import { site } from '../data/site';
       id="cf-submit"
       class="btn-primary-lg w-full sm:w-auto"
     >
-      {site.ctaText}
+      Send Message
     </button>
   </div>
 
@@ -164,7 +164,7 @@ import { site } from '../data/site';
   ></div>
 </form>
 
-<script define:vars={{ web3key: site.web3formsKey, ctaText: site.ctaText }}>
+<script define:vars={{ web3key: site.web3formsKey }}>
   const form     = document.getElementById('contact-form');
   const statusEl = document.getElementById('cf-status');
   const submitBtn = document.getElementById('cf-submit');
@@ -203,14 +203,18 @@ import { site } from '../data/site';
     }
 
     setStatus('', '');
+    const defaultLabel = submitBtn?.textContent ?? 'Send Message';
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
 
     const about = document.getElementById('cf-about')?.value ?? '';
     const payload = {
       access_key: web3key,
-      subject: about === 'weekly-report'
-        ? 'Weekly Report: Free Trial Request'
-        : 'New Contact Inquiry: Automated Blueprints',
+      subject:
+        about === 'weekly-report'      ? 'Weekly Report: Free Trial Request' :
+        about === 'website'            ? 'New Inquiry: The Website' :
+        about === 'lead-flow-system'   ? 'New Inquiry: The Lead Flow System' :
+        about === 'growth-partner'     ? 'New Inquiry: Growth Partner' :
+        'New Contact Inquiry: Automated Blueprints',
       about,
       from_name:    document.getElementById('cf-name')?.value ?? '',
       email:        document.getElementById('cf-email')?.value ?? '',
@@ -234,7 +238,7 @@ import { site } from '../data/site';
 
       if (data.success) {
         form.reset();
-        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = ctaText; }
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = defaultLabel; }
         setStatus('Done. Expect a response within minutes.', 'ok');
       } else {
         throw new Error(data.message ?? 'Submission failed');

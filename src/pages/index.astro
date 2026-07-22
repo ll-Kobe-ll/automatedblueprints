@@ -10,6 +10,12 @@ const title       = 'Automated Blueprints | The Lead Flow System for Local Busin
 const description = 'Missed calls, slow follow-up, and ignored quotes cost local businesses jobs every week. The Lead Flow System gets you found, responds in under 60 seconds, follows up automatically, and keeps leads from going cold.';
 
 const proof = projects.filter(p => p.screenshot).slice(0, 3);
+
+const tiers = [
+  { name: 'The Website', price: site.sitePrice, line: 'For businesses that do not have a site that works yet.', dark: false },
+  { name: 'The Lead Flow System', price: site.systemPrice, line: 'For businesses that already have a working site.', dark: true },
+  { name: 'Growth Partner', price: site.growthPrice, line: 'Everything, done for you and reported on every month.', dark: false },
+];
 ---
 
 <BaseLayout {title} {description} canonicalPath="/">
@@ -219,6 +225,38 @@ const proof = projects.filter(p => p.screenshot).slice(0, 3);
             See Plans &amp; Pricing
           </a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRICING TEASER — three tiers, name/price/one-liner only
+  ============================================================ -->
+  <section class="section-pad bg-white" aria-labelledby="pricing-teaser-heading">
+    <div class="section-container">
+      <h2 id="pricing-teaser-heading" class="section-heading mb-4 text-center reveal">Simple Monthly Pricing</h2>
+      <p class="section-sub max-w-2xl mx-auto mb-14 text-center reveal">
+        Three ways to work with us. No long contract.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto items-stretch">
+        {tiers.map((t, i) => (
+          <a
+            href="/pricing"
+            class:list={[
+              'flex flex-col rounded-xl p-7 card-hover reveal',
+              t.dark ? 'bg-ink text-white border-2 border-brand-600' : 'bg-white border border-warm-200',
+            ]}
+            style={`--delay: ${i * 100}ms`}
+          >
+            <h3 class:list={['text-lg font-semibold mb-1', t.dark ? 'text-white' : 'text-ink']}>{t.name}</h3>
+            <p class="mb-3"><span class:list={['text-3xl font-bold', t.dark ? 'text-white' : 'text-ink']}>{t.price}</span><span class:list={['text-sm', t.dark ? 'text-white/60' : 'text-ink-muted']}>/month</span></p>
+            <p class:list={['text-sm leading-relaxed flex-1', t.dark ? 'text-white/75' : 'text-ink-light']}>{t.line}</p>
+            <span class:list={['text-sm font-semibold inline-flex items-center gap-1 mt-5', t.dark ? 'text-brand-300' : 'text-brand-600']}>
+              See details <span aria-hidden="true">&rarr;</span>
+            </span>
+          </a>
+        ))}
       </div>
     </div>
   </section>

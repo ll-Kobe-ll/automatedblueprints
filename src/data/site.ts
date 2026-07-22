@@ -26,6 +26,8 @@ export const site = {
   siteSetup: '$500',
   systemPrice: '$500',
   systemSetup: '$1,250',
+  growthPrice: '$1,500',
+  growthSetup: '$1,750',
   // Templates storefront. Prices shown on /templates; paste Stripe links when ready.
   templatePrice: '$197',
   bundlePrice: '$998',

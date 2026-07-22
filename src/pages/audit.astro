@@ -12,7 +12,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
   canonicalPath="/audit"
   bare={true}
   ogTitle="Find out how many jobs you're losing. Free, 60 seconds."
-  ogDescription="Answer 11 quick questions and see what slow response and a weak website are costing you. No call, no email wall."
+  ogDescription="Answer 12 quick questions and see what slow response and a weak website are costing you. No call, no email wall."
 >
 
   <section class="bg-warm-50 min-h-[calc(100vh-4rem)] py-12 md:py-16" aria-label="Lead audit quiz">
@@ -25,7 +25,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
           Find Out How Many Jobs You Are Losing.
         </h1>
         <p class="text-ink-light text-lg leading-relaxed">
-          Eleven quick questions. At the end you get a rough estimate, then we send a personalized video breaking down your exact numbers and what we would change.
+          Twelve quick questions. At the end you get a rough estimate, then we send a personalized video breaking down your exact numbers and what we would change.
         </p>
         <p class="text-ink-muted text-sm mt-3">Takes about 60 seconds. No cost. No obligation.</p>
 
@@ -186,7 +186,18 @@ const description = 'Answer a few quick questions and get a free, personalized v
             </div>
           </div>
 
-          <!-- Step 11: contact -->
+          <!-- Step 11: reporting preference (capture only, no scoring logic) -->
+          <div class="quiz-step hidden" data-key="reporting_preference">
+            <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">Would a monthly report and video breakdown of your results be valuable to you, or would you rather the system just run quietly in the background?</h2>
+            <p class="text-ink-muted text-sm mb-6">There's no wrong answer here.</p>
+            <div class="space-y-3">
+              <button type="button" class="quiz-option" data-label="Monthly report & video">Monthly report &amp; video</button>
+              <button type="button" class="quiz-option" data-label="Just run in the background">Just run in the background</button>
+              <button type="button" class="quiz-option" data-label="Not sure yet">Not sure yet</button>
+            </div>
+          </div>
+
+          <!-- Step 12: contact -->
           <div class="quiz-step hidden" data-key="contact">
             <h2 class="text-xl md:text-2xl font-bold text-ink mb-2">Where should we send your breakdown?</h2>
             <p class="text-ink-muted text-sm mb-6">We record a short video on your numbers and send it here.</p>
@@ -345,7 +356,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
   const form    = document.getElementById('audit-form');
   const quizCard = document.getElementById('quiz-card');
   const steps   = [...document.querySelectorAll('.quiz-step')];
-  const totalQ  = 10; // question steps (excludes contact step)
+  const totalQ  = 11; // question steps (excludes contact step)
   const bar     = document.getElementById('quiz-bar');
   const counter = document.getElementById('quiz-counter');
   const pct     = document.getElementById('quiz-pct');
@@ -582,6 +593,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
       job_source:             answers.job_source?.label ?? '',
       job_value:               answers.job_value?.label ?? '',
       website:                answers.website?.label ?? '',
+      reporting_preference:   answers.reporting_preference?.label ?? '',
       estimated_monthly_loss: `${fmt(est.low)} to ${fmt(est.high)}`,
       botcheck: '',
     };

@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { site } from '../data/site';
+
+const title       = 'Growth Partner: The Full System, Built and Reported On | Automated Blueprints';
+const description = 'Growth Partner bundles the website and the Lead Flow System, then adds same-day flags on anything urgent, same-day priority changes, and a monthly report and video walkthrough of your results.';
+
+const included = [
+  {
+    title: 'Website + Lead Flow System, both included',
+    body: 'The full build. A site that gets you found, plus missed-call text-back, automatic follow-up, and review generation, running together as one system.',
+  },
+  {
+    title: 'Urgent leads and reviews flagged to you same-day',
+    body: 'The system watches every conversation for the things that matter: a hot lead going cold, a missed call with no reply, a bad review. Anything urgent gets flagged to you the same day, so you never have to sit in an app checking.',
+  },
+  {
+    title: 'Priority changes, same-day turnaround',
+    body: 'Need copy updated, a step in the follow-up sequence changed, or something fixed? Priority requests get turned around the same day, not queued behind everyone else.',
+  },
+  {
+    title: 'Monthly written report + video walkthrough of results',
+    body: 'Every month you get a plain-language report and a short video walking through what happened, what it is worth, and what we are changing next.',
+  },
+  {
+    title: 'Limited spots available',
+    body: 'This tier gets senior, hands-on attention, so we only take on a limited number of Growth Partner accounts at a time.',
+  },
+];
+---
+
+<BaseLayout {title} {description} canonicalPath="/growth-partner">
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="bg-ink text-white" aria-label="Hero">
+    <div class="section-container py-16 md:py-32">
+      <p class="text-brand-300 text-sm font-semibold uppercase tracking-wider mb-5">
+        Growth Partner
+      </p>
+      <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight max-w-3xl mb-6">
+        Everything, Done for You and Reported on Every Month.
+      </h1>
+      <p class="text-white/75 text-xl md:text-2xl leading-relaxed max-w-2xl mb-10">
+        The website, the Lead Flow System, and same-day flags on anything urgent, all built and run for you. Every month you get a report and a video walking through exactly what it did.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/contact?about=growth-partner" class="btn-primary-lg bg-white !text-brand-700 hover:bg-brand-50 focus-visible:outline-white text-center">
+          Get Started
+        </a>
+        <a href="/pricing" class="btn-ghost-lg border-white/30 text-white hover:bg-white/10 hover:border-white/50 text-center">
+          See All Pricing
+        </a>
+      </div>
+      <p class="text-white/60 text-sm mt-6">
+        {site.growthPrice}/month. Setup fee {site.growthSetup}, half to start, half on delivery.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHAT IT IS
+  ============================================================ -->
+  <section class="section-pad bg-white" aria-labelledby="what-heading">
+    <div class="section-container">
+      <div class="max-w-2xl">
+        <h2 id="what-heading" class="section-heading mb-5 reveal">What It Is</h2>
+        <p class="text-lg text-ink-light leading-relaxed reveal">
+          Growth Partner is the website and the Lead Flow System, bundled together and fully done for you, plus a layer on top that keeps you in the loop: same-day flags on anything urgent, same-day priority changes, and a monthly report and video breaking down your results. You are not just handed a system that runs quietly. You get to see it working.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHO IT'S FOR
+  ============================================================ -->
+  <section class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="who-heading">
+    <div class="section-container">
+      <div class="max-w-2xl">
+        <h2 id="who-heading" class="section-heading mb-5 reveal">Who It's For</h2>
+        <p class="text-lg text-ink-light leading-relaxed reveal">
+          Growth Partner is built for businesses that want their results tracked and explained, not just a system running quietly in the background. If you want to know what is happening every month, in plain language, and have someone on the other end watching the inbox and making changes fast, this is the tier built for that.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHAT'S INCLUDED
+  ============================================================ -->
+  <section class="section-pad bg-white" aria-labelledby="included-heading">
+    <div class="section-container">
+      <h2 id="included-heading" class="section-heading mb-4 reveal">What's Included</h2>
+      <p class="section-sub max-w-2xl mb-16 reveal">
+        Everything from the two individual packages, plus the reporting and monitoring layer on top.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {included.map((item, i) => (
+          <div class="card reveal" style={`--delay: ${i * 80}ms`}>
+            <div class="w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center mb-5 text-sm" aria-hidden="true">{i + 1}</div>
+            <h3 class="text-lg font-semibold text-ink mb-3">{item.title}</h3>
+            <p class="text-ink-light leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRICING
+  ============================================================ -->
+  <section class="section-pad bg-warm-100 border-y border-warm-200" aria-labelledby="pricing-heading">
+    <div class="section-container">
+      <h2 id="pricing-heading" class="section-heading mb-4 text-center reveal">Simple Monthly Pricing</h2>
+      <p class="section-sub max-w-2xl mx-auto mb-12 text-center reveal">
+        No long contract. Every agreement includes a 90-day out clause.
+      </p>
+
+      <div class="max-w-md mx-auto bg-white border border-warm-200 rounded-xl p-8 reveal">
+        <h3 class="text-lg font-semibold text-ink mb-1">Growth Partner</h3>
+        <p class="mb-1"><span class="text-4xl font-bold text-ink">{site.growthPrice}</span><span class="text-ink-muted text-sm">/month</span></p>
+        <p class="text-ink-muted text-xs mb-6">One-time setup: {site.growthSetup}. Half to start, half on delivery.</p>
+        <a href="/contact?about=growth-partner" class="btn-primary-lg w-full justify-center text-base">Get Started</a>
+      </div>
+
+      <p class="text-ink-muted text-sm text-center mt-8 reveal">
+        Not sure if this is the right tier? <a href="/pricing" class="text-brand-600 font-semibold hover:text-brand-700 transition-colors">Compare all three packages</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CLOSING CTA
+  ============================================================ -->
+  <CtaSection
+    variant="light"
+    heading="Ready to Have It Built, Run, and Reported On?"
+    body="Tell us a bit about your business and we will follow up to get Growth Partner set up."
+    href="/contact?about=growth-partner"
+    label="Get Started"
+  />
+
+</BaseLayout>
