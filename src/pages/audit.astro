@@ -43,7 +43,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
       </div>
 
       <!-- Quiz card -->
-      <div class="bg-white border border-warm-200 rounded-xl shadow-sm p-6 md:p-10">
+      <div id="quiz-card" class="bg-white border border-warm-200 rounded-xl shadow-sm p-6 md:p-10">
 
         <!-- Progress -->
         <div id="quiz-progress-wrap" class="mb-8">
@@ -343,6 +343,7 @@ const description = 'Answer a few quick questions and get a free, personalized v
 
 <script define:vars={{ web3key: site.web3formsKey, contactEmail: site.email, bookingUrl: site.bookingUrl }}>
   const form    = document.getElementById('audit-form');
+  const quizCard = document.getElementById('quiz-card');
   const steps   = [...document.querySelectorAll('.quiz-step')];
   const totalQ  = 10; // question steps (excludes contact step)
   const bar     = document.getElementById('quiz-bar');
@@ -367,7 +368,9 @@ const description = 'Answer a few quick questions and get a free, personalized v
     pct.textContent = percent + '%';
     counter.textContent = isContact ? 'Last step' : `Question ${shownStep} of ${totalQ}`;
     backBtn.classList.toggle('hidden', current === 0);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Keep the quiz card in view instead of jumping to the absolute page top
+    // (which on mobile is above the intro copy, forcing a re-scroll every click).
+    quizCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   // Option clicks (single-select, auto-advance)
